@@ -1,69 +1,177 @@
+import type {Metadata} from "next";
 import Image from "next/image";
 
-export default function Home() {
+import {ButtonLink} from "@/components/button-link";
+import {RouteCard} from "@/components/route-card";
+import {SectionIntro} from "@/components/section-intro";
+import {houseFacts} from "@/content/site";
+import {cyclingRoutes} from "@/content/routes";
+
+export const metadata: Metadata = {
+  title: "A winter house in Marina Alta",
+  description:
+    "Stay longer in Ondara: a three-bedroom house between Costa Blanca cycling routes, Dénia and the Marina Alta valleys.",
+};
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <main id="main-content">
+      <section className="home-hero page-shell">
+        <div className="home-hero__copy">
+          <p className="eyebrow">Ondara · Costa Blanca · 15 nights and longer</p>
+          <h1>
+            A winter house
+            <span>between coast and climb.</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="home-hero__lead">
+            Settle into Marina Alta with room to ride, work, cook and explore — a slower Mediterranean base for two to five guests.
           </p>
+          <div className="button-row">
+            <ButtonLink href="/enquire">Enquire about your stay</ButtonLink>
+            <ButtonLink href="/the-house" variant="text">
+              See the house
+            </ButtonLink>
+          </div>
+          <p className="home-hero__aside">Three bedrooms · Three shower rooms · Ondara, Spain</p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+        <div className="home-hero__visual">
+          <div className="home-hero__image">
             <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+              alt="Warm dining area inside the Bike Costa Blanca house"
+              fill
+              fetchPriority="high"
+              loading="eager"
+              sizes="(max-width: 760px) 100vw, 52vw"
+              src="/images/house/dining-room.jpeg"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
+          <p className="vertical-note">Marina Alta · Mediterranean winter</p>
+          <div aria-hidden="true" className="sun-stamp">
+            <span>LONG STAYS</span>
+            <i>BCB</i>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="fact-strip">
+        <div className="fact-strip__inner page-shell">
+          {houseFacts.map((fact) => (
+            <div key={fact.label}>
+              <strong>{fact.value}</strong>
+              <span>{fact.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="home-house section-space page-shell">
+        <SectionIntro
+          copy="A simple, grown-up base for the practical parts of a long stay — with enough room for everyone to keep their own rhythm."
+          eyebrow="The house"
+          index="01"
+          title="Arrive, unpack properly, and make it yours for a while."
+        />
+        <div className="home-house__grid">
+          <div className="home-house__image image-frame">
+            <Image
+              alt="Dining space seen through the glass doors of the Ondara house"
+              fill
+              sizes="(max-width: 760px) 100vw, 58vw"
+              src="/images/house/dining-through-glass.jpg"
+            />
+          </div>
+          <div className="home-house__note">
+            <span className="editorial-number">01—04</span>
+            <h3>Made for days that do not need a timetable.</h3>
+            <p>
+              The house is the anchor: breakfast before a route, a quiet afternoon for one partner, dinner together and space to reset for tomorrow.
+            </p>
+            <ButtonLink href="/the-house" variant="outline">
+              Explore the house
+            </ButtonLink>
+          </div>
+        </div>
+      </section>
+
+      <section className="winter-teaser section-space">
+        <div className="winter-teaser__inner page-shell">
+          <div className="winter-teaser__title">
+            <p className="eyebrow eyebrow--light">Winter, differently</p>
+            <h2>
+              Trade the short days for a season with <em>room in it.</em>
+            </h2>
+          </div>
+          <div className="winter-teaser__copy">
+            <p>
+              One month is enough to find a routine. Two or three lets the place become familiar: the bakery, the morning light, the route you now know by heart.
+            </p>
+            <ul className="line-list line-list--light">
+              <li>Long-stay rhythm, not hotel turnover</li>
+              <li>Mountain days and coastal afternoons</li>
+              <li>Space for riders and non-riders alike</li>
+            </ul>
+            <ButtonLink href="/winter" variant="light">
+              See winter stays
+            </ButtonLink>
+          </div>
+        </div>
+      </section>
+
+      <section className="routes-feature section-space page-shell">
+        <SectionIntro
+          copy="Three loops from the wider Ondara landscape. Not an exhaustive guide — just a useful first proof of what sits beyond the front door."
+          eyebrow="Ride from here"
+          index="02"
+          title="The routes make the location tangible."
+        />
+        <div className="route-grid">
+          {cyclingRoutes.map((route, index) => (
+            <RouteCard index={index} key={route.slug} route={route} />
+          ))}
+        </div>
+        <div className="section-end-link">
+          <ButtonLink href="/routes" variant="outline">
+            Browse all routes
+          </ButtonLink>
+        </div>
+      </section>
+
+      <section className="split-story section-space page-shell">
+        <div className="split-story__image image-frame">
+          <Image
+            alt="Cyclist on a quiet Costa Blanca mountain road"
+            fill
+            sizes="(max-width: 760px) 100vw, 46vw"
+            src="/images/routes/vall-debo.jpeg"
+          />
+        </div>
+        <div className="split-story__body">
+          <p className="eyebrow">More than the ride</p>
+          <h2>A good base should work for both of you.</h2>
+          <p>
+            While one person rides inland, another can take a slower day towards Dénia, the coast, the markets or the villages of Marina Alta. Meet again with stories from two different days.
+          </p>
+          <ButtonLink href="/explore" variant="text">
+            Explore without the bike
+          </ButtonLink>
+        </div>
+      </section>
+
+      <section className="host-note">
+        <div className="host-note__inner page-shell">
+          <p className="eyebrow">Local context, lightly held</p>
+          <blockquote>
+            “The most useful advice is rarely a list. It is knowing which direction fits the weather, the legs and the kind of day you want.”
+          </blockquote>
+          <p className="host-note__caption">A prototype promise for more considered hosting</p>
+        </div>
+      </section>
+
+      <section className="final-cta page-shell">
+        <p className="eyebrow">A warmer chapter</p>
+        <h2>Make space for the winter you keep talking about.</h2>
+        <ButtonLink href="/enquire">Enquire about your stay</ButtonLink>
+      </section>
+    </main>
   );
 }

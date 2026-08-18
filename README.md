@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bike Costa Blanca prototype
 
-## Getting Started
+A local Next.js 16 prototype for a premium long-stay house in Ondara, Marina Alta. It tests the information architecture, visual direction and enquiry journey without changing the existing Wix site.
 
-First, run the development server:
+## Included
+
+- Home, house, winter, routes, explore, getting-here and enquiry pages.
+- Three typed route pages with local imagery or a branded editorial placeholder.
+- Local English content and a `next-intl` scaffold for future locales.
+- A Zod-validated mock enquiry form that never sends or stores data.
+- Static metadata with `noindex, nofollow` and a blocked `robots.txt`.
+- Playwright smoke and responsive tests.
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Verify
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run typecheck
+npm run build
+npm run test:e2e
+```
 
-## Learn More
+The build uses Next.js’s supported Webpack fallback because the current local sandbox blocks a Turbopack helper process. The application itself remains standard Next.js App Router.
 
-To learn more about Next.js, take a look at the following resources:
+## Prototype boundaries
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+There is no CMS, API route, Server Action, payment, CRM, availability calendar, analytics or data persistence. Demo pricing is visibly labelled, and unconfirmed house details remain TBC or are omitted.
