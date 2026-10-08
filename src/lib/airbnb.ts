@@ -1,22 +1,26 @@
 import type { Locale } from "@/i18n/config";
+import type { Guests } from "@/lib/booking";
 
 export const AIRBNB_LISTING_ID = "1692875983935079214";
-export const MIN_NIGHTS = 11;
-/** Rough nightly price incl. fees, used only as the conversion value for ads. */
-export const EST_NIGHTLY_EUR = 75;
 
 const airbnbHost: Record<Locale, string> = {
   en: "www.airbnb.com",
 };
 
-export function nightsBetween(checkIn: string, checkOut: string) {
-  return Math.round((Date.parse(checkOut) - Date.parse(checkIn)) / 86_400_000);
+export function airbnbListingUrl(locale: Locale) {
+  return `https://${airbnbHost[locale]}/rooms/${AIRBNB_LISTING_ID}`;
 }
 
-export function airbnbUrl(locale: Locale, checkIn?: string, checkOut?: string, adults?: number) {
-  const url = new URL(`https://${airbnbHost[locale]}/rooms/${AIRBNB_LISTING_ID}`);
+/** Listing URL with dates and guests prefilled (Airbnb reads these query parameters). */
+export function airbnbUrl(locale: Locale, checkIn?: string, checkOut?: string, guests?: Guests) {
+  const url = new URL(airbnbListingUrl(locale));
   if (checkIn) url.searchParams.set("check_in", checkIn);
   if (checkOut) url.searchParams.set("check_out", checkOut);
-  if (adults) url.searchParams.set("adults", String(adults));
+  if (guests) {
+    url.searchParams.set("adults", String(guests.adults));
+    if (guests.children) url.searchParams.set("children", String(guests.children));
+    if (guests.infants) url.searchParams.set("infants", String(guests.infants));
+    if (guests.pets) url.searchParams.set("pets", "1");
+  }
   return url.toString();
 }

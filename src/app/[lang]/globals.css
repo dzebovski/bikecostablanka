@@ -1,23 +1,718 @@
 @import "tailwindcss";
 
-/* Placeholder tokens until the design system lands (TASKS.md 4.2.2). */
+/* Design tokens from the v2 artboards. Each colour has one role only. */
 :root {
-  --background: #fbfaf7;
-  --foreground: #1c1c1a;
+  --paper: #f7f0e1; /* page background */
+  --snow: #ffffff; /* cards, booking card, modals, popovers; Prices and Final CTA */
+  --charcoal: #23212c; /* text, primary button, strong borders */
+  --line: rgba(35, 33, 44, 0.16); /* hairlines */
+  --marigold: #fcbd1c; /* date/guest picker fields and selected dates only */
+  --marigold-preview: color-mix(in srgb, var(--marigold) 45%, transparent); /* hovered range preview */
+  --pine: #006434; /* wordmark and text links only */
+  --morning-sky: #a6dfff; /* the one "Free: …" note in Prices only */
+  --scrim: color-mix(in srgb, var(--charcoal) 55%, transparent);
+
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --header-h: 56px;
+  --bar-h: 0px;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --header-h: 52px;
+  }
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --bar-h: 72px;
+  }
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-paper: var(--paper);
+  --color-snow: var(--snow);
+  --color-charcoal: var(--charcoal);
+  --color-line: var(--line);
+  --color-marigold: var(--marigold);
+  --color-pine: var(--pine);
+  --color-morning-sky: var(--morning-sky);
+
+  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-photo: 20px;
+  --radius-hero: 40px;
+  --radius-button: 20px;
+  --radius-pill: 99px;
+  --radius-chip: 12px;
+
+  --ease-out: var(--ease);
 }
 
-html {
-  scroll-behavior: smooth;
+/* ---------- Base ---------- */
+
+@layer base {
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 8px);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--charcoal);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01" 1;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: var(--bar-h);
+  }
+
+  a {
+    color: var(--pine);
+    text-underline-offset: 3px;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  :where(a, button, summary, input, [tabindex]):focus-visible {
+    outline: 2px solid var(--charcoal);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+/* ---------- Type scale ---------- */
+
+@utility t-h1 {
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: -0.6px;
+  font-weight: 300;
+  @media (width >= 48rem) {
+    font-size: 40px;
+    letter-spacing: -0.8px;
+  }
+}
+@utility t-h2 {
+  font-size: 24px;
+  line-height: 1.1;
+  letter-spacing: -0.4px;
+  font-weight: 300;
+  @media (width >= 48rem) {
+    font-size: 28px;
+    letter-spacing: -0.5px;
+  }
+}
+@utility t-h3 {
+  font-size: 18px;
+  line-height: 1.25;
+  letter-spacing: -0.18px;
+  font-weight: 400;
+}
+@utility t-body {
+  font-size: 16px;
+  line-height: 1.45;
+  letter-spacing: -0.08px;
+  font-weight: 400;
+}
+@utility t-sm {
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: -0.05px;
+  font-weight: 400;
+}
+@utility t-label {
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+@utility t-num {
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: -0.6px;
+  font-weight: 300;
+  font-variant-numeric: tabular-nums lining-nums;
+  @media (width >= 48rem) {
+    font-size: 32px;
+    letter-spacing: -0.8px;
+  }
+}
+@utility tnum {
+  font-variant-numeric: tabular-nums;
+}
+@utility wordmark {
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -0.4px;
+  font-weight: 300;
+  color: var(--pine);
+  text-decoration: none;
+  white-space: nowrap;
+  @media (width >= 48rem) {
+    font-size: 22px;
+  }
+}
+
+/* ---------- Primitives (V2-Components) ---------- */
+
+@layer components {
+  /* Button: primary / secondary / text link */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 48px;
+    padding: 0 24px;
+    border: 1px solid var(--charcoal);
+    border-radius: var(--radius-button);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.08px;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+    box-sizing: border-box;
+    transition:
+      transform 160ms var(--ease),
+      background-color 160ms var(--ease);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn:active:not(:disabled, [aria-disabled="true"]) {
+    transform: scale(0.97);
+  }
+  .btn-primary {
+    background: var(--charcoal);
+    color: var(--snow);
+  }
+  .btn-primary:hover {
+    color: var(--snow);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--charcoal);
+  }
+  .btn-secondary:hover {
+    background: var(--snow);
+    color: var(--charcoal);
+  }
+  .btn-on-photo {
+    background: var(--snow);
+  }
+  .btn-sm {
+    min-height: 44px;
+    padding: 0 18px;
+    font-size: 14px;
+  }
+  .btn-round {
+    width: 44px;
+    padding: 0;
+    border-radius: var(--radius-pill);
+  }
+  .btn-pill {
+    border-radius: var(--radius-pill);
+  }
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
+    background: transparent;
+    color: var(--charcoal);
+    border-style: dashed;
+    cursor: not-allowed;
+    text-decoration: none;
+  }
+  .btn-round:disabled {
+    opacity: 0.4;
+  }
+
+  .link {
+    color: var(--pine);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .link:hover {
+    color: var(--charcoal);
+  }
+  .link:active {
+    color: var(--charcoal);
+    text-decoration-thickness: 2px;
+  }
+  /* Underlined text button in charcoal (Show more, Clear dates). */
+  .text-button {
+    align-self: flex-start;
+    min-height: 44px;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Chip */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 10px;
+    border: 1px solid var(--charcoal);
+    border-radius: var(--radius-chip);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    white-space: nowrap;
+    color: var(--charcoal);
+  }
+  .chip-solid {
+    background: var(--charcoal);
+    color: var(--snow);
+  }
+
+  /* Card */
+  .card {
+    background: var(--snow);
+    border-radius: var(--radius-photo);
+    padding: 24px;
+    box-sizing: border-box;
+  }
+
+  /* PhotoTile */
+  .tile {
+    position: relative;
+    display: block;
+    border-radius: var(--radius-photo);
+    overflow: hidden;
+    background: var(--snow);
+  }
+  .tile img {
+    object-fit: cover;
+    transition: transform 700ms var(--ease);
+  }
+  @media (hover: hover) {
+    .tile:hover img {
+      transform: scale(1.03);
+    }
+  }
+
+  /* InfoRow */
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+    @media (width >= 48rem) {
+      padding: 14px 0;
+    }
+  }
+  .row-stack {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+  }
+  a.row {
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+
+  /* FactStat */
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  /* Section rhythm: 48px (mobile 32px) with a hairline */
+  .sec {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+    @media (width >= 48rem) {
+      gap: 24px;
+      padding: 48px 0;
+    }
+  }
+  .sh {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    @media (width >= 48rem) {
+      gap: 8px;
+    }
+  }
+
+  /* Horizontal swipe row */
+  .swipe {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+  .swipe::-webkit-scrollbar {
+    display: none;
+  }
+  .swipe > * {
+    scroll-snap-align: start;
+  }
+  .swipe-bleed {
+    margin: 0 -20px;
+    padding: 0 20px;
+    scroll-padding: 0 20px;
+  }
+
+  /* Date/guest picker fields (marigold) */
+  .picker {
+    background: var(--marigold);
+    border-radius: var(--radius-photo);
+    padding: 0 16px;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+    padding: 12px 0;
+    border: 0;
+    background: none;
+    text-align: left;
+  }
+  .field-active {
+    margin: 6px 0 6px 8px;
+    padding: 6px 10px;
+    background: var(--snow);
+    border-radius: var(--radius-chip);
+    outline: 2px solid var(--charcoal);
+  }
+
+  /* Inline message (role=alert): fades in, never shakes */
+  .msg {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 14px;
+    background: var(--snow);
+    border-radius: var(--radius-chip);
+    animation: fade-rise 200ms var(--ease) both;
+  }
+
+  /* Popover (date and guest pickers, language menu) */
+  .pop {
+    background: var(--snow);
+    border: 1px solid var(--charcoal);
+    border-radius: var(--radius-photo);
+    box-sizing: border-box;
+    animation: pop-in 200ms var(--ease) both;
+  }
+  .pop[data-state="closing"] {
+    animation: pop-out 140ms var(--ease) both;
+  }
+
+  /* Round stepper (guests, calendar arrows) */
+  .step {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    border: 1px solid var(--charcoal);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  .step:disabled {
+    border-style: dashed;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  /* Calendar day */
+  .day {
+    position: relative;
+    width: 100%;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: none;
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+    box-sizing: border-box;
+    padding: 0;
+    transition: background-color 120ms var(--ease);
+  }
+  .day[aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+  @media (hover: hover) {
+    .day:not([aria-disabled="true"]):hover {
+      outline: 1px solid var(--charcoal);
+      outline-offset: -1px;
+    }
+  }
+  .day[data-today] {
+    box-shadow: inset 0 0 0 1px var(--charcoal);
+  }
+  .day[data-booked] {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+  .day[data-past],
+  .day[data-unreachable] {
+    opacity: 0.3;
+  }
+  .day[data-short] {
+    border: 1px dashed var(--charcoal);
+  }
+  .day[data-range] {
+    background: var(--marigold);
+    border-radius: 0;
+  }
+  .day[data-preview] {
+    background: var(--marigold-preview);
+    border-radius: 0;
+  }
+  .day[data-edge] {
+    background: var(--marigold);
+    font-weight: 500;
+  }
+  .day[data-edge="start"] {
+    border-radius: 99px 0 0 99px;
+  }
+  .day[data-edge="end"] {
+    border-radius: 0 99px 99px 0;
+  }
+  .day[data-preview-end] {
+    border-radius: 0 99px 99px 0;
+  }
+
+  /* Pets switch */
+  .switch {
+    position: relative;
+    width: 52px;
+    height: 32px;
+    flex: 0 0 52px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--charcoal);
+    background: transparent;
+    padding: 0;
+  }
+  .switch::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-pill);
+    background: var(--charcoal);
+    transition: left 160ms var(--ease);
+  }
+  .switch[aria-checked="true"] {
+    background: var(--charcoal);
+  }
+  .switch[aria-checked="true"]::after {
+    left: 23px;
+    background: var(--snow);
+  }
+
+  /* Header nav link */
+  .navlink {
+    color: var(--charcoal);
+    text-decoration: none;
+    padding: 8px 0;
+    border-bottom: 2px solid transparent;
+  }
+  .navlink:hover,
+  .navlink[aria-current="true"] {
+    border-bottom-color: var(--charcoal);
+    color: var(--charcoal);
+  }
+  .navlink[aria-current="true"] {
+    font-weight: 500;
+  }
+
+  /* FAQ accordion */
+  .faq summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq summary:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .faq .faq-open {
+    display: none;
+  }
+  .faq[open] .faq-open {
+    display: inline;
+  }
+  .faq[open] .faq-closed {
+    display: none;
+  }
+
+  /* Line clamps for About and reviews */
+  .clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Modal dialogs (lightbox, amenities, mobile sheet) */
+  dialog.modal {
+    padding: 0;
+    border: 0;
+    max-width: none;
+    max-height: none;
+    color: var(--charcoal);
+    background: transparent;
+  }
+  dialog.modal::backdrop {
+    background: var(--scrim);
+    animation: fade-in 200ms var(--ease) both;
+  }
+  dialog.modal[data-state="closing"]::backdrop {
+    animation: fade-out 200ms var(--ease) both;
+  }
+
+  dialog.sheet {
+    margin: auto 0 0;
+    width: 100%;
+    height: calc(100dvh - 24px);
+    background: var(--snow);
+    border-radius: 40px 40px 0 0;
+    animation: sheet-in 400ms var(--ease) both;
+  }
+  dialog.sheet[data-state="closing"] {
+    animation: sheet-out 240ms var(--ease) both;
+  }
+
+  dialog.lightbox {
+    width: 100vw;
+    height: 100dvh;
+    background: var(--paper);
+    animation: fade-in 200ms var(--ease) both;
+  }
+  dialog.lightbox::backdrop {
+    background: var(--paper);
+  }
+  dialog.lightbox[data-state="closing"] {
+    animation: fade-out 200ms var(--ease) both;
+  }
+
+  dialog.amenities-modal {
+    margin: auto;
+    width: min(560px, calc(100vw - 32px));
+    height: min(980px, calc(100dvh - 48px));
+    background: var(--snow);
+    border: 1px solid var(--charcoal);
+    border-radius: var(--radius-photo);
+    animation: pop-in 200ms var(--ease) both;
+  }
+  dialog.amenities-modal[data-state="closing"] {
+    animation: pop-out 140ms var(--ease) both;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+@keyframes pop-out {
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+@keyframes sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+@keyframes sheet-out {
+  to {
+    transform: translateY(100%);
+  }
+}
+
+/* Reduced motion: fades only. */
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .tile img {
+    transition: none;
+  }
+  .btn:active:not(:disabled) {
+    transform: none;
+  }
+  @media (hover: hover) {
+    .tile:hover img {
+      transform: none;
+    }
+  }
+  .msg,
+  .pop,
+  dialog.amenities-modal {
+    animation: fade-in 160ms linear both;
+  }
+  .pop[data-state="closing"],
+  dialog.amenities-modal[data-state="closing"],
+  dialog.sheet[data-state="closing"] {
+    animation: fade-out 140ms linear both;
+  }
+  dialog.sheet {
+    animation: fade-in 180ms linear both;
+  }
 }

@@ -94,7 +94,7 @@
 - [x] **4.2.1** Дизайн-система «Cabin Journal»: https://claude.ai/artifact/L86s9zkwAQpujtyk35g2Mt
 - [x] **4.2.1a** Промт для дизайну сторінки: [docs/DESIGN_PROMPT.md](docs/DESIGN_PROMPT.md). Рішення: Claude Design; підхід «будинок понад усе», як в Airbnb; компактні відступи + липкий блок бронювання + липка шапка; конверсії: дати → Airbnb (головна), WhatsApp/email господарю; ціна «from ~€70/night» + оцінка; слово-лого + EN/UK/DE.
 - [x] **4.2.1b** 30 фото з Airbnb-оголошення → `public/images/house/` (оригінали 56 шт. у `../photos/airbnb/`, поза репо).
-- [?] **4.2.1c** WhatsApp-номер і email для «Message Eugene».
+- [?] **4.2.1c** WhatsApp-номер і email для «Message Eugene» → env `NEXT_PUBLIC_CONTACT_WHATSAPP`, `NEXT_PUBLIC_CONTACT_EMAIL` (поки порожні, посилання приховані).
 - [ ] **4.2.2** ~~Дизайн-система v6 (Newsreader, кут 72/4, сітка Raus)~~: власнику не сподобалось, відкочено до першої версії (v7 = v5).
 - [!] **4.2.3** ~~Макет v3~~ відкочується до версії 9 (через історію версій на полотні). Потрібен інший підхід. Було: https://claude.ai/artifact/8UvkEJrYN93wv68mC6zvfn. Desktop, Mobile і стани бронювання перероблено за Raus: нижня жовта панель замість правої колонки, рядки фото, темна секція маршрутів, таблиця цін по місяцях, реальні відгуки. Лишилось: прототипи календаря відкривати вгору від панелі; фото для Bernia; ще кілька раундів шліфування (власник).
 - [x] **4.2.4** iCal Airbnb → env `AIRBNB_ICAL_URL` (Vercel, Production). Підключити в календарі на етапі верстки.
@@ -105,11 +105,11 @@
 - [x] **4.2.6** Медіа власника з WhatsApp (4 відео, 3 фото) → `docs/reference/media/`.
 
 ### 4.3 Верстка (етап 3)
-- [ ] **4.3.0** Верстка за макетом v2 за промтом [docs/BUILD_PROMPT.md](docs/BUILD_PROMPT.md) (токени, компоненти, логіка бронювання з iCal, події, consent, чекліст приймання).
+- [~] **4.3.0** Верстка за макетом v2 за промтом [docs/BUILD_PROMPT.md](docs/BUILD_PROMPT.md): гілка `landing-v2`, превʼю на Vercel. Зроблено: токени, усі секції V2-Desktop/V2-Mobile, `/en/photos`, 404, лайтбокс, модалка зручностей, логіка бронювання (`src/lib/booking.ts` + 12 тестів), 6 станів, desktop-поповер і мобільна шторка, `/api/availability` (iCal, кеш 1 год), події, Consent Mode v2 + банер. Чекає власника: огляд превʼю, merge у `main`.
 - [x] **4.3.1** Скелет Next.js 16.4 (App Router, Cache Components) + Tailwind 4 + ESLint. i18n за офіційним патерном `app/[lang]` + словники, без бібліотек; `src/proxy.ts` редіректить `/` → `/en` за Accept-Language.
-- [~] **4.3.2** Секції лендінгу: базова верстка з усім EN-контентом уже на проді (тимчасовий стиль до дизайн-системи). Фінальна верстка за макетом.
+- [x] **4.3.2** Секції лендінгу (v2, гілка `landing-v2`): базова верстка з усім EN-контентом уже на проді (тимчасовий стиль до дизайн-системи). Фінальна верстка за макетом.
 - [x] **4.3.3** Booking form `src/components/booking-form.tsx`: валідація мінімуму 11 ночей, URL Airbnb з датами, події `view_dates`, `click_book_airbnb`/`InitiateCheckout`, `LongStayIntent` (перевірено на проді 2026-10-08). Чекає ID пікселів (4.3.4).
-- [ ] **4.3.4** Аналітика (GA4, Meta Pixel, Google Ads tag) + consent.
+- [~] **4.3.4** Аналітика (GA4, Meta Pixel, Google Ads tag) + consent: код готовий, теги вмикаються env-змінними `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_META_PIXEL_ID`, `NEXT_PUBLIC_GADS_ID` (+ опційно `NEXT_PUBLIC_GADS_LONGSTAY_LABEL`). Чекає ID.
 - [ ] **4.3.5** Оптимізація зображень (`next/image`), Lighthouse ≥ 90 на мобільному.
 - [ ] **4.3.6** Вбудовування Airbnb (офіційна картка «Share → Embed»), опційно як соціальний доказ. Головний CTA лишається на нашій кнопці, бо в iframe кліки не трекаються.
 
@@ -174,6 +174,7 @@
 ---
 
 ## Журнал
+- 2026-10-08: верстка v2 у гілці `landing-v2` (Next.js 16.4), превʼю на Vercel. `AIRBNB_ICAL_URL` позначена Sensitive і є лише в Production, тому на превʼю календар у стані «Calendar unavailable».
 - 2026-10-08: макет v2 (Page 2) перевірено й підправлено; написано промт для верстки `docs/BUILD_PROMPT.md`.
 - 2026-10-08: зібрано всю інформацію (CONTEXT, PROJECT_SUMMARY), промт лендінгу v2, медіа з WhatsApp.
 - 2026-10-08: макет v3 і DS v6 відхилено власником, відкат.

@@ -1,24 +1,111 @@
 {
   "meta": {
     "title": "Bike Costa Blanca | Winter cycling house in Ondara, Spain",
-    "description": "A 3-bedroom townhouse in Ondara, Costa Blanca, built for long winter stays. Ride Coll de Rates, Vall d'Ebo and Bernia from the door. Stays from 11 nights."
+    "description": "A 3-bedroom townhouse in Ondara, Costa Blanca, set up for long winter stays. Ride Coll de Rates, Vall d’Ebo and Bernia from the door. Stays from 11 nights.",
+    "photosTitle": "All photos | Bike Costa Blanca",
+    "notFoundTitle": "Page not found | Bike Costa Blanca"
   },
-  "nav": {
-    "routes": "Routes",
-    "house": "The house",
-    "longStay": "Long stays",
-    "explore": "Explore",
-    "gettingHere": "Getting here",
-    "faq": "FAQ",
-    "book": "Check dates"
+  "brand": "Bike Costa Blanca",
+  "header": {
+    "nav": [
+      {
+        "id": "photos",
+        "label": "Photos"
+      },
+      {
+        "id": "house",
+        "label": "The house"
+      },
+      {
+        "id": "rides",
+        "label": "Rides"
+      },
+      {
+        "id": "prices",
+        "label": "Prices"
+      },
+      {
+        "id": "reviews",
+        "label": "Reviews"
+      },
+      {
+        "id": "location",
+        "label": "Location"
+      },
+      {
+        "id": "faq",
+        "label": "FAQ"
+      }
+    ],
+    "navLabel": "Sections",
+    "mobileNav": [
+      {
+        "id": "photos",
+        "label": "Photos"
+      },
+      {
+        "id": "house",
+        "label": "House"
+      },
+      {
+        "id": "rides",
+        "label": "Rides"
+      },
+      {
+        "id": "prices",
+        "label": "Prices"
+      },
+      {
+        "id": "reviews",
+        "label": "Reviews"
+      },
+      {
+        "id": "faq",
+        "label": "FAQ"
+      }
+    ]
   },
-  "hero": {
-    "eyebrow": "Ondara · Marina Alta · Costa Blanca",
-    "title": "Your winter cycling base on the Costa Blanca",
-    "subtitle": "A real house, not a hotel room. Ride the climbs the pro teams train on, come home to a sunny terrace, and stay long enough for the weeks to count.",
-    "ctaPrimary": "Check dates & price",
-    "ctaSecondary": "See the routes",
-    "facts": [
+  "language": {
+    "label": "Language: {name}",
+    "names": {
+      "en": "English"
+    }
+  },
+  "cta": {
+    "checkDates": "Check dates",
+    "checkDatesLink": "Check dates →",
+    "checkAvailability": "Check availability →",
+    "chooseNights": "Choose 11+ nights",
+    "chooseFree": "Choose free dates"
+  },
+  "title": {
+    "h1": "Your winter cycling base on the Costa Blanca",
+    "place": "Ondara, Costa Blanca, Spain",
+    "rating": "★ 5.0 (2 reviews)",
+    "minimum": "11-night minimum",
+    "cancellation": "Free cancellation"
+  },
+  "gallery": {
+    "label": "Photos",
+    "openFirst": "Open photo {n} of {total}: {name}",
+    "open": "Open photo {n}: {name}",
+    "names": [
+      "roof terrace",
+      "bike storage",
+      "dining area",
+      "bedroom 1",
+      "loft room"
+    ],
+    "showAll": "Show all {total} photos",
+    "counter": "{n} / {total}"
+  },
+  "keyFacts": {
+    "label": "Key facts",
+    "items": [
+      {
+        "value": "5",
+        "label": "guests"
+      },
       {
         "value": "3",
         "label": "bedrooms"
@@ -28,97 +115,94 @@
         "label": "bathrooms"
       },
       {
-        "value": "302 Mbps",
-        "label": "fibre Wi-Fi"
-      },
-      {
-        "value": "11+",
-        "label": "nights"
+        "value": "302",
+        "label": "Mbps Wi-Fi"
       }
     ]
   },
-  "why": {
-    "eyebrow": "Why Ondara in winter",
-    "title": "While it's dark and wet at home, the season is on here",
-    "items": [
-      {
-        "title": "Where the pros spend their winter",
-        "text": "From December to February, WorldTour teams base their training camps along this coast. You'll ride the same climbs and probably share a café stop with them."
-      },
-      {
-        "title": "Mild, dry riding days",
-        "text": "Average daytime highs sit around 17–21°C from November to April. Shorts and arm warmers on the climbs, sunglasses all day."
-      },
-      {
-        "title": "Quiet roads from the door",
-        "text": "Ondara sits between the Mediterranean and the mountains. Within a few kilometres you're on calm inland roads through orange groves and empty valleys."
-      },
-      {
-        "title": "An hour from the airport",
-        "text": "Alicante and Valencia airports are both about 100 km away, almost all of it on the AP-7 motorway."
-      }
-    ]
-  },
-  "routes": {
-    "eyebrow": "Routes from the door",
-    "title": "Three classic loops, all starting from the house",
-    "intro": "These are the loops I ride most often. Every route starts and finishes at the front door, and each one is on Strava so you can load it straight onto your computer.",
-    "distance": "km",
-    "elevation": "m climbing",
-    "openStrava": "Open on Strava",
-    "items": [
-      {
-        "slug": "coll-de-rates",
-        "name": "Coll de Rates",
-        "level": "Hard",
-        "km": 75,
-        "elevation": 1160,
-        "image": "/images/coll-de-rates.jpeg",
-        "imageAlt": "Cyclist climbing the Coll de Rates through a pale mountain landscape",
-        "text": "The Costa Blanca's signature climb and the benchmark of every winter camp. Smooth tarmac, a steady gradient and long views back to the sea. Save something for the ride home: the climb is only part of a big day.",
-        "strava": "https://www.strava.com/routes/3514697316111501132"
-      },
-      {
-        "slug": "vall-debo",
-        "name": "Vall d'Ebo",
-        "level": "Medium",
-        "km": 68,
-        "elevation": 870,
-        "image": "/images/vall-debo.jpeg",
-        "imageAlt": "Rider at the Vall d'Ebo climb sign",
-        "text": "North through the Pego valley, then inland to Vall d'Ebo. Quiet roads, mountain walls and almost no traffic. Enough climbing to feel earned without turning the day into a test.",
-        "strava": "https://www.strava.com/routes/3514701466186284876"
-      },
-      {
-        "slug": "ondara-bernia",
-        "name": "Ondara–Bernia Loop",
-        "level": "Medium",
-        "km": 77,
-        "elevation": 990,
-        "image": null,
-        "imageAlt": "",
-        "text": "A full loop towards the Sierra de Bernia, with views over Calpe and the Peñón de Ifach. The descent is the highlight, with steep sections and tight hairpins, so take extra care.",
-        "strava": "https://www.strava.com/routes/3514958094482175874"
-      }
-    ],
-    "challenge": {
-      "title": "The Coll de Rates challenge",
-      "text": "Tadej Pogačar's time on the climb: 11:57. Mine: 19:20. Ride it during your stay and tell me yours."
+  "highlights": [
+    {
+      "title": "Ride from the door.",
+      "text": "Coll de Rates, Vall d’Ebo and Bernia loops start at the house."
+    },
+    {
+      "title": "Warm for winter.",
+      "text": "Wood-burning fireplace and heating in every room."
+    },
+    {
+      "title": "Self check-in.",
+      "text": "Lockbox at the gate; the host replies within an hour."
     }
+  ],
+  "about": {
+    "title": "About the house",
+    "text": "A newly renovated townhouse with its own front door and no shared spaces. Two floors joined by a terrazzo staircase, a large roof terrace with an awning and sun loungers, and a private inner courtyard behind floor-to-ceiling glass. Three king bedrooms, a single room with a desk and a private loft room. Everything is set up for living here for weeks, not just sleeping: a full kitchen with an island, a living room with wooden beams and a 65-inch TV, and a laundry room for your kit.",
+    "textMobile": "A newly renovated townhouse with its own front door and no shared spaces. Two floors joined by a terrazzo staircase, a large roof terrace with an awning and sun loungers, and a private inner courtyard behind floor-to-ceiling glass. Everything is set up for living here for weeks, not just sleeping.",
+    "showMore": "Show more ▾",
+    "showLess": "Show less ▴"
   },
-  "house": {
-    "eyebrow": "The house",
-    "title": "A newly renovated townhouse, all to yourself",
-    "text": "The whole house is yours, with its own front door and no shared spaces. Two floors, three bedrooms with large wardrobes, three full bathrooms plus a guest WC, and a sunny private terrace for breakfast outside and dinner after a long ride. Everything is new, high quality and set up for living here for weeks, not just sleeping.",
-    "image": "/images/dining-room.jpeg",
-    "imageAlt": "Bright dining area inside the renovated townhouse",
+  "sleep": {
+    "title": "Where you’ll sleep",
+    "previous": "Previous rooms",
+    "next": "Next rooms",
+    "rooms": [
+      {
+        "photo": "bedroom-1-king",
+        "alt": "Bedroom 1",
+        "title": "Bedroom 1",
+        "text": "King bed · en-suite"
+      },
+      {
+        "photo": "bedroom-2-king",
+        "alt": "Bedroom 2",
+        "title": "Bedroom 2",
+        "text": "King bed · en-suite"
+      },
+      {
+        "photo": "bedroom-3",
+        "alt": "Bedroom 3",
+        "title": "Bedroom 3",
+        "text": "King bed"
+      },
+      {
+        "photo": "bedroom-single-desk",
+        "alt": "Single room with desk",
+        "title": "Single room",
+        "text": "Single bed · desk"
+      },
+      {
+        "photo": "loft-room-bianchi",
+        "alt": "Loft room",
+        "title": "Loft room",
+        "text": "Private, lockable · own bathroom and kitchenette · restored 1970s Bianchi",
+        "textMobile": "Private, lockable · own bathroom and kitchenette · 1970s Bianchi"
+      }
+    ]
+  },
+  "amenities": {
+    "title": "What this place offers",
+    "items": [
+      "Secure indoor bike storage",
+      "Washer and dryer",
+      "Wood-burning fireplace",
+      "Heating & A/C in every room",
+      "Fibre Wi-Fi 302 Mbps",
+      "Dedicated workspace",
+      "Room-darkening blinds",
+      "Bath",
+      "Roof terrace with sun loungers",
+      "Own parking space (4–5 min walk)"
+    ],
+    "showAll": "Show all 40+ amenities",
+    "close": "Close",
+    "modalFooter": "11-night minimum",
     "groups": [
       {
         "title": "For your bike",
         "items": [
-          "Secure indoor bike storage",
-          "Washer and dryer, so your kit is ready by morning",
-          "Room-darkening blinds for proper recovery sleep",
+          "Secure indoor bike storage (wall rack)",
+          "Laundry room with washer and tumble dryer",
+          "Room-darkening blinds",
           "Two bike shops within a short ride"
         ]
       },
@@ -126,194 +210,410 @@
         "title": "Warm in winter",
         "items": [
           "Wood-burning fireplace",
-          "Heating and air conditioning in every room",
-          "Bath for after the big climbing days",
-          "Quality bed linen, extra pillows and blankets"
+          "Heating and A/C in every room",
+          "Underfloor heating and heated towel rail in a bathroom",
+          "Bath · quality linen, extra pillows and blankets"
         ]
       },
       {
-        "title": "For working",
+        "title": "Working",
         "items": [
-          "Fibre Wi-Fi, 302 Mbps (speed-tested)",
-          "Dedicated workspace",
-          "Fast enough for video calls and 4K streaming on several devices"
+          "Fibre Wi-Fi 302 Mbps (speed-tested)",
+          "Dedicated workspace with office chair"
         ]
       },
       {
-        "title": "Kitchen and living",
+        "title": "Kitchen & living",
         "items": [
-          "Fully equipped kitchen: oven, dishwasher, Liebherr fridge and freezer",
-          "Filter coffee maker and drinking water filter",
-          "65-inch TV for watching the races",
-          "Record player and Bluetooth speaker"
+          "Island with seating for three",
+          "Oven, microwave, dishwasher",
+          "Liebherr fridge, freezer, kettle",
+          "Filter coffee maker, drinking water filter",
+          "65\" TV, record player, Bluetooth speaker"
         ]
       },
       {
         "title": "Getting settled",
         "items": [
           "Self check-in with a lockbox",
-          "Your own parking space in an underground car park, a 4–5 minute walk away",
-          "Pets welcome"
+          "Parking space No. 30, 4–5 min walk",
+          "Pets allowed"
         ]
-      },
-      {
-        "title": "On your doorstep",
-        "items": [
-          "A restaurant, bar and ice-cream shop 2 minutes' walk away",
-          "Food shops, markets and a bakery about 5 minutes on foot",
-          "La Marina shopping centre with a cinema 5 minutes by car",
-          "Beach about 7 minutes by car"
-        ]
-      }
-    ],
-    "review": {
-      "quote": "Everything is high-quality and well-maintained, and you feel at home right away.",
-      "author": "Anja, guest, 5★ on Airbnb"
-    }
-  },
-  "longStay": {
-    "eyebrow": "Long stays",
-    "title": "Stay two weeks. Or the whole winter.",
-    "text": "The house is only let for 11 nights or more, because it works best when you settle in. Ride in the morning, work or rest in the afternoon, shop at the market like a local. Longer stays get a better nightly rate.",
-    "points": [
-      {
-        "title": "Weekly discount",
-        "text": "Applied automatically on Airbnb for every stay."
-      },
-      {
-        "title": "Electricity included",
-        "text": "For stays of a month or more, normal use is included (€3.33 per night allowance)."
-      },
-      {
-        "title": "Daily life on foot",
-        "text": "Shops, markets, a bakery and cafés are a few minutes' walk away. The big La Marina shopping centre is 5 minutes by car."
-      }
-    ],
-    "priceNote": "From around €70 a night on a two-week winter stay, all fees included. Pick your dates below to see the live price."
-  },
-  "explore": {
-    "eyebrow": "Not everyone rides?",
-    "title": "A great cycling base, even if not everyone in your group rides",
-    "items": [
-      {
-        "title": "Beaches and coves",
-        "text": "Dénia's long sandy beaches and the rocky coves of Jávea are a short drive away, and they're quiet out of season."
-      },
-      {
-        "title": "Towns and villages",
-        "text": "Altea's white old town, Calpe under the Peñón de Ifach, hilltop villages like Alcalalí and the weekly markets."
-      },
-      {
-        "title": "Hiking",
-        "text": "Montgó Natural Park and the valley trails around Vall de Gallinera and Vall de Laguar."
-      },
-      {
-        "title": "Seasons and festivals",
-        "text": "Almond blossom in January and February, carnival in Pego, Fallas in Dénia in March and orange blossom in spring."
-      }
-    ]
-  },
-  "partners": {
-    "eyebrow": "Local partners",
-    "title": "Bikes, parts and transfers",
-    "text": "We don't rent bikes, repair bikes or run tours. We point you to the people we use ourselves.",
-    "items": [
-      {
-        "name": "Maxima Bikes, Ondara",
-        "text": "Our local shop: servicing, bike and e-bike rental, parts and nutrition."
-      },
-      {
-        "name": "Xabia's Bike, Dénia",
-        "text": "Official Specialized dealer and service centre with 25+ years in the Marina Alta. Workshop, rental and kit."
-      },
-      {
-        "name": "transfer4u.es",
-        "text": "Airport transfers with room for bike boxes."
-      }
-    ]
-  },
-  "gettingHere": {
-    "eyebrow": "Getting here",
-    "title": "Fly to Alicante or Valencia",
-    "items": [
-      {
-        "title": "Alicante (ALC)",
-        "text": "About 104 km, roughly an hour on the AP-7."
-      },
-      {
-        "title": "Valencia (VLC)",
-        "text": "About 111 km, also mostly on the AP-7."
-      },
-      {
-        "title": "Car or transfer",
-        "text": "Hire a car at either airport (book ahead in winter), or use a bike-friendly transfer."
-      },
-      {
-        "title": "Bring or rent a bike",
-        "text": "Fly with your own bike, or rent a road or e-bike locally from Maxima Bikes."
-      }
-    ]
-  },
-  "host": {
-    "eyebrow": "Your host",
-    "title": "Hi, I'm Eugene",
-    "text": "I ride these roads every week, and I set up this house as the base I'd want for a cycling winter: room for the bike, fast internet, and routes that start at the door. Ask me about routes, cafés or which climb to save for your last day."
-  },
-  "faq": {
-    "eyebrow": "FAQ",
-    "title": "Good to know",
-    "items": [
-      {
-        "q": "What's the minimum stay?",
-        "a": "11 nights. The house is set up for longer stays, from two weeks to the whole winter."
-      },
-      {
-        "q": "How do I book?",
-        "a": "Pick your dates below and you'll go straight to the Airbnb listing with your dates and guests filled in. Airbnb handles the payment and protects your booking."
-      },
-      {
-        "q": "Is the house only for cyclists?",
-        "a": "No. Cycling is why the location works so well, but the coast, villages, markets and mild weather make it a good winter base for everyone in your group."
-      },
-      {
-        "q": "Is the house warm in winter?",
-        "a": "Yes. Every room has heating and air conditioning, and there's a wood-burning fireplace for cosy evenings."
-      },
-      {
-        "q": "Where do I keep my bike?",
-        "a": "There's secure indoor bike storage, plus a washer and dryer for your kit."
-      },
-      {
-        "q": "Do you rent bikes or offer guided rides?",
-        "a": "No. We share our routes and local knowledge, and recommend local shops for rental and servicing."
-      },
-      {
-        "q": "Can I work remotely?",
-        "a": "Yes. There's 302 Mbps Wi-Fi and a dedicated workspace."
-      },
-      {
-        "q": "When is the best time for cycling?",
-        "a": "October to May. December to February is the pro training season, and March and April bring longer days and orange blossom."
       }
     ]
   },
   "booking": {
-    "eyebrow": "Check availability",
-    "title": "Pick your dates",
-    "text": "Minimum stay is 11 nights. You'll see the live price and availability on Airbnb.",
+    "label": "Book your stay",
+    "from": "from",
+    "perNight": "/ night",
+    "terms": "11+ nights · fees included",
+    "termsSheet": "/ night · 11+ nights · fees included",
     "checkIn": "Check-in",
     "checkOut": "Check-out",
     "guests": "Guests",
-    "nightsLabel": "nights",
-    "submit": "See price on Airbnb",
-    "errorDates": "Please choose your check-in and check-out dates.",
-    "errorMinNights": "The minimum stay is 11 nights.",
-    "airbnbNote": "Opens Airbnb in a new tab"
+    "addDate": "Add date",
+    "pickDate": "Pick a date",
+    "earliest": "Earliest check-out: {date} ({min} nights).",
+    "hovering": "Hovering {date}:",
+    "noWindow": "Fewer than 11 free nights from this date",
+    "selectCheckIn": "Select check-in · 11-night minimum",
+    "nights": "{n} nights",
+    "estimate": "≈ {price}",
+    "exactPrice": "exact price on Airbnb",
+    "priceOnAirbnb": "price on Airbnb",
+    "noCharge": "You won’t be charged yet. Booking is completed on Airbnb.",
+    "questions": "Questions?",
+    "messageWhatsapp": "Message Eugene on WhatsApp",
+    "messageEmail": "Email Eugene",
+    "trust": "★ 5.0 · Weekly discount · Free cancellation",
+    "tooShort": "The minimum stay is 11 nights. You picked {n}.",
+    "extend": "Extend to {date} →",
+    "conflict": "Some of these nights are booked.",
+    "bookedRange": "Booked: {range}.",
+    "showNextFree": "Show next free dates →",
+    "unavailable": "Final availability is checked on Airbnb.",
+    "loading": "Checking booked dates…"
+  },
+  "picker": {
+    "label": "Choose dates",
+    "previousMonth": "Previous month",
+    "nextMonth": "Next month",
+    "legendToday": "today",
+    "legendBooked": "booked",
+    "legendShort": "under 11 nights",
+    "legendStay": "your stay",
+    "clear": "Clear dates",
+    "close": "Close",
+    "booked": "booked",
+    "checkoutOnly": "check-out only",
+    "underMin": "under 11 nights",
+    "today": "today",
+    "keyboardHint": "Arrows move by day or week, Page Up and Page Down by month, Enter picks, Esc closes."
+  },
+  "guests": {
+    "label": "Guests",
+    "adults": "Adults",
+    "adultsHint": "Age 13+",
+    "children": "Children",
+    "childrenHint": "Ages 2–12",
+    "infants": "Infants",
+    "infantsHint": "Under 2 · don’t count",
+    "pets": "Pets",
+    "petsHint": "Pets are welcome",
+    "fewer": "Fewer {what}",
+    "more": "More {what}",
+    "max": "Maximum 5 guests. Infants don’t count.",
+    "done": "Done",
+    "guest": "{n} guest",
+    "guestsCount": "{n} guests",
+    "infant": "{n} infant",
+    "infantsCount": "{n} infants",
+    "withPets": "pets"
+  },
+  "sheet": {
+    "title": "Your dates",
+    "close": "Close",
+    "next": "Next: guests",
+    "back": "← Dates",
+    "whoIsComing": "Who’s coming?"
+  },
+  "mobileBar": {
+    "terms": "11+ nights"
+  },
+  "rides": {
+    "title": "Rides from the door",
+    "text": "Three classic loops. Every route starts at the front door.",
+    "km": "km",
+    "climbing": "m climbing",
+    "strava": "Route on Strava ↗",
+    "routes": [
+      {
+        "name": "Coll de Rates",
+        "level": "Hard",
+        "hard": true,
+        "km": "75",
+        "climb": "1,160",
+        "text": "The region’s signature climb and the benchmark of every pro winter camp.",
+        "image": "/images/coll-de-rates.jpeg",
+        "alt": "Cyclist climbing the Coll de Rates",
+        "strava": "https://www.strava.com/routes/3514697316111501132"
+      },
+      {
+        "name": "Vall d’Ebo",
+        "level": "Medium",
+        "hard": false,
+        "km": "68",
+        "climb": "870",
+        "text": "Through the Pego valley on quiet inland roads: a balanced climbing day.",
+        "image": "/images/vall-debo.jpeg",
+        "alt": "Rider at the Vall d’Ebo climb sign",
+        "strava": "https://www.strava.com/routes/3514701466186284876"
+      },
+      {
+        "name": "Ondara–Bernia Loop",
+        "level": "Medium",
+        "hard": false,
+        "km": "77",
+        "climb": "990",
+        "text": "Views over Calpe and the Peñón de Ifach; a technical descent with tight hairpins.",
+        "textMobile": "Views over Calpe and the Peñón de Ifach; a technical descent.",
+        "image": "",
+        "alt": "",
+        "strava": "https://www.strava.com/routes/3514958094482175874"
+      }
+    ],
+    "winter": {
+      "title": "January 2025",
+      "text": "Shorts and short sleeves on a winter ride from the house.",
+      "alt": "Rider in shorts and short sleeves, January 2025"
+    },
+    "facts": [
+      {
+        "value": "Dec–Feb",
+        "label": "pro teams train here"
+      },
+      {
+        "value": "17–21°C",
+        "label": "average highs Nov–Apr"
+      },
+      {
+        "value": "~1 h",
+        "label": "from Alicante or Valencia"
+      },
+      {
+        "value": "11:57 / 19:20",
+        "label": "Coll de Rates: Pogačar vs your host"
+      }
+    ]
+  },
+  "prices": {
+    "title": "Prices & free dates",
+    "text": "Winter 2026/27, two guests, Airbnb fees included.",
+    "freeNote": "Free: {windows}",
+    "from": "from {date}",
+    "open": "open",
+    "fullyBooked": "Fully booked",
+    "month": "Month",
+    "freeDates": "Free dates",
+    "perNight": "Per night",
+    "example": "Example",
+    "exampleValue": "{n} nights · {total}",
+    "monthlyDiscount": "(monthly −{pct}%)",
+    "weeklyDiscount": "(weekly discount)",
+    "nightSuffix": " / night",
+    "note": "Prices checked on Airbnb on {date} and may change. Weekly and monthly discounts apply automatically. Stays of a month or more include electricity up to €3.33 a night."
+  },
+  "reviews": {
+    "rating": "5.0 ★",
+    "count": "2 reviews on Airbnb",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "items": [
+      {
+        "name": "Anja",
+        "date": "September 2026",
+        "quote": "“Everything is high-quality and well-maintained, and you feel at home right away.”"
+      },
+      {
+        "name": "Maya",
+        "date": "August 2026",
+        "quote": "“Check in was easy and the place was clean, well organised and well equipped.”"
+      }
+    ]
+  },
+  "location": {
+    "title": "Where you’ll be",
+    "text": "Ondara, Marina Alta, Costa Blanca, Spain",
+    "textMobile": "Ondara, Marina Alta, Costa Blanca",
+    "mapLabel": "Map of Ondara: open in Google Maps",
+    "mapChip": "Map · Ondara",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Ondara%2C%20Alicante",
+    "distances": [
+      {
+        "place": "Restaurant & bar",
+        "time": "2 min walk"
+      },
+      {
+        "place": "Shops, market & bakery",
+        "time": "5 min walk"
+      },
+      {
+        "place": "La Marina shopping centre",
+        "time": "5 min drive"
+      },
+      {
+        "place": "Beach",
+        "time": "7 min drive"
+      },
+      {
+        "place": "Dénia",
+        "time": "10 min"
+      },
+      {
+        "place": "Alicante airport",
+        "time": "~1 h"
+      },
+      {
+        "place": "Valencia airport",
+        "time": "~1 h 10"
+      }
+    ],
+    "nonRiders": "Not everyone rides?",
+    "ideas": [
+      {
+        "title": "Beaches & coves",
+        "text": "Dénia and Jávea, quiet out of season",
+        "textMobile": "Dénia, Jávea"
+      },
+      {
+        "title": "Old towns",
+        "text": "Altea, Calpe, Jávea",
+        "textMobile": "Altea, Calpe, Jávea"
+      },
+      {
+        "title": "Hiking",
+        "text": "Montgó Natural Park",
+        "textMobile": "Montgó"
+      },
+      {
+        "title": "Markets & festivals",
+        "text": "Almond blossom, Fallas in Dénia",
+        "textMobile": "Fallas in Dénia"
+      }
+    ]
+  },
+  "host": {
+    "titleDesktop": "Your host and good to know",
+    "title": "Your host",
+    "name": "Eugene",
+    "initial": "E",
+    "meta": "Hosting since 2026 · Replies within an hour · Road cyclist",
+    "text": "I ride these roads every week and set this house up as the base I’d want for a cycling winter. Ask me about routes, cafés or which climb to save for last.",
+    "textMobile": "I ride these roads every week and set this house up as the base I’d want for a cycling winter.",
+    "whatsapp": "Message on WhatsApp",
+    "email": "Email"
+  },
+  "goodToKnow": {
+    "title": "Good to know",
+    "groups": [
+      {
+        "title": "Stay rules",
+        "items": [
+          "11-night minimum",
+          "Up to 5 guests (infants don’t count)",
+          "Pets allowed",
+          "Free cancellation"
+        ]
+      },
+      {
+        "title": "Getting here",
+        "items": [
+          "Fly to Alicante or Valencia",
+          "Car hire recommended",
+          "Bike-box transfers available"
+        ]
+      },
+      {
+        "title": "Local partners",
+        "items": [
+          "Maxima Bikes, Ondara",
+          "Xabia’s Bike, Dénia (Specialized)",
+          "transfer4u.es",
+          "We don’t rent bikes or run tours."
+        ]
+      }
+    ]
+  },
+  "faq": {
+    "title": "Questions",
+    "items": [
+      {
+        "q": "What’s the minimum stay?",
+        "a": "11 nights. The house is set up for longer stays, from two weeks to the whole winter.",
+        "aMobile": "11 nights. The house is set up for longer stays, from two weeks to the whole winter."
+      },
+      {
+        "q": "How does booking work?",
+        "a": "Pick your dates here and you go straight to the Airbnb listing with dates and guests filled in. Airbnb handles the payment and protects your booking.",
+        "aMobile": "Pick your dates and you go straight to Airbnb with dates and guests filled in."
+      },
+      {
+        "q": "Is the house warm in winter?",
+        "a": "Yes. Every room has heating and air conditioning, and there’s a wood-burning fireplace in the dining area.",
+        "aMobile": "Yes: heating and A/C in every room and a wood-burning fireplace."
+      },
+      {
+        "q": "Where do I keep my bike?",
+        "a": "On a wall rack in secure indoor storage. There’s also a laundry room with a washer and dryer for your kit.",
+        "aMobile": "On a wall rack in secure indoor storage."
+      },
+      {
+        "q": "Do you rent bikes or offer guided rides?",
+        "qMobile": "Bike rental or guided rides?",
+        "a": "No. We share routes and local knowledge and point you to Maxima Bikes and Xabia’s Bike for rental and servicing.",
+        "aMobile": "No. We point you to local shops for rental and servicing."
+      },
+      {
+        "q": "Can I work remotely?",
+        "a": "Yes. Fibre Wi-Fi at 302 Mbps and a dedicated workspace.",
+        "aMobile": "Yes: 302 Mbps Wi-Fi and a dedicated workspace."
+      },
+      {
+        "q": "When is the best time for cycling?",
+        "a": "October to May. December to February is pro training season; March and April bring longer days and orange blossom.",
+        "aMobile": "October to May; December to February is pro training season."
+      }
+    ],
+    "anythingElse": "Anything else?",
+    "message": "Message Eugene"
+  },
+  "finalCta": {
+    "title": "Pick your dates",
+    "text": "11-night minimum · free {windows}"
   },
   "footer": {
-    "tagline": "A winter cycling base in Ondara, Costa Blanca.",
+    "social": "Social",
     "instagram": "Instagram",
     "tiktok": "TikTok",
-    "airbnb": "Airbnb"
+    "airbnb": "Airbnb",
+    "cookieSettings": "Cookie settings",
+    "copyright": "© 2026 Bike Costa Blanca"
+  },
+  "lightbox": {
+    "label": "Photo viewer",
+    "close": "Close",
+    "previous": "Previous photo",
+    "next": "Next photo",
+    "thumb": "Photo {n}",
+    "thumbCurrent": "Photo {n}, current",
+    "hint": "← → keys change photo · Esc closes",
+    "hintMobile": "Swipe for the next photo · swipe down to close"
+  },
+  "allPhotos": {
+    "back": "← Back to the house",
+    "rooms": "Rooms",
+    "title": "All photos",
+    "groups": {
+      "terrace": "Terrace & courtyard",
+      "living": "Living & kitchen",
+      "bedrooms": "Bedrooms",
+      "bathrooms": "Bathrooms",
+      "bikes": "Bikes & loft room",
+      "practical": "Practical"
+    },
+    "practicalNote": "Laundry, parking, entrance"
+  },
+  "cookies": {
+    "label": "Cookies",
+    "text": "We use cookies to measure which pages help guests book. Necessary cookies keep the site working.",
+    "necessary": "Only necessary",
+    "accept": "Accept"
+  },
+  "notFound": {
+    "label": "404",
+    "title": "This page took a wrong turn",
+    "text": "The link may be old or mistyped. The house is still where it was.",
+    "back": "Back to the house",
+    "alt": "The roof terrace"
   }
 }
