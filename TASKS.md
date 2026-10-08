@@ -100,7 +100,7 @@
 
 ### 4.4 Деплой (етап 4)
 - [x] **4.4.1** Встановлено `gh` і `vercel` CLI.
-- [x] **4.4.2** `gh` (dzebovski) і `vercel` (makrodzebiki-2550) авторизовані. Vercel MCP (plugin:vercel:vercel) очікує OAuth через `/mcp` в інтерактивному `claude`.
+- [x] **4.4.2** `gh` (dzebovski) і `vercel` (makrodzebiki-2550) авторизовані. Vercel MCP (plugin:vercel:vercel) підключено.
 - [ ] **4.4.3** Підключити репо до Vercel, env-змінні (`NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_META_PIXEL_ID`, `NEXT_PUBLIC_GADS_ID`).
 - [ ] **4.4.4** Домен + редіректи зі старих URL (`/cycling-routes`, `/getting-here`, `/when-to-visit` …) на секції нового лендінгу.
 
