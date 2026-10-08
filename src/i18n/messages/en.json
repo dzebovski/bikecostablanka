@@ -1,0 +1,199 @@
+{
+  "meta": {
+    "title": "Bike Costa Blanca | Winter cycling house in Ondara, Spain",
+    "description": "A 3-bedroom townhouse in Ondara, Costa Blanca, built for long winter stays. Ride Coll de Rates, Vall d'Ebo and Bernia from the door. Stays from 11 nights."
+  },
+  "nav": {
+    "routes": "Routes",
+    "house": "The house",
+    "longStay": "Long stays",
+    "explore": "Explore",
+    "gettingHere": "Getting here",
+    "faq": "FAQ",
+    "book": "Check dates"
+  },
+  "hero": {
+    "eyebrow": "Ondara · Marina Alta · Costa Blanca",
+    "title": "Your winter cycling base on the Costa Blanca",
+    "subtitle": "A real house, not a hotel room. Ride the climbs the pro teams train on, come home to a sunny terrace, and stay long enough for the weeks to count.",
+    "ctaPrimary": "Check dates & price",
+    "ctaSecondary": "See the routes",
+    "facts": [
+      { "value": "3", "label": "bedrooms" },
+      { "value": "up to 5", "label": "guests" },
+      { "value": "302 Mbps", "label": "Wi-Fi" },
+      { "value": "11+", "label": "nights" }
+    ]
+  },
+  "why": {
+    "eyebrow": "Why Ondara in winter",
+    "title": "While it's dark and wet at home, the season is on here",
+    "items": [
+      {
+        "title": "Where the pros spend their winter",
+        "text": "From December to February, WorldTour teams base their training camps along this coast. You'll ride the same climbs and probably share a café stop with them."
+      },
+      {
+        "title": "Mild, dry riding days",
+        "text": "Average daytime highs sit around 17–21°C from November to April. Shorts and arm warmers on the climbs, sunglasses all day."
+      },
+      {
+        "title": "Quiet roads from the door",
+        "text": "Ondara sits between the Mediterranean and the mountains. Within a few kilometres you're on calm inland roads through orange groves and empty valleys."
+      },
+      {
+        "title": "An hour from the airport",
+        "text": "Alicante and Valencia airports are both about 100 km away, almost all of it on the AP-7 motorway."
+      }
+    ]
+  },
+  "routes": {
+    "eyebrow": "Routes from the door",
+    "title": "Three classic loops, all starting from the house",
+    "intro": "These are the loops I ride most often. Every route starts and finishes at the front door, and each one is on Strava so you can load it straight onto your computer.",
+    "distance": "km",
+    "elevation": "m climbing",
+    "openStrava": "Open on Strava",
+    "items": [
+      {
+        "slug": "coll-de-rates",
+        "name": "Coll de Rates",
+        "level": "Hard",
+        "km": 75,
+        "elevation": 1160,
+        "image": "/images/coll-de-rates.jpeg",
+        "imageAlt": "Cyclist climbing the Coll de Rates through a pale mountain landscape",
+        "text": "The Costa Blanca's signature climb and the benchmark of every winter camp. Smooth tarmac, a steady gradient and long views back to the sea. Save something for the ride home: the climb is only part of a big day.",
+        "strava": "https://www.strava.com/routes/3514697316111501132"
+      },
+      {
+        "slug": "vall-debo",
+        "name": "Vall d'Ebo",
+        "level": "Medium",
+        "km": 68,
+        "elevation": 870,
+        "image": "/images/vall-debo.jpeg",
+        "imageAlt": "A quiet road winding through the green mountains of Vall d'Ebo",
+        "text": "North through the Pego valley, then inland to Vall d'Ebo. Quiet roads, mountain walls and almost no traffic. Enough climbing to feel earned without turning the day into a test.",
+        "strava": "https://www.strava.com/routes/3514701466186284876"
+      },
+      {
+        "slug": "ondara-bernia",
+        "name": "Ondara–Bernia Loop",
+        "level": "Medium",
+        "km": 77,
+        "elevation": 990,
+        "image": null,
+        "imageAlt": "",
+        "text": "A full loop towards the Sierra de Bernia, with views over Calpe and the Peñón de Ifach. The descent is the highlight, with steep sections and tight hairpins, so take extra care.",
+        "strava": "https://www.strava.com/routes/3514958094482175874"
+      }
+    ],
+    "challenge": {
+      "title": "The Coll de Rates challenge",
+      "text": "Tadej Pogačar's time on the climb: 11:57. Mine: 19:20. Ride it during your stay and tell me yours."
+    }
+  },
+  "house": {
+    "eyebrow": "The house",
+    "title": "A townhouse with a private terrace, made for living in",
+    "text": "The whole house is yours: three bedrooms, three shower rooms plus a guest WC, and a large private terrace for breakfast in the sun and dinner after a long ride. It's comfortable for a couple who want space or a small group of friends who all ride.",
+    "image": "/images/dining-room.jpeg",
+    "imageAlt": "Bright dining area inside the house",
+    "groups": [
+      {
+        "title": "For your bike",
+        "items": ["Secure bike storage", "Laundry room for kit", "Local bike shops for parts and servicing"]
+      },
+      {
+        "title": "For everyday life",
+        "items": ["Fully equipped kitchen and dishwasher", "Drinking water filter", "Air conditioning in every room", "Private terrace with dining table and sun loungers"]
+      },
+      {
+        "title": "For working",
+        "items": ["302 Mbps Wi-Fi", "Dedicated workspace", "Quiet, residential street"]
+      },
+      {
+        "title": "Practical",
+        "items": ["Self check-in with a lockbox", "Free parking in a basement car park about 350 m away", "Pets welcome"]
+      }
+    ]
+  },
+  "longStay": {
+    "eyebrow": "Long stays",
+    "title": "Stay two weeks. Or the whole winter.",
+    "text": "The house is only let for 11 nights or more, because it works best when you settle in. Ride in the morning, work or rest in the afternoon, shop at the market like a local. Longer stays get a better nightly rate.",
+    "points": [
+      { "title": "Weekly discount", "text": "Applied automatically on Airbnb for every stay." },
+      { "title": "Electricity included", "text": "For stays of a month or more, normal use is included (€3.33 per night allowance)." },
+      { "title": "Everything nearby", "text": "Ondara's shops, cafés and the La Marina shopping centre are minutes away." }
+    ],
+    "priceNote": "From around €70 a night on a two-week winter stay, all fees included. Pick your dates below to see the live price."
+  },
+  "explore": {
+    "eyebrow": "Not everyone rides?",
+    "title": "A great cycling base, even if not everyone in your group rides",
+    "items": [
+      { "title": "Beaches and coves", "text": "Dénia's long sandy beaches and the rocky coves of Jávea are a short drive away, and they're quiet out of season." },
+      { "title": "Towns and villages", "text": "Altea's white old town, Calpe under the Peñón de Ifach, hilltop villages like Alcalalí and the weekly markets." },
+      { "title": "Hiking", "text": "Montgó Natural Park and the valley trails around Vall de Gallinera and Vall de Laguar." },
+      { "title": "Seasons and festivals", "text": "Almond blossom in January and February, carnival in Pego, Fallas in Dénia in March and orange blossom in spring." }
+    ]
+  },
+  "partners": {
+    "eyebrow": "Local partners",
+    "title": "Bikes, parts and transfers",
+    "text": "We don't rent bikes, repair bikes or run tours. We point you to the people we use ourselves.",
+    "items": [
+      { "name": "Maxima Bikes, Ondara", "text": "Our local shop: servicing, bike and e-bike rental, parts and nutrition." },
+      { "name": "Xabia's Bike, Dénia", "text": "Official Specialized dealer and service centre with 25+ years in the Marina Alta. Workshop, rental and kit." },
+      { "name": "transfer4u.es", "text": "Airport transfers with room for bike boxes." }
+    ]
+  },
+  "gettingHere": {
+    "eyebrow": "Getting here",
+    "title": "Fly to Alicante or Valencia",
+    "items": [
+      { "title": "Alicante (ALC)", "text": "About 104 km, roughly an hour on the AP-7." },
+      { "title": "Valencia (VLC)", "text": "About 111 km, also mostly on the AP-7." },
+      { "title": "Car or transfer", "text": "Hire a car at either airport (book ahead in winter), or use a bike-friendly transfer." },
+      { "title": "Bring or rent a bike", "text": "Fly with your own bike, or rent a road or e-bike locally from Maxima Bikes." }
+    ]
+  },
+  "host": {
+    "eyebrow": "Your host",
+    "title": "Hi, I'm Eugene",
+    "text": "I ride these roads every week, and I set up this house as the base I'd want for a cycling winter: room for the bike, fast internet, and routes that start at the door. Ask me about routes, cafés or which climb to save for your last day."
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Good to know",
+    "items": [
+      { "q": "What's the minimum stay?", "a": "11 nights. The house is set up for longer stays, from two weeks to the whole winter." },
+      { "q": "How do I book?", "a": "Pick your dates below and you'll go straight to the Airbnb listing with your dates and guests filled in. Airbnb handles the payment and protects your booking." },
+      { "q": "Is the house only for cyclists?", "a": "No. Cycling is why the location works so well, but the coast, villages, markets and mild weather make it a good winter base for everyone in your group." },
+      { "q": "Do you rent bikes or offer guided rides?", "a": "No. We share our routes and local knowledge, and recommend local shops for rental and servicing." },
+      { "q": "Can I work remotely?", "a": "Yes. There's 302 Mbps Wi-Fi and a dedicated workspace." },
+      { "q": "When is the best time for cycling?", "a": "October to May. December to February is the pro training season, and March and April bring longer days and orange blossom." }
+    ]
+  },
+  "booking": {
+    "eyebrow": "Check availability",
+    "title": "Pick your dates",
+    "text": "Minimum stay is 11 nights. You'll see the live price and availability on Airbnb.",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "guests": "Guests",
+    "nightsLabel": "nights",
+    "submit": "See price on Airbnb",
+    "errorDates": "Please choose your check-in and check-out dates.",
+    "errorMinNights": "The minimum stay is 11 nights.",
+    "airbnbNote": "Opens Airbnb in a new tab"
+  },
+  "footer": {
+    "tagline": "A winter cycling base in Ondara, Costa Blanca.",
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "airbnb": "Airbnb"
+  }
+}
