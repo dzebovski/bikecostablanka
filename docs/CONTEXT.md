@@ -39,6 +39,20 @@ Items marked ⚠️ need the owner's confirmation before they go on the site.
 - Rating 5.0 from 2 reviews; weekly discount on; free cancellation
 - Host shown as "Eugene BikeCostaBlanca", 100% response rate, replies within an hour
 
+## Prices & availability snapshot (2026-10-08, EUR, 2 guests, all fees)
+| Dates | Nights | Total | Per night |
+|---|---|---|---|
+| 1–12 Dec 2026 | 11 | €785 | ≈ €71 |
+| 1–15 Dec 2026 | 14 | €999 (weekly discount, was €1,218) | ≈ €71 |
+| 12–23 Jan 2027 | 11 | €1,101 | ≈ €100 |
+| Feb 2027 | — | fully booked | — |
+| 20–31 Mar 2027 | 11 | €1,155 | ≈ €105 |
+| 20 Mar – 3 Apr 2027 | 14 | €1,470 | ≈ €105 |
+| 1–29 Apr 2027 | 28 | €2,848 (monthly discount, was €3,584) | ≈ €102 |
+
+Blocked/booked: 28 Dec – 11 Jan, 24 Jan – 19 Mar. Free: 1–27 Dec, 12–23 Jan, from 20 Mar.
+"Free cancellation" badge shows for an 11-night stay (checked 1–12 Dec).
+
 ## Owner
 - A road cyclist who lives the bike lifestyle; rides these local roads ⚠️ (name, story, photo)
 - Coll de Rates Strava PB 19:20 (Pogačar: 11:57)
