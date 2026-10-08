@@ -19,9 +19,20 @@ Items marked ⚠️ need the owner's confirmation before they go on the site.
 - A/C in every room, Wi-Fi (⚠️ speed), fully equipped kitchen, dishwasher, drinking-water filter
 - Bike wall rack (⚠️ storage, tools, washing, laundry details)
 - ⚠️ Heating for winter, workspace, parking
-- Minimum stay: ⚠️ 11 nights (old site) vs 15 (prototype)
-- Price: "from €60/night", "from €15 per person per night shared by 4"; prototype demo: €1,500 / 15 nights, €2,400 / month, €2,000 / month for 2–3 months ⚠️
+- Minimum stay: **11 nights** (confirmed by owner)
+- Price: same as Airbnb (dynamic). Snapshot 2026-10-08 incl. fees: 14 nights Dec 2026 = €999 (≈€71/night, after weekly discount); 11 nights Mar 2027 = €1,155. Old site said "from €60/night", "from €15 per person per night shared by 4"; prototype demo: €1,500 / 15 nights, €2,400 / month, €2,000 / month for 2–3 months ⚠️
 - Booking direct via Lodgify: up to 5% cheaper than Airbnb + complimentary local welcome pack
+
+## From the Airbnb listing (2026-10-08)
+- Title: "Townhouse•Private Terrace"; entire home, private entrance, large terrace
+- 5 guests · 3 bedrooms · 3 beds · 3.5 bathrooms
+- Fast Wi-Fi **302 Mbps**, dedicated workspace, laundry room, A/C, **secure bicycle storage**
+- Parking: free basement car park ~350 m from the house (amenities list says "on premises" ⚠️ align wording)
+- Self check-in with lockbox; pets allowed
+- Stays of 1 month+: electricity included up to €3.33/night, then €0.30/kWh (i-DE smart meter)
+- Near Ondara shops and La Marina shopping centre
+- Rating 5.0 from 2 reviews; weekly discount on; free cancellation
+- Host shown as "Eugene BikeCostaBlanca", 100% response rate, replies within an hour
 
 ## Owner
 - A road cyclist who lives the bike lifestyle; rides these local roads ⚠️ (name, story, photo)
