@@ -12,7 +12,7 @@ export function AboutText({ text, textMobile, more, less }: { text: string; text
   const [open, setOpen] = useState(false);
   return (
     <>
-      <p id="about-text" className={`t-body ${open ? "" : "clamp-4"}`}>
+      <p id="about-text" className={`t-body measure ${open ? "" : "clamp-4"}`}>
         {open ? (
           text
         ) : (
@@ -52,7 +52,9 @@ export function SleepRow({ title, previous, next, children }: { title: string; p
     const el = list.current;
     if (!el) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    el.scrollBy({ left: direction * (216 + 16) * 2, behavior: reduced ? "auto" : "smooth" });
+    const card = el.firstElementChild as HTMLElement | null;
+    const step = (card?.offsetWidth ?? 216) + 16;
+    el.scrollBy({ left: direction * step * 2, behavior: reduced ? "auto" : "smooth" });
   }
 
   return (
@@ -88,8 +90,10 @@ export function AmenitiesButton({ t, checkDates }: { t: Dictionary["amenities"];
     if (!mounted || !el) return;
     if (!el.open) el.showModal();
     document.documentElement.style.overflow = "hidden";
+    document.documentElement.dataset.overlay = "";
     return () => {
       document.documentElement.style.overflow = "";
+      delete document.documentElement.dataset.overlay;
     };
   }, [mounted]);
 

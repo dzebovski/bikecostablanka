@@ -8,7 +8,7 @@ import { CookieSettingsLink } from "@/components/islands";
 export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
   const social = "text-charcoal";
   return (
-    <footer data-component="Footer" className="mx-5 border-t border-line md:mx-0">
+    <footer data-component="Footer" className="mx-5 mt-section border-t border-line md:mx-0">
       <div className="mx-auto flex max-w-[1200px] flex-col gap-3.5 pt-6 pb-7 md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-5 md:px-10 md:py-7">
         <Link href={`/${locale}`} className="wordmark">
           {t.brand}

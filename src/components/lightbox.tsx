@@ -132,8 +132,10 @@ function Lightbox({
     if (!mounted || !el) return;
     if (!el.open) el.showModal();
     document.documentElement.style.overflow = "hidden";
+    document.documentElement.dataset.overlay = "";
     return () => {
       document.documentElement.style.overflow = "";
+      delete document.documentElement.dataset.overlay;
     };
   }, [mounted]);
 

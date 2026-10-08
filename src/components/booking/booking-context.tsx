@@ -43,7 +43,7 @@ export type BookingMessages = Pick<Dictionary, "booking" | "picker" | "guests" |
 
 export type Source =
   | "header"
-  | "card"
+  | "bottom_bar"
   | "amenities"
   | "prices"
   | "final_cta"
@@ -54,6 +54,8 @@ export type Source =
   | "sheet";
 
 type Surface = "dates" | "guests" | "sheet" | null;
+/** Where the desktop popovers open: the bottom bar, or the Final CTA fields when that section is in view. */
+export type Anchor = "bar" | "final";
 type Availability = "loading" | "ok" | "error";
 
 type BookingContextValue = {
@@ -72,6 +74,9 @@ type BookingContextValue = {
   hover: number | null;
   setHover: (night: number | null) => void;
   surface: Surface;
+  anchor: Anchor;
+  /** The element that opened the current surface (for aligning the popover to the clicked field). */
+  trigger: { current: HTMLElement | null };
   sheetStep: "dates" | "guests";
   setSheetStep: (step: "dates" | "guests") => void;
   viewIndex: number;
@@ -106,6 +111,18 @@ export function useOptionalBooking() {
 const MONTHS_SHOWN = 12;
 
 const noopSubscribe = () => () => {};
+
+export const FINAL_CTA_ID = "final-cta";
+
+/** The clicked field's own anchor, else the Final CTA when it is on screen (the bar hides there), else the bar. */
+function anchorFor(el?: HTMLElement | null): Anchor {
+  const own = el?.closest<HTMLElement>("[data-anchor]")?.dataset.anchor;
+  if (own === "bar" || own === "final") return own;
+  const final = document.getElementById(FINAL_CTA_ID);
+  if (!final) return "bar";
+  const rect = final.getBoundingClientRect();
+  return rect.top < window.innerHeight && rect.bottom > 0 ? "final" : "bar";
+}
 
 function monthStarts(today: number) {
   const [y, m] = fromOrd(today).split("-").map(Number);
@@ -158,6 +175,7 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
   const [availability, setAvailability] = useState<Availability>("loading");
   const [hover, setHover] = useState<number | null>(null);
   const [surface, setSurface] = useState<Surface>(null);
+  const [anchor, setAnchor] = useState<Anchor>("bar");
   const [sheetStep, setSheetStep] = useState<"dates" | "guests">("dates");
   const [viewIndex, setViewIndex] = useState(0);
   const [focusDay, setFocusDay] = useState<number | null>(null);
@@ -194,16 +212,6 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
     [today, booked, months],
   );
 
-  const revealCard = useCallback(() => {
-    const card = document.getElementById("book");
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const top = 80;
-    if (rect.top >= top - 1 && rect.top < window.innerHeight * 0.5) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    window.scrollTo({ top: window.scrollY + rect.top - top, behavior: reduced ? "auto" : "smooth" });
-  }, []);
-
   const showMonthOf = useCallback(
     (night: number, desktop: boolean) => {
       const index = monthIndexOf(months, night);
@@ -221,14 +229,14 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
       showMonthOf(focus, desktop);
       setHover(null);
       if (desktop) {
-        revealCard();
+        setAnchor(anchorFor(trigger.current));
         setSurface("dates");
       } else {
         setSheetStep("dates");
         setSurface("sheet");
       }
     },
-    [revealCard, showMonthOf],
+    [showMonthOf],
   );
 
   const openDates = useCallback(
@@ -240,14 +248,14 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
     (el?: HTMLElement | null) => {
       trigger.current = el ?? (document.activeElement as HTMLElement | null);
       if (window.matchMedia(DESKTOP).matches) {
-        revealCard();
+        setAnchor(anchorFor(trigger.current));
         setSurface((s) => (s === "guests" ? null : "guests"));
       } else {
         setSheetStep("guests");
         setSurface("sheet");
       }
     },
-    [revealCard],
+    [],
   );
 
   const close = useCallback(() => {
@@ -311,8 +319,10 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
     const after = conflicts.length ? Math.max(...conflicts.map((r) => r.to)) : (sel.start ?? today);
     const focus = firstSelectable(after);
     setSel({ start: null, end: null });
-    openDatesAt(focus, window.matchMedia(DESKTOP).matches ? "card" : "sheet", document.activeElement as HTMLElement | null);
-  }, [conflicts, sel.start, today, firstSelectable, openDatesAt]);
+    const desktop = window.matchMedia(DESKTOP).matches;
+    const source: Source = !desktop ? "sheet" : anchor === "final" ? "final_cta" : "bottom_bar";
+    openDatesAt(focus, source, document.activeElement as HTMLElement | null);
+  }, [conflicts, sel.start, today, firstSelectable, openDatesAt, anchor]);
 
   const updateGuests = useCallback((change: Partial<Guests>) => setGuestsState((g) => clampGuests(g, change)), []);
 
@@ -356,6 +366,8 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
     hover,
     setHover,
     surface,
+    anchor,
+    trigger,
     sheetStep,
     setSheetStep,
     viewIndex,

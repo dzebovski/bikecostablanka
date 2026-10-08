@@ -21,6 +21,8 @@ export function generateStaticParams() {
 
 export const viewport: Viewport = {
   themeColor: "#f7f0e1",
+  // Lets the bottom booking bar sit above the home indicator (env(safe-area-inset-bottom)).
+  viewportFit: "cover",
 };
 
 export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Promise<Metadata> {

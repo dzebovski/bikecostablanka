@@ -10,6 +10,7 @@ import { ContactLink } from "@/components/contact-link";
 import { PhotoTrigger } from "@/components/lightbox";
 import { AboutText, AmenitiesButton, SleepRow } from "@/components/islands";
 import { CheckDates, FinalCtaForm } from "@/components/booking/triggers";
+import { FINAL_CTA_ID } from "@/components/booking/booking-context";
 
 type T = Dictionary;
 type WithT = { t: T; locale: Locale };
@@ -44,9 +45,9 @@ export function freeWindowText(w: FreeWindow, t: T, locale: Locale) {
 export function TitleBlock({ t }: { t: T }) {
   const sep = <span aria-hidden="true">·</span>;
   return (
-    <section data-component="TitleBlock" className="flex flex-col gap-2 px-5 pt-[18px] md:gap-2.5 md:px-0 md:pt-7 md:pb-5">
+    <section data-component="TitleBlock" className="sh">
       <h1 className="t-h1">{t.title.h1}</h1>
-      <p className="t-sm flex flex-wrap gap-x-2 gap-y-1.5">
+      <p className="t-sm flex flex-wrap gap-x-2 gap-y-1">
         <span>{t.title.place}</span>
         {sep}
         <a href="#reviews" className="font-medium text-charcoal tnum no-underline hover:underline">
@@ -63,7 +64,7 @@ export function TitleBlock({ t }: { t: T }) {
 
 export function AnchorStrip({ t }: { t: T }) {
   return (
-    <nav aria-label={t.header.navLabel} className="swipe t-sm mt-3.5 gap-2 scroll-px-5 px-5 md:hidden">
+    <nav aria-label={t.header.navLabel} className="swipe swipe-bleed t-sm gap-2 md:hidden">
       {t.header.mobileNav.map((item) => (
         <a key={item.id} href={`#${item.id}`} className="btn btn-secondary btn-sm btn-pill font-normal">
           {item.label}
@@ -77,8 +78,8 @@ export function AnchorStrip({ t }: { t: T }) {
 
 export function KeyFacts({ t }: { t: T }) {
   return (
-    <section data-component="KeyFacts" aria-label={t.keyFacts.label} className="px-5 pt-5 pb-6 md:px-0 md:pt-0 md:pb-8">
-      <dl className="m-0 grid grid-cols-4 gap-3 md:gap-6">
+    <section data-component="KeyFacts" aria-label={t.keyFacts.label} className="lg:col-span-4">
+      <dl className="m-0 grid grid-cols-4 gap-x-3 md:gap-x-6 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-8">
         {t.keyFacts.items.map((item) => (
           <FactStat key={item.label} value={item.value} label={item.label} />
         ))}
@@ -89,9 +90,9 @@ export function KeyFacts({ t }: { t: T }) {
 
 export function Highlights({ t }: { t: T }) {
   return (
-    <section data-component="Highlights" className="sec mx-5 gap-0! py-2! md:mx-0">
+    <section data-component="Highlights" className="flex flex-col lg:col-span-8">
       {t.highlights.map((item, i) => (
-        <div key={item.title} className={`row row-stack ${i === t.highlights.length - 1 ? "border-b-0" : ""}`}>
+        <div key={item.title} className={`row row-stack first:pt-0 ${i === t.highlights.length - 1 ? "border-b-0 pb-0" : ""}`}>
           <h3 className="t-body m-0 font-medium">{item.title}</h3>
           <p className="t-sm">{item.text}</p>
         </div>
@@ -102,24 +103,26 @@ export function Highlights({ t }: { t: T }) {
 
 export function About({ t }: { t: T }) {
   return (
-    <section data-component="About" className="sec mx-5 gap-3! md:mx-0 md:gap-4!">
+    <section data-component="About" className="sec">
       <h2 className="t-h2">{t.about.title}</h2>
-      <AboutText text={t.about.text} textMobile={t.about.textMobile} more={t.about.showMore} less={t.about.showLess} />
+      <div className="flex flex-col">
+        <AboutText text={t.about.text} textMobile={t.about.textMobile} more={t.about.showMore} less={t.about.showLess} />
+      </div>
     </section>
   );
 }
 
 export function SleepCards({ t }: { t: T }) {
   return (
-    <section data-component="SleepCards" className="sec mx-5 md:mx-0">
+    <section data-component="SleepCards" className="sec">
       <SleepRow title={t.sleep.title} previous={t.sleep.previous} next={t.sleep.next}>
         {t.sleep.rooms.map((room) => {
           const index = photoIndex(landingPhotos, room.photo);
           const photo = landingPhotos[index];
           return (
-            <li key={room.title} className="flex flex-[0_0_236px] flex-col gap-2.5 md:flex-[0_0_216px]">
+            <li key={room.title} className="flex flex-[0_0_236px] flex-col gap-2 md:flex-[0_0_216px] lg:flex-[0_0_calc((100%-48px)/4)]">
               <PhotoTrigger index={index} className="tile aspect-[4/3] w-full border-0 p-0" label={room.alt}>
-                <Image src={photo.file} alt={room.alt} fill sizes="236px" />
+                <Image src={photo.file} alt={room.alt} fill sizes="(min-width: 1024px) 270px, 236px" />
               </PhotoTrigger>
               <div>
                 <h3 className="t-h3">{room.title}</h3>
@@ -137,21 +140,28 @@ export function SleepCards({ t }: { t: T }) {
 
 export function Amenities({ t }: { t: T }) {
   const items = t.amenities.items;
+  // Three columns from 768px (4 · 3 · 3), one list below.
+  const size = Math.ceil(items.length / 3);
+  const columns = [items.slice(0, size), items.slice(size, size + Math.ceil((items.length - size) / 2)), items.slice(size + Math.ceil((items.length - size) / 2))];
   return (
-    <section data-component="Amenities" className="sec mx-5 md:mx-0">
+    <section data-component="Amenities" className="sec">
       <h2 className="t-h2">{t.amenities.title}</h2>
-      <ul className="t-body grid grid-cols-1 md:grid-cols-2 md:gap-x-8">
-        {items.map((item, i) => {
-          const lastMobile = i === items.length - 1;
-          const lastDesktop = i >= items.length - 2;
-          return (
-            <li key={item} className={`row ${lastMobile ? "border-b-0" : ""} ${lastDesktop ? "md:border-b-0" : ""}`}>
-              {item}
-            </li>
-          );
-        })}
-      </ul>
-      <div className="flex flex-col gap-5 md:flex-row md:flex-wrap md:items-center md:gap-6">
+      <div className="t-body md:grid md:grid-cols-3 md:gap-x-8">
+        {columns.map((column, c) => (
+          <ul key={c}>
+            {column.map((item, i) => {
+              const lastInColumn = i === column.length - 1;
+              const lastOfAll = lastInColumn && c === columns.length - 1;
+              return (
+                <li key={item} className={`row ${lastInColumn ? "md:border-b-0" : ""} ${lastOfAll ? "border-b-0" : ""}`}>
+                  {item}
+                </li>
+              );
+            })}
+          </ul>
+        ))}
+      </div>
+      <div className="flex flex-col gap-4 md:flex-row md:flex-wrap md:items-center md:gap-6">
         <AmenitiesButton t={t.amenities} checkDates={t.cta.checkDates} />
         <CheckDates source="amenities" variant="link" />
       </div>
@@ -164,14 +174,14 @@ export function Amenities({ t }: { t: T }) {
 export function Rides({ t }: { t: T }) {
   const r = t.rides;
   return (
-    <section id="rides" data-component="Rides" className="sec mx-5 md:mx-0 md:mt-4">
+    <section id="rides" data-component="Rides" className="sec">
       <div className="sh">
         <h2 className="t-h2">{r.title}</h2>
         <p className="t-body">{r.text}</p>
       </div>
-      <div className="swipe swipe-bleed md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 lg:grid-cols-4">
+      <div className="swipe swipe-bleed md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 lg:grid-cols-4 lg:gap-8">
         {r.routes.map((route) => (
-          <article key={route.name} data-component="RouteCard" className="flex flex-[0_0_290px] flex-col gap-3">
+          <article key={route.name} data-component="RouteCard" className="flex flex-[0_0_290px] flex-col gap-4">
             {route.image ? (
               <div className="tile aspect-[16/10]">
                 <Image src={route.image} alt={route.alt} fill sizes="(min-width: 1024px) 270px, (min-width: 768px) 45vw, 290px" />
@@ -181,23 +191,25 @@ export function Rides({ t }: { t: T }) {
                 <span className="t-label">{route.name}</span>
               </div>
             )}
-            <div className="flex items-center justify-between gap-2">
-              <h3 className="t-h3">{route.name}</h3>
-              <span className={`chip ${route.hard ? "chip-solid" : ""}`}>{route.level}</span>
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center justify-between gap-2">
+                <h3 className="t-h3">{route.name}</h3>
+                <span className={`chip ${route.hard ? "chip-solid" : ""}`}>{route.level}</span>
+              </div>
+              <dl className="m-0 flex gap-6">
+                <FactStat value={route.km} label={r.km} />
+                <FactStat value={route.climb} label={r.climbing} />
+              </dl>
+              <p className="t-sm">
+                <Variants desktop={route.text} mobile={"textMobile" in route ? route.textMobile : undefined} />
+              </p>
+              <a href={route.strava} target="_blank" rel="noopener" className="link t-sm inline-flex min-h-11 items-center self-start md:min-h-0">
+                {r.strava}
+              </a>
             </div>
-            <dl className="m-0 flex gap-5">
-              <FactStat value={route.km} label={r.km} />
-              <FactStat value={route.climb} label={r.climbing} />
-            </dl>
-            <p className="t-sm">
-              <Variants desktop={route.text} mobile={"textMobile" in route ? route.textMobile : undefined} />
-            </p>
-            <a href={route.strava} target="_blank" rel="noopener" className="link t-sm inline-flex min-h-11 items-center self-start md:min-h-0">
-              {r.strava}
-            </a>
           </article>
         ))}
-        <figure className="m-0 flex flex-[0_0_290px] flex-col gap-3">
+        <figure className="m-0 flex flex-[0_0_290px] flex-col gap-4">
           <div className="tile aspect-[16/10]">
             <Image
               src="/images/rides/january-2025-shorts.jpg"
@@ -207,13 +219,13 @@ export function Rides({ t }: { t: T }) {
               className="object-[50%_30%]"
             />
           </div>
-          <figcaption className="flex flex-col gap-1">
+          <figcaption className="flex flex-col gap-2">
             <span className="t-h3">{r.winter.title}</span>
             <span className="t-sm">{r.winter.text}</span>
           </figcaption>
         </figure>
       </div>
-      <dl className="m-0 grid grid-cols-2 gap-x-4 gap-y-5 border-t border-line pt-5 md:gap-6 md:pt-6 lg:grid-cols-4">
+      <dl className="m-0 grid grid-cols-2 gap-x-4 gap-y-6 border-t border-line pt-6 md:gap-x-6 lg:grid-cols-4 lg:gap-x-8">
         {r.facts.map((fact) => (
           <FactStat key={fact.label} value={fact.value} label={fact.label} />
         ))}
@@ -245,9 +257,9 @@ export function PriceTable({ t, locale }: WithT) {
   const note = fill(t.prices.note, { date: formatDate(prices.checkedOn, locale) });
   const cell = "border-b border-line py-3.5";
   return (
-    <section id="prices" data-component="PriceTable" className="border-t border-line bg-snow">
-      <div className="mx-auto flex max-w-[1200px] flex-col gap-[18px] px-5 py-8 md:flex-row md:flex-wrap md:items-start md:gap-12 md:px-10 md:py-12">
-        <div className="flex max-w-[360px] flex-col gap-[18px] md:flex-[1_1_300px] md:gap-5">
+    <section id="prices" data-component="PriceTable" className="band">
+      <div className="wrap cols lg:items-start">
+        <div className="flex flex-col gap-6 lg:col-span-4">
           <div className="sh">
             <h2 className="t-h2">{t.prices.title}</h2>
             <p className="t-body">{t.prices.text}</p>
@@ -255,7 +267,7 @@ export function PriceTable({ t, locale }: WithT) {
           <p className="t-sm rounded-chip bg-morning-sky px-3.5 py-3 font-medium md:px-4">{freeNote}</p>
           <CheckDates source="prices" className="hidden self-start md:inline-flex" />
         </div>
-        <div className="flex min-w-0 flex-col gap-4 md:flex-[999_1_560px]">
+        <div className="flex min-w-0 flex-col gap-4 lg:col-span-8">
           {/* Desktop: table */}
           <div className="hidden overflow-x-auto md:block">
             <table className="t-body w-full min-w-[560px] border-collapse tnum">
@@ -334,20 +346,23 @@ export function PriceTable({ t, locale }: WithT) {
 
 export function Reviews({ t }: { t: T }) {
   return (
-    <section id="reviews" data-component="Reviews" className="sec mx-5 border-t-0 md:mx-0 md:border-t">
-      <div className="stat">
+    <section id="reviews" data-component="Reviews" className="sec">
+      <h2 className="t-h2">{t.reviews.title}</h2>
+      <div className="cols lg:items-start">
+      <div className="stat lg:col-span-4">
         <p className="t-num text-[40px]! tracking-[-1px]! md:text-[48px]! md:tracking-[-1.2px]!">{t.reviews.rating}</p>
         <p className="t-sm">{t.reviews.count}</p>
       </div>
-      <div className="swipe swipe-bleed md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0">
+      <div className="swipe swipe-bleed md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 lg:col-span-8 lg:gap-8">
         {t.reviews.items.map((review) => (
-          <article key={review.name} data-component="ReviewCard" className="card flex flex-[0_0_290px] flex-col gap-3 md:gap-3.5">
+          <article key={review.name} data-component="ReviewCard" className="card flex flex-[0_0_290px] flex-col gap-4">
             <p className="t-body clamp-3">{review.quote}</p>
             <p className="t-sm">
               <span className="font-medium">{review.name}</span> · {review.date}
             </p>
           </article>
         ))}
+      </div>
       </div>
     </section>
   );
@@ -358,14 +373,14 @@ export function Reviews({ t }: { t: T }) {
 export function Location({ t }: { t: T }) {
   const l = t.location;
   return (
-    <section id="location" data-component="Location" className="sec mx-5 md:mx-0">
+    <section id="location" data-component="Location" className="sec">
       <div className="sh">
         <h2 className="t-h2">{l.title}</h2>
         <p className="t-body">
           <Variants desktop={l.text} mobile={l.textMobile} />
         </p>
       </div>
-      <div className="grid grid-cols-1 items-start gap-5 md:grid-cols-2 md:gap-8">
+      <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-2 md:gap-x-8">
         <a href={l.mapUrl} target="_blank" rel="noopener" aria-label={l.mapLabel} className="tile aspect-[4/3]">
           <span aria-hidden="true" className="absolute top-[46%] left-1/2 -mt-2 -ml-2 size-4 rounded-pill bg-charcoal" />
           <span aria-hidden="true" className="chip absolute bottom-3.5 left-3.5 bg-paper md:bottom-4 md:left-4">
@@ -381,9 +396,9 @@ export function Location({ t }: { t: T }) {
           ))}
         </dl>
       </div>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-4">
         <h3 className="t-h3">{l.nonRiders}</h3>
-        <ul className="grid grid-cols-2 gap-2.5 md:gap-4 lg:grid-cols-4">
+        <ul className="grid grid-cols-2 gap-2 md:gap-4 lg:grid-cols-4 lg:gap-8">
           {l.ideas.map((idea) => (
             <li key={idea.title} className="card flex flex-col gap-1 p-4 md:p-5">
               <span className="t-body font-medium">{idea.title}</span>
@@ -404,8 +419,8 @@ function HostCard({ t }: { t: T }) {
   const h = t.host;
   const hasContact = Boolean(contact.whatsapp || contact.email);
   return (
-    <article data-component="HostCard" className="card flex flex-col gap-3.5 md:gap-4">
-      <div className="flex items-center gap-3.5 md:gap-4">
+    <article data-component="HostCard" className="card flex flex-col gap-4 lg:col-span-4">
+      <div className="flex items-center gap-4">
         <span aria-hidden="true" className="t-h2 inline-flex size-14 flex-[0_0_56px] items-center justify-center rounded-pill bg-paper md:size-16 md:flex-[0_0_64px]">
           {h.initial}
         </span>
@@ -436,7 +451,7 @@ function ThingsToKnow({ t }: { t: T }) {
     <div data-component="ThingsToKnow" className="flex flex-col gap-4 md:grid md:grid-cols-3 md:gap-8">
       {t.goodToKnow.groups.map((group) => (
         <div key={group.title}>
-          <h3 className="t-label pb-1 md:pb-1.5">{group.title}</h3>
+          <h3 className="t-label pb-1">{group.title}</h3>
           <ul className="t-sm">
             {group.items.map((item, i) => (
               <li key={item} className={`row ${i === group.items.length - 1 ? "border-b-0" : ""}`}>
@@ -453,18 +468,18 @@ function ThingsToKnow({ t }: { t: T }) {
 export function HostAndGoodToKnow({ t }: { t: T }) {
   return (
     <>
-      <section className="sec mx-5 md:mx-0">
+      <section className="sec">
         <h2 className="t-h2">
           <Variants desktop={t.host.titleDesktop} mobile={t.host.title} />
         </h2>
-        <div className="flex flex-col gap-8 lg:grid lg:grid-cols-[360px_minmax(0,1fr)] lg:items-start lg:gap-12">
+        <div className="cols lg:items-start">
           <HostCard t={t} />
-          <div className="hidden md:block">
+          <div className="hidden md:block lg:col-span-8">
             <ThingsToKnow t={t} />
           </div>
         </div>
       </section>
-      <section className="sec mx-5 gap-4! md:hidden">
+      <section className="sec md:hidden">
         <h2 className="t-h2">{t.goodToKnow.title}</h2>
         <ThingsToKnow t={t} />
       </section>
@@ -477,9 +492,10 @@ export function HostAndGoodToKnow({ t }: { t: T }) {
 export function Faq({ t }: { t: T }) {
   const hasContact = Boolean(contact.whatsapp || contact.email);
   return (
-    <section id="faq" data-component="FAQ" className="sec mx-5 gap-2! md:mx-0 md:gap-4!">
+    <section id="faq" data-component="FAQ" className="sec">
       <h2 className="t-h2">{t.faq.title}</h2>
-      <div className="max-w-[720px]">
+      <div className="cols">
+      <div className="lg:col-span-8">
         {t.faq.items.map((item, i) => (
           <details key={item.q} open={i === 0} className="faq border-b border-line">
             <summary className="t-body md:t-h3 flex min-h-[52px] items-center justify-between gap-4 font-medium md:min-h-14 md:font-normal">
@@ -491,19 +507,20 @@ export function Faq({ t }: { t: T }) {
                 ×
               </span>
             </summary>
-            <p className="t-sm md:t-body pb-3.5 md:pb-[18px]">
+            <p className="t-sm md:t-body measure pb-4">
               <Variants desktop={item.a} mobile={item.aMobile} />
             </p>
           </details>
         ))}
         {hasContact && (
-          <p className="t-body pt-4 md:pt-5">
+          <p className="t-body pt-6">
             {t.faq.anythingElse}{" "}
             <ContactLink channel={contact.whatsapp ? "whatsapp" : "email"} source="faq" className="link">
               {t.faq.message}
             </ContactLink>
           </p>
         )}
+      </div>
       </div>
     </section>
   );
@@ -517,14 +534,17 @@ export function FinalCta({ t, locale }: WithT) {
     locale,
   );
   return (
-    <section data-component="FinalCTA" className="sec mx-5 md:mx-0">
-      <div className="card flex flex-col gap-4 md:gap-5 md:p-8">
+    <section id={FINAL_CTA_ID} data-component="FinalCTA" className="sec">
+      <div className="card flex flex-col gap-6 md:p-8">
         <div className="sh">
           <h2 className="t-h2">{t.finalCta.title}</h2>
           <p className="t-sm md:t-body">{fill(t.finalCta.text, { windows })}</p>
         </div>
         <FinalCtaForm />
-        <p className="t-sm hidden md:block">{t.booking.noCharge}</p>
+        <div className="t-sm hidden flex-wrap gap-x-6 gap-y-1 md:flex">
+          <p>{t.booking.noCharge}</p>
+          <p className="tnum">{t.booking.trust}</p>
+        </div>
       </div>
     </section>
   );

@@ -17,7 +17,18 @@ export function CookieBanner({ t }: { t: Dictionary["cookies"] }) {
     if (consent === "granted" || consent === "denied") applyConsent(consent);
   }, [consent]);
 
-  if (consent === "unknown" || (consent !== null && !reopened)) return null;
+  const showing = !(consent === "unknown" || (consent !== null && !reopened));
+
+  // The desktop booking bar waits for a choice (globals.css: [data-cookie]).
+  useEffect(() => {
+    if (!showing) return;
+    document.documentElement.dataset.cookie = "";
+    return () => {
+      delete document.documentElement.dataset.cookie;
+    };
+  }, [showing]);
+
+  if (!showing) return null;
 
   function choose(value: Consent) {
     saveConsent(value);
@@ -29,7 +40,7 @@ export function CookieBanner({ t }: { t: Dictionary["cookies"] }) {
       role="region"
       aria-label={t.label}
       data-component="CookieBanner"
-      className="fixed inset-x-3 bottom-[calc(var(--bar-h)+12px)] z-30 mx-auto flex max-w-[1000px] flex-wrap items-center gap-4 rounded-photo border border-charcoal bg-snow px-5 py-4 md:inset-x-6 md:gap-6 md:px-6 md:py-5"
+      className="fixed inset-x-3 bottom-[calc(var(--bar-h)+12px)] z-30 lg:bottom-3 mx-auto flex max-w-[1000px] flex-wrap items-center gap-4 rounded-photo border border-charcoal bg-snow px-5 py-4 md:inset-x-6 md:gap-6 md:px-6 md:py-5"
       style={{ animation: "fade-rise 200ms var(--ease) both" }}
     >
       <p className="t-sm flex-[1_1_420px]">{t.text}</p>

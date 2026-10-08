@@ -404,6 +404,7 @@
     "note": "Prices checked on Airbnb on {date} and may change. Weekly and monthly discounts apply automatically. Stays of a month or more include electricity up to €3.33 a night."
   },
   "reviews": {
+    "title": "Reviews",
     "rating": "5.0 ★",
     "count": "2 reviews on Airbnb",
     "showMore": "Show more",

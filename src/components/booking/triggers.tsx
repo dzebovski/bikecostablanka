@@ -1,8 +1,11 @@
 "use client";
 
-import { useBooking, type Source } from "./booking-context";
-import { BookingAction, BookingFields } from "./booking-fields";
+import { useEffect, useState } from "react";
+import { FINAL_CTA_ID, useBooking, type Source } from "./booking-context";
+import { BarFields, BarMessages, BookingAction, BookingFields } from "./booking-fields";
 import { FromPrice } from "./booking-card";
+import { DatePickerPopover } from "./date-picker";
+import { GuestPopover } from "./guest-picker";
 
 /** "Check dates" (button) or "Check dates →" (text link): always opens the date picker. */
 export function CheckDates({ source, variant = "button", className = "" }: { source: Source; variant?: "button" | "link"; className?: string }) {
@@ -45,37 +48,96 @@ export function HeaderAction() {
   );
 }
 
-/** Sticky bottom bar below 1024px; hidden while the sheet is open. */
-export function MobileBookingBar() {
+/**
+ * Desktop booking bar (1024px and wider): fixed at the bottom, appears once the title block has
+ * scrolled away, steps aside while the Final CTA is on screen, behind modals and the cookie banner.
+ */
+export function BookingBar() {
   const b = useBooking();
-  if (b.surface === "sheet") return null;
+  const t = b.t.booking;
+  const [pastTitle, setPastTitle] = useState(false);
+  const [finalInView, setFinalInView] = useState(false);
+  const open = b.anchor === "bar" && (b.surface === "dates" || b.surface === "guests");
+  const shown = (pastTitle || open) && !finalInView;
+
+  useEffect(() => {
+    const title = document.querySelector('[data-component="TitleBlock"]');
+    const final = document.getElementById(FINAL_CTA_ID);
+    const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 56;
+    const observers: IntersectionObserver[] = [];
+    if (title) {
+      const o = new IntersectionObserver(([entry]) => setPastTitle(!entry.isIntersecting && entry.boundingClientRect.top < 0), {
+        rootMargin: `-${header}px 0px 0px 0px`,
+      });
+      o.observe(title);
+      observers.push(o);
+    }
+    if (final) {
+      const o = new IntersectionObserver(([entry]) => setFinalInView(entry.isIntersecting));
+      o.observe(final);
+      observers.push(o);
+    }
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
+  // A popover never stays open on a bar that has stepped aside.
+  const { close, surface, anchor } = b;
+  useEffect(() => {
+    if (finalInView && anchor === "bar" && (surface === "dates" || surface === "guests")) close();
+  }, [finalInView, anchor, surface, close]);
+
   return (
     <div
-      data-component="MobileBookingBar"
-      className="fixed inset-x-0 bottom-0 z-20 flex h-[72px] items-center justify-between gap-3 border-t border-charcoal bg-snow pr-4 pl-5 lg:hidden"
+      data-component="BookingBar"
+      data-anchor="bar"
+      data-shown={shown}
+      data-open={open || undefined}
+      role="region"
+      aria-label={t.label}
+      className="bbar hidden lg:block"
     >
-      <div className="flex flex-col gap-0.5">
-        <FromPrice size="bar" />
-        <p className="t-sm">{b.t.mobileBar.terms}</p>
+      {!open && <BarMessages className="msg pop absolute bottom-[calc(100%+8px)] left-4 max-w-[480px] rounded-chip border border-charcoal" />}
+      <div className="relative">
+        <BarFields source="bottom_bar" />
+        <DatePickerPopover anchor="bar" />
+        <GuestPopover anchor="bar" />
       </div>
-      <button type="button" className="btn btn-primary" data-event="open_date_picker" onClick={(e) => b.openDates("mobile_bar", e.currentTarget)}>
-        {b.t.cta.checkDates}
-      </button>
     </div>
   );
 }
 
-/** Final CTA card fields and action. */
+/** Bottom bar below 1024px: the same marigold pill with the price and "Check dates"; hidden while the sheet is open. */
+export function MobileBookingBar() {
+  const b = useBooking();
+  if (b.surface === "sheet") return null;
+  return (
+    <div data-component="MobileBookingBar" className="bbar lg:hidden">
+      <div className="bbar-pill justify-between gap-3 pr-2 pl-6">
+        <div className="flex min-w-0 flex-col gap-1">
+          <FromPrice size="bar" />
+          <p className="t-sm">{b.t.mobileBar.terms}</p>
+        </div>
+        <button type="button" className="btn btn-primary" data-event="open_date_picker" onClick={(e) => b.openDates("mobile_bar", e.currentTarget)}>
+          {b.t.cta.checkDates}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/** Final CTA: where the bottom bar lands. The same pill, larger, with the states below it. */
 export function FinalCtaForm() {
   return (
     <>
-      <div className="hidden flex-wrap items-stretch gap-4 md:flex">
-        <div className="min-w-0 flex-[1_1_520px]">
-          <BookingFields source="final_cta" wide />
+      <div className="hidden flex-col gap-4 lg:flex">
+        <div data-anchor="final" className="relative">
+          <BarFields source="final_cta" size="lg" />
+          <DatePickerPopover anchor="final" />
+          <GuestPopover anchor="final" />
         </div>
-        <BookingAction source="final_cta" tall />
+        <BarMessages />
       </div>
-      <div className="flex flex-col gap-4 md:hidden">
+      <div className="flex flex-col gap-4 lg:hidden">
         <BookingFields source="final_cta" messages={false} />
         <BookingAction source="final_cta" />
       </div>

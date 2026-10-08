@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, type RefObject } from "react";
 import { useFocusTrap } from "@/hooks/use-focus-trap";
 import { usePresence } from "@/hooks/use-presence";
-import { useBooking } from "./booking-context";
+import { useBooking, type Anchor } from "./booking-context";
+import { QuestionsLine } from "./booking-card";
 import { Calendar } from "./calendar";
 import { pickerSummary } from "./summary";
 
@@ -33,13 +34,46 @@ function Legend() {
   );
 }
 
-/** Desktop date popover under the booking card fields. */
-export function DatePickerPopover() {
+/**
+ * Places a popover inside its anchor box: aligned to the clicked field, upwards from the bar,
+ * and upwards from the Final CTA too unless there is no room above it.
+ */
+export function useAnchoredPlacement(ref: RefObject<HTMLDivElement | null>, open: boolean, anchor: Anchor) {
+  const { trigger } = useBooking();
+  useLayoutEffect(() => {
+    const el = ref.current;
+    const box = el?.offsetParent;
+    if (!open || !el || !box) return;
+    const boxRect = box.getBoundingClientRect();
+    const field = trigger.current;
+    const offset = field && box.contains(field) ? field.getBoundingClientRect().left - boxRect.left : 0;
+    el.style.left = `${Math.max(0, Math.min(offset, boxRect.width - el.offsetWidth))}px`;
+    const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 56;
+    const roomAbove = boxRect.top - header - 16;
+    const roomBelow = window.innerHeight - boxRect.bottom - 16;
+    el.dataset.place = anchor === "bar" || roomAbove >= el.offsetHeight || roomAbove >= roomBelow ? "up" : "down";
+  }, [ref, open, anchor, trigger]);
+}
+
+/** "You won't be charged yet…" and "Questions? Message Eugene on WhatsApp" under an open popover. */
+export function PopoverFooterNote({ anchor }: { anchor: Anchor }) {
+  const { t } = useBooking();
+  return (
+    <div className="flex flex-col gap-1 border-t border-line pt-4">
+      <p className="t-sm">{t.booking.noCharge}</p>
+      <QuestionsLine source={anchor === "final" ? "final_cta" : "bottom_bar"} />
+    </div>
+  );
+}
+
+/** Desktop date popover, opened upwards from the bottom bar or the Final CTA fields. */
+export function DatePickerPopover({ anchor }: { anchor: Anchor }) {
   const b = useBooking();
-  const open = b.surface === "dates";
+  const open = b.surface === "dates" && b.anchor === anchor;
   const { mounted, state } = usePresence(open, 140);
   const ref = useRef<HTMLDivElement>(null);
   useFocusTrap(ref, open, b.close);
+  useAnchoredPlacement(ref, mounted, anchor);
 
   useEffect(() => {
     if (!open) return;
@@ -67,7 +101,7 @@ export function DatePickerPopover() {
       aria-label={b.t.picker.label}
       data-component="DatePicker"
       data-state={state}
-      className="pop absolute top-[calc(100%+8px)] -right-6 z-30 flex w-[720px] flex-col gap-5 p-6"
+      className="pop pop-anchored flex w-[720px] flex-col gap-6 p-6"
     >
       <div className="flex items-center justify-between gap-4">
         <button
@@ -94,13 +128,16 @@ export function DatePickerPopover() {
       </div>
       <Calendar monthStarts={b.months.slice(b.viewIndex, b.viewIndex + 2)} layout="columns" />
       <Legend />
-      <div className="flex items-center justify-between border-t border-line pt-4">
-        <button type="button" className="text-button t-body" onClick={b.clear}>
-          {b.t.picker.clear}
-        </button>
-        <button type="button" className="btn btn-secondary" onClick={b.close}>
-          {b.t.picker.close}
-        </button>
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center justify-between border-t border-line pt-4">
+          <button type="button" className="text-button t-body" onClick={b.clear}>
+            {b.t.picker.clear}
+          </button>
+          <button type="button" className="btn btn-secondary" onClick={b.close}>
+            {b.t.picker.close}
+          </button>
+        </div>
+        <PopoverFooterNote anchor={anchor} />
       </div>
     </div>
   );

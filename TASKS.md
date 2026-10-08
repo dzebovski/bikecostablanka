@@ -110,7 +110,7 @@
 - [x] **4.3.2** Секції лендінгу (v2, гілка `landing-v2`): базова верстка з усім EN-контентом уже на проді (тимчасовий стиль до дизайн-системи). Фінальна верстка за макетом.
 - [x] **4.3.3** Booking form `src/components/booking-form.tsx`: валідація мінімуму 11 ночей, URL Airbnb з датами, події `view_dates`, `click_book_airbnb`/`InitiateCheckout`, `LongStayIntent` (перевірено на проді 2026-10-08). Чекає ID пікселів (4.3.4).
 - [~] **4.3.4** Аналітика (GA4, Meta Pixel, Google Ads tag) + consent: код готовий, теги вмикаються env-змінними `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_META_PIXEL_ID`, `NEXT_PUBLIC_GADS_ID` (+ опційно `NEXT_PUBLIC_GADS_LONGSTAY_LABEL`). Чекає ID.
-- [ ] **4.3.0a** Ритм сторінки + бронювання з правої колонки в липку нижню панель (як raus.life): промт [docs/IMPECCABLE_PROMPT.md](docs/IMPECCABLE_PROMPT.md), гілка `refine-rhythm-bar`.
+- [~] **4.3.0a** Ритм сторінки + бронювання з правої колонки в липку нижню панель (як raus.life): промт [docs/IMPECCABLE_PROMPT.md](docs/IMPECCABLE_PROMPT.md), гілка `refine-rhythm-bar`, превʼю на Vercel. Зроблено: картку бронювання прибрано; desktop-панель `BookingBar` (marigold-пігулка 960px, поля + підсумок + одна кнопка, поповери відкриваються вгору від поля, стани в панелі над баром, ховається біля Final CTA, під модалками й cookie-банером), мобільний бар у тому ж стилі, Final CTA = та сама пігулка більша; події з бару з `source: bottom_bar`. Ритм: 4 розділи (Будинок, Катання, Проживання, Практичне), шкала відступів `--space-4…96` і ролі `--gap-head/content/section/chapter`, 12-колонкова сітка, заголовок «Reviews». Додано `PRODUCT.md` і `DESIGN.md`. Чекає перегляду власника.
 - [ ] **4.3.5** Оптимізація зображень (`next/image`), Lighthouse ≥ 90 на мобільному.
 - [ ] **4.3.6** Вбудовування Airbnb (офіційна картка «Share → Embed»), опційно як соціальний доказ. Головний CTA лишається на нашій кнопці, бо в iframe кліки не трекаються.
 
@@ -175,6 +175,7 @@
 ---
 
 ## Журнал
+- 2026-10-08: гілка `refine-rhythm-bar`: бронювання в нижню панель (desktop і mobile в одному стилі), 4 розділи з одним правилом відступів, 12-колонкова сітка; lint, 12 тестів і build проходять; скріншоти «до/після» в `../refine-shots/`.
 - 2026-10-08: проміряно ритм живого сайту; промт для impeccable: 4 розділи замість однакових секцій, одна шкала відступів, бронювання в нижню панель.
 - 2026-10-08: лендінг v2 змерджено в `main` і задеплоєно на https://bikecostablanka.vercel.app. Живий фід: зайнято 27 Dec – 11 Jan (знімок цін казав «free 1–27 Dec», тепер вільно 1–26 Dec) і окремі ночі 23 Jan, 19 Mar → оновити `src/data/prices.ts`.
 - 2026-10-08: верстка v2 у гілці `landing-v2` (Next.js 16.4), превʼю на Vercel. `AIRBNB_ICAL_URL` позначена Sensitive і є лише в Production, тому на превʼю календар у стані «Calendar unavailable».

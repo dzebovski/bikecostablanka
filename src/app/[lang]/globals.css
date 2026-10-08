@@ -14,7 +14,38 @@
 
   --ease: cubic-bezier(0.23, 1, 0.32, 1);
   --header-h: 56px;
-  --bar-h: 0px;
+
+  /* Vertical scale. Every vertical gap between blocks uses one of these steps. */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-56: 56px;
+  --space-96: 96px;
+
+  /* Rhythm roles (mobile values; desktop below). */
+  --gap-head: var(--space-8); /* heading → intro line */
+  --gap-content: var(--space-24); /* section header → content, block → block */
+  --gap-section: var(--space-32); /* between sections inside a chapter, hairline in the middle */
+  --gap-chapter: var(--space-56); /* between chapters, space only */
+  --gutter: 20px; /* page side gutter */
+  --col-gap: 32px; /* 12-column grid gutter (desktop) */
+  --measure: 33em; /* running text: at most 72 characters per line */
+
+  /* Booking bar: --bar-h is the bottom space the bar occupies, used for the page padding. */
+  --bar-height: 64px;
+  --bar-inset: var(--space-8);
+  --bar-h: calc(var(--bar-height) + var(--bar-inset));
+}
+
+@media (width >= 48rem) {
+  :root {
+    --gap-section: var(--space-48);
+    --gap-chapter: var(--space-96);
+    --gutter: 40px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -23,9 +54,10 @@
   }
 }
 
-@media (max-width: 1023px) {
+@media (width >= 64rem) {
   :root {
-    --bar-h: 72px;
+    --bar-height: 72px;
+    --bar-inset: var(--space-16);
   }
 }
 
@@ -47,6 +79,12 @@
   --radius-chip: 12px;
 
   --ease-out: var(--ease);
+
+  --spacing-head: var(--gap-head);
+  --spacing-content: var(--gap-content);
+  --spacing-section: var(--gap-section);
+  --spacing-chapter: var(--gap-chapter);
+  --spacing-gutter: var(--gutter);
 }
 
 /* ---------- Base ---------- */
@@ -66,7 +104,7 @@
     font-family: var(--font-sans);
     font-feature-settings: "ss01" 1;
     -webkit-font-smoothing: antialiased;
-    padding-bottom: var(--bar-h);
+    padding-bottom: calc(var(--bar-h) + env(safe-area-inset-bottom));
   }
 
   a {
@@ -340,24 +378,64 @@
     gap: 6px;
   }
 
-  /* Section rhythm: 48px (mobile 32px) with a hairline */
+  /* Page rhythm. A chapter is a group of sections; chapters are separated by space only,
+     sections inside a chapter by --gap-section with a hairline in the middle. */
+  .wrap {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    box-sizing: border-box;
+  }
+  .chapter,
+  .stack {
+    display: flex;
+    flex-direction: column;
+  }
+  .chapter + .chapter {
+    margin-top: var(--gap-chapter);
+  }
+  :is(.chapter, .stack) > * + * {
+    margin-top: calc(var(--gap-section) / 2);
+    padding-top: calc(var(--gap-section) / 2);
+    border-top: 1px solid var(--line);
+  }
+  /* A snow band is its own edge: no hairline next to it. */
+  :is(.chapter, .stack) > .band + * {
+    margin-top: var(--gap-section);
+    padding-top: 0;
+    border-top: 0;
+  }
+  .band {
+    background: var(--snow);
+    padding-block: var(--gap-section);
+  }
+
+  /* Section: header, then content blocks, all --gap-content apart. */
   .sec {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding: 32px 0;
-    border-top: 1px solid var(--line);
-    @media (width >= 48rem) {
-      gap: 24px;
-      padding: 48px 0;
-    }
+    gap: var(--gap-content);
   }
+  /* Section header: heading, 8px, optional intro line. */
   .sh {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    @media (width >= 48rem) {
-      gap: 8px;
+    gap: var(--gap-head);
+  }
+  .measure {
+    max-width: var(--measure);
+  }
+
+  /* 12-column grid of the 1200px container (desktop only; one column below). */
+  .cols {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-content);
+    @media (width >= 64rem) {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--col-gap);
     }
   }
 
@@ -427,6 +505,87 @@
   }
   .pop[data-state="closing"] {
     animation: pop-out 140ms var(--ease) both;
+  }
+  /* Desktop booking popovers: inside the bar or the Final CTA fields, upwards unless there is no room. */
+  .pop-anchored {
+    position: absolute;
+    bottom: calc(100% + var(--space-8));
+    z-index: 30;
+    max-height: calc(100dvh - var(--header-h) - var(--bar-h) - var(--space-24));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .pop-anchored[data-place="down"] {
+    top: calc(100% + var(--space-8));
+    bottom: auto;
+  }
+  .pop-anchored:not([data-place="down"]) {
+    animation-name: pop-in-up;
+  }
+  .pop-anchored:not([data-place="down"])[data-state="closing"] {
+    animation-name: pop-out-up;
+  }
+
+  /* Booking bar: a marigold pill fixed at the bottom of the viewport. */
+  .bbar {
+    position: fixed;
+    inset-inline: var(--bar-inset);
+    bottom: calc(var(--bar-inset) + env(safe-area-inset-bottom));
+    z-index: 20;
+    max-width: 960px;
+    margin-inline: auto;
+    transition:
+      opacity 200ms var(--ease),
+      transform 200ms var(--ease),
+      visibility 0s linear 0s;
+  }
+  .bbar[data-shown="false"] {
+    opacity: 0;
+    transform: translateY(8px);
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 200ms var(--ease),
+      transform 200ms var(--ease),
+      visibility 0s linear 200ms;
+  }
+  /* Hidden behind modals and while the cookie banner asks, unless the visitor opened it. */
+  :root:is([data-overlay], [data-cookie]) .bbar[data-shown]:not([data-open]) {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .bbar-pill {
+    display: flex;
+    align-items: center;
+    height: var(--bar-height);
+    background: var(--marigold);
+    border-radius: var(--radius-pill);
+  }
+  .bar-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-4);
+    min-width: 0;
+    align-self: stretch;
+    margin-block: var(--space-8);
+    padding: 0 12px;
+    border: 0;
+    border-radius: var(--radius-chip);
+    background: none;
+    text-align: left;
+  }
+  .bar-field[data-active] {
+    background: var(--snow);
+    outline: 2px solid var(--charcoal);
+  }
+  .bar-divider {
+    flex: 0 0 auto;
+    align-self: center;
+    height: 40px;
+    margin-inline: 4px;
+    border-left: 1px solid var(--charcoal);
   }
 
   /* Round stepper (guests, calendar arrows) */
@@ -677,6 +836,18 @@
     transform: translateY(-6px);
   }
 }
+@keyframes pop-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@keyframes pop-out-up {
+  to {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
 @keyframes sheet-in {
   from {
     transform: translateY(100%);
@@ -706,6 +877,10 @@
   .pop,
   dialog.amenities-modal {
     animation: fade-in 160ms linear both;
+  }
+  .bbar,
+  .bbar[data-shown="false"] {
+    transform: none;
   }
   .pop[data-state="closing"],
   dialog.amenities-modal[data-state="closing"],
