@@ -3,7 +3,7 @@
 > Єдине джерело правди для людей і AI-агентів.
 > Правила: беремо задачу → ставимо `[~]` і своє ім'я/агента → закриваємо `[x]` з короткою нотаткою або посиланням на коміт.
 > Статуси: `[ ]` todo · `[~]` in progress · `[x]` done · `[!]` blocked (вказати чим) · `[?]` потрібне рішення власника
-> Контекст і факти про будинок: [docs/CONTEXT.md](docs/CONTEXT.md) · Підсумок і рішення: [docs/PROJECT_SUMMARY.md](docs/PROJECT_SUMMARY.md) · Промт нового лендінгу: [docs/LANDING_PROMPT_V2.md](docs/LANDING_PROMPT_V2.md) · Промт для верстки: [docs/BUILD_PROMPT.md](docs/BUILD_PROMPT.md) · Промт для impeccable (ритм + нижня панель): [docs/IMPECCABLE_PROMPT.md](docs/IMPECCABLE_PROMPT.md)
+> Контекст і факти про будинок: [docs/CONTEXT.md](docs/CONTEXT.md) · Підсумок і рішення: [docs/PROJECT_SUMMARY.md](docs/PROJECT_SUMMARY.md) · Промт нового лендінгу: [docs/LANDING_PROMPT_V2.md](docs/LANDING_PROMPT_V2.md) · Промт для верстки: [docs/BUILD_PROMPT.md](docs/BUILD_PROMPT.md) · Промт для impeccable (ритм + нижня панель): [docs/IMPECCABLE_PROMPT.txt](docs/IMPECCABLE_PROMPT.txt) (чистий текст для команди)
 
 ---
 
