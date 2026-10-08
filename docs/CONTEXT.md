@@ -13,7 +13,7 @@ Last update: 2026-10-08. Items marked ⚠️ still need the owner's confirmation
 | Repo | https://github.com/dzebovski/bikecostablanka |
 | Live site (temporary) | https://bikecostablanka.vercel.app |
 | Design system "Cabin Journal" (from raus.life) | https://claude.ai/artifact/L86s9zkwAQpujtyk35g2Mt |
-| Design canvas (v1–v9 accepted, v10–12 rejected) | https://claude.ai/artifact/8UvkEJrYN93wv68mC6zvfn |
+| Design canvas (Page 2 = approved v2 artboards `V2-*`; Page 1 = old direction) | https://claude.ai/artifact/8UvkEJrYN93wv68mC6zvfn |
 | Style reference | https://www.raus.life (home + /locations/waldrand) |
 | Project summary & decisions | [PROJECT_SUMMARY.md](PROJECT_SUMMARY.md) |
 | Prompt for the new landing | [LANDING_PROMPT_V2.md](LANDING_PROMPT_V2.md) |

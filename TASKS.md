@@ -3,7 +3,7 @@
 > Єдине джерело правди для людей і AI-агентів.
 > Правила: беремо задачу → ставимо `[~]` і своє ім'я/агента → закриваємо `[x]` з короткою нотаткою або посиланням на коміт.
 > Статуси: `[ ]` todo · `[~]` in progress · `[x]` done · `[!]` blocked (вказати чим) · `[?]` потрібне рішення власника
-> Контекст і факти про будинок: [docs/CONTEXT.md](docs/CONTEXT.md) · Підсумок і рішення: [docs/PROJECT_SUMMARY.md](docs/PROJECT_SUMMARY.md) · Промт нового лендінгу: [docs/LANDING_PROMPT_V2.md](docs/LANDING_PROMPT_V2.md)
+> Контекст і факти про будинок: [docs/CONTEXT.md](docs/CONTEXT.md) · Підсумок і рішення: [docs/PROJECT_SUMMARY.md](docs/PROJECT_SUMMARY.md) · Промт нового лендінгу: [docs/LANDING_PROMPT_V2.md](docs/LANDING_PROMPT_V2.md) · Промт для верстки: [docs/BUILD_PROMPT.md](docs/BUILD_PROMPT.md)
 
 ---
 
@@ -101,10 +101,11 @@
 - [ ] **4.2.2** Токени (кольори, типографіка, spacing) → `tailwind`/CSS variables.
 - [ ] **4.2.3** Макет лендінгу: desktop + mobile.
 
-- [ ] **4.2.5** Новий лендінг з нуля в Claude Design за `docs/LANDING_PROMPT_V2.md` (нове полотно), далі точкові раунди з погодженням власника.
+- [x] **4.2.5** Макет v2 за `docs/LANDING_PROMPT_V2.md`: полотно https://claude.ai/artifact/8UvkEJrYN93wv68mC6zvfn, сторінка «Page 2» (артборди `V2-*`). Перевірено 2026-10-08, дрібні правки: у фінальному CTA та в цінах кнопка «Check dates» замість «Check availability →» / «See your exact price»; у календарі перша заброньована ніч доступна як день виїзду. Сторінка 1 — стара відхилена версія.
 - [x] **4.2.6** Медіа власника з WhatsApp (4 відео, 3 фото) → `docs/reference/media/`.
 
 ### 4.3 Верстка (етап 3)
+- [ ] **4.3.0** Верстка за макетом v2 за промтом [docs/BUILD_PROMPT.md](docs/BUILD_PROMPT.md) (токени, компоненти, логіка бронювання з iCal, події, consent, чекліст приймання).
 - [x] **4.3.1** Скелет Next.js 16.4 (App Router, Cache Components) + Tailwind 4 + ESLint. i18n за офіційним патерном `app/[lang]` + словники, без бібліотек; `src/proxy.ts` редіректить `/` → `/en` за Accept-Language.
 - [~] **4.3.2** Секції лендінгу: базова верстка з усім EN-контентом уже на проді (тимчасовий стиль до дизайн-системи). Фінальна верстка за макетом.
 - [x] **4.3.3** Booking form `src/components/booking-form.tsx`: валідація мінімуму 11 ночей, URL Airbnb з датами, події `view_dates`, `click_book_airbnb`/`InitiateCheckout`, `LongStayIntent` (перевірено на проді 2026-10-08). Чекає ID пікселів (4.3.4).
@@ -173,6 +174,7 @@
 ---
 
 ## Журнал
+- 2026-10-08: макет v2 (Page 2) перевірено й підправлено; написано промт для верстки `docs/BUILD_PROMPT.md`.
 - 2026-10-08: зібрано всю інформацію (CONTEXT, PROJECT_SUMMARY), промт лендінгу v2, медіа з WhatsApp.
 - 2026-10-08: макет v3 і DS v6 відхилено власником, відкат.
 - 2026-10-08: макет v3 (аналіз Raus), дизайн-система v6, ціни й вільні дати по місяцях, iCal у Vercel.
