@@ -105,7 +105,7 @@
 - [x] **4.2.6** Медіа власника з WhatsApp (4 відео, 3 фото) → `docs/reference/media/`.
 
 ### 4.3 Верстка (етап 3)
-- [~] **4.3.0** Верстка за макетом v2 за промтом [docs/BUILD_PROMPT.md](docs/BUILD_PROMPT.md): гілка `landing-v2`, превʼю на Vercel. Зроблено: токени, усі секції V2-Desktop/V2-Mobile, `/en/photos`, 404, лайтбокс, модалка зручностей, логіка бронювання (`src/lib/booking.ts` + 12 тестів), 6 станів, desktop-поповер і мобільна шторка, `/api/availability` (iCal, кеш 1 год), події, Consent Mode v2 + банер. Чекає власника: огляд превʼю, merge у `main`.
+- [~] **4.3.0** Верстка за макетом v2 за промтом [docs/BUILD_PROMPT.md](docs/BUILD_PROMPT.md): гілка `landing-v2`, превʼю на Vercel. Зроблено: токени, усі секції V2-Desktop/V2-Mobile, `/en/photos`, 404, лайтбокс, модалка зручностей, логіка бронювання (`src/lib/booking.ts` + 12 тестів), 6 станів, desktop-поповер і мобільна шторка, `/api/availability` (iCal, кеш 1 год), події, Consent Mode v2 + банер. На проді з 2026-10-08 (merge у `main`), реальний iCal-фід працює.
 - [x] **4.3.1** Скелет Next.js 16.4 (App Router, Cache Components) + Tailwind 4 + ESLint. i18n за офіційним патерном `app/[lang]` + словники, без бібліотек; `src/proxy.ts` редіректить `/` → `/en` за Accept-Language.
 - [x] **4.3.2** Секції лендінгу (v2, гілка `landing-v2`): базова верстка з усім EN-контентом уже на проді (тимчасовий стиль до дизайн-системи). Фінальна верстка за макетом.
 - [x] **4.3.3** Booking form `src/components/booking-form.tsx`: валідація мінімуму 11 ночей, URL Airbnb з датами, події `view_dates`, `click_book_airbnb`/`InitiateCheckout`, `LongStayIntent` (перевірено на проді 2026-10-08). Чекає ID пікселів (4.3.4).
@@ -174,6 +174,7 @@
 ---
 
 ## Журнал
+- 2026-10-08: лендінг v2 змерджено в `main` і задеплоєно на https://bikecostablanka.vercel.app. Живий фід: зайнято 27 Dec – 11 Jan (знімок цін казав «free 1–27 Dec», тепер вільно 1–26 Dec) і окремі ночі 23 Jan, 19 Mar → оновити `src/data/prices.ts`.
 - 2026-10-08: верстка v2 у гілці `landing-v2` (Next.js 16.4), превʼю на Vercel. `AIRBNB_ICAL_URL` позначена Sensitive і є лише в Production, тому на превʼю календар у стані «Calendar unavailable».
 - 2026-10-08: макет v2 (Page 2) перевірено й підправлено; написано промт для верстки `docs/BUILD_PROMPT.md`.
 - 2026-10-08: зібрано всю інформацію (CONTEXT, PROJECT_SUMMARY), промт лендінгу v2, медіа з WhatsApp.
