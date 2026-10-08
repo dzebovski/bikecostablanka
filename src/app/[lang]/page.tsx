@@ -133,8 +133,14 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 ))}
               </div>
             </div>
-            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
-              <Image src={t.house.image} alt={t.house.imageAlt} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+            <div className="flex flex-col gap-6">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
+                <Image src={t.house.image} alt={t.house.imageAlt} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+              </div>
+              <figure className="rounded-2xl border border-black/10 bg-white p-6">
+                <blockquote className="text-lg">“{t.house.review.quote}”</blockquote>
+                <figcaption className="mt-2 text-sm text-black/60">{t.house.review.author}</figcaption>
+              </figure>
             </div>
           </div>
         </Section>

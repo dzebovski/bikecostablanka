@@ -31,6 +31,11 @@ Items marked ⚠️ need the owner's confirmation before they go on the site.
 - Self check-in with lockbox; pets allowed
 - Stays of 1 month+: electricity included up to €3.33/night, then €0.30/kWh (i-DE smart meter)
 - Near Ondara shops and La Marina shopping centre
+- More amenities: wood-burning fireplace, split heating + A/C, washer AND dryer in unit, bath, room-darkening blinds, 65" HDTV, record player, Bluetooth speaker, Liebherr fridge, freezer, oven, filter coffee maker, large wardrobes, storage on both floors (two floors)
+- Parking (from description): a private space in the basement car park of an apartment building ~350 m / 4–5 min walk; you can stop outside the house to unload
+- Fibre Wi-Fi 302 Mbps is speed-tested by Airbnb
+- From reviews: newly renovated, high quality, roof terrace; restaurant/bar/ice cream 2 min walk (live music on Fridays); food shops, markets, bakery (Pastelería Victoria) ~5 min walk; beach ~7 min drive; La Marina (cinema, big supermarket) 5 min drive
+- Registration: Valencia region, exempt (seasonal rental)
 - Rating 5.0 from 2 reviews; weekly discount on; free cancellation
 - Host shown as "Eugene BikeCostaBlanca", 100% response rate, replies within an hour
 

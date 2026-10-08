@@ -19,10 +19,22 @@
     "ctaPrimary": "Check dates & price",
     "ctaSecondary": "See the routes",
     "facts": [
-      { "value": "3", "label": "bedrooms" },
-      { "value": "up to 5", "label": "guests" },
-      { "value": "302 Mbps", "label": "Wi-Fi" },
-      { "value": "11+", "label": "nights" }
+      {
+        "value": "3",
+        "label": "bedrooms"
+      },
+      {
+        "value": "3.5",
+        "label": "bathrooms"
+      },
+      {
+        "value": "302 Mbps",
+        "label": "fibre Wi-Fi"
+      },
+      {
+        "value": "11+",
+        "label": "nights"
+      }
     ]
   },
   "why": {
@@ -96,37 +108,86 @@
   },
   "house": {
     "eyebrow": "The house",
-    "title": "A townhouse with a private terrace, made for living in",
-    "text": "The whole house is yours: three bedrooms, three shower rooms plus a guest WC, and a large private terrace for breakfast in the sun and dinner after a long ride. It's comfortable for a couple who want space or a small group of friends who all ride.",
+    "title": "A newly renovated townhouse, all to yourself",
+    "text": "The whole house is yours, with its own front door and no shared spaces. Two floors, three bedrooms with large wardrobes, three full bathrooms plus a guest WC, and a sunny private terrace for breakfast outside and dinner after a long ride. Everything is new, high quality and set up for living here for weeks, not just sleeping.",
     "image": "/images/dining-room.jpeg",
-    "imageAlt": "Bright dining area inside the house",
+    "imageAlt": "Bright dining area inside the renovated townhouse",
     "groups": [
       {
         "title": "For your bike",
-        "items": ["Secure bike storage", "Laundry room for kit", "Local bike shops for parts and servicing"]
+        "items": [
+          "Secure indoor bike storage",
+          "Washer and dryer, so your kit is ready by morning",
+          "Room-darkening blinds for proper recovery sleep",
+          "Two bike shops within a short ride"
+        ]
       },
       {
-        "title": "For everyday life",
-        "items": ["Fully equipped kitchen and dishwasher", "Drinking water filter", "Air conditioning in every room", "Private terrace with dining table and sun loungers"]
+        "title": "Warm in winter",
+        "items": [
+          "Wood-burning fireplace",
+          "Heating and air conditioning in every room",
+          "Bath for after the big climbing days",
+          "Quality bed linen, extra pillows and blankets"
+        ]
       },
       {
         "title": "For working",
-        "items": ["302 Mbps Wi-Fi", "Dedicated workspace", "Quiet, residential street"]
+        "items": [
+          "Fibre Wi-Fi, 302 Mbps (speed-tested)",
+          "Dedicated workspace",
+          "Fast enough for video calls and 4K streaming on several devices"
+        ]
       },
       {
-        "title": "Practical",
-        "items": ["Self check-in with a lockbox", "Free parking in a basement car park about 350 m away", "Pets welcome"]
+        "title": "Kitchen and living",
+        "items": [
+          "Fully equipped kitchen: oven, dishwasher, Liebherr fridge and freezer",
+          "Filter coffee maker and drinking water filter",
+          "65-inch TV for watching the races",
+          "Record player and Bluetooth speaker"
+        ]
+      },
+      {
+        "title": "Getting settled",
+        "items": [
+          "Self check-in with a lockbox",
+          "Your own parking space in an underground car park, a 4–5 minute walk away",
+          "Pets welcome"
+        ]
+      },
+      {
+        "title": "On your doorstep",
+        "items": [
+          "A restaurant, bar and ice-cream shop 2 minutes' walk away",
+          "Food shops, markets and a bakery about 5 minutes on foot",
+          "La Marina shopping centre with a cinema 5 minutes by car",
+          "Beach about 7 minutes by car"
+        ]
       }
-    ]
+    ],
+    "review": {
+      "quote": "Everything is high-quality and well-maintained, and you feel at home right away.",
+      "author": "Anja, guest, 5★ on Airbnb"
+    }
   },
   "longStay": {
     "eyebrow": "Long stays",
     "title": "Stay two weeks. Or the whole winter.",
     "text": "The house is only let for 11 nights or more, because it works best when you settle in. Ride in the morning, work or rest in the afternoon, shop at the market like a local. Longer stays get a better nightly rate.",
     "points": [
-      { "title": "Weekly discount", "text": "Applied automatically on Airbnb for every stay." },
-      { "title": "Electricity included", "text": "For stays of a month or more, normal use is included (€3.33 per night allowance)." },
-      { "title": "Everything nearby", "text": "Ondara's shops, cafés and the La Marina shopping centre are minutes away." }
+      {
+        "title": "Weekly discount",
+        "text": "Applied automatically on Airbnb for every stay."
+      },
+      {
+        "title": "Electricity included",
+        "text": "For stays of a month or more, normal use is included (€3.33 per night allowance)."
+      },
+      {
+        "title": "Daily life on foot",
+        "text": "Shops, markets, a bakery and cafés are a few minutes' walk away. The big La Marina shopping centre is 5 minutes by car."
+      }
     ],
     "priceNote": "From around €70 a night on a two-week winter stay, all fees included. Pick your dates below to see the live price."
   },
@@ -134,10 +195,22 @@
     "eyebrow": "Not everyone rides?",
     "title": "A great cycling base, even if not everyone in your group rides",
     "items": [
-      { "title": "Beaches and coves", "text": "Dénia's long sandy beaches and the rocky coves of Jávea are a short drive away, and they're quiet out of season." },
-      { "title": "Towns and villages", "text": "Altea's white old town, Calpe under the Peñón de Ifach, hilltop villages like Alcalalí and the weekly markets." },
-      { "title": "Hiking", "text": "Montgó Natural Park and the valley trails around Vall de Gallinera and Vall de Laguar." },
-      { "title": "Seasons and festivals", "text": "Almond blossom in January and February, carnival in Pego, Fallas in Dénia in March and orange blossom in spring." }
+      {
+        "title": "Beaches and coves",
+        "text": "Dénia's long sandy beaches and the rocky coves of Jávea are a short drive away, and they're quiet out of season."
+      },
+      {
+        "title": "Towns and villages",
+        "text": "Altea's white old town, Calpe under the Peñón de Ifach, hilltop villages like Alcalalí and the weekly markets."
+      },
+      {
+        "title": "Hiking",
+        "text": "Montgó Natural Park and the valley trails around Vall de Gallinera and Vall de Laguar."
+      },
+      {
+        "title": "Seasons and festivals",
+        "text": "Almond blossom in January and February, carnival in Pego, Fallas in Dénia in March and orange blossom in spring."
+      }
     ]
   },
   "partners": {
@@ -145,19 +218,40 @@
     "title": "Bikes, parts and transfers",
     "text": "We don't rent bikes, repair bikes or run tours. We point you to the people we use ourselves.",
     "items": [
-      { "name": "Maxima Bikes, Ondara", "text": "Our local shop: servicing, bike and e-bike rental, parts and nutrition." },
-      { "name": "Xabia's Bike, Dénia", "text": "Official Specialized dealer and service centre with 25+ years in the Marina Alta. Workshop, rental and kit." },
-      { "name": "transfer4u.es", "text": "Airport transfers with room for bike boxes." }
+      {
+        "name": "Maxima Bikes, Ondara",
+        "text": "Our local shop: servicing, bike and e-bike rental, parts and nutrition."
+      },
+      {
+        "name": "Xabia's Bike, Dénia",
+        "text": "Official Specialized dealer and service centre with 25+ years in the Marina Alta. Workshop, rental and kit."
+      },
+      {
+        "name": "transfer4u.es",
+        "text": "Airport transfers with room for bike boxes."
+      }
     ]
   },
   "gettingHere": {
     "eyebrow": "Getting here",
     "title": "Fly to Alicante or Valencia",
     "items": [
-      { "title": "Alicante (ALC)", "text": "About 104 km, roughly an hour on the AP-7." },
-      { "title": "Valencia (VLC)", "text": "About 111 km, also mostly on the AP-7." },
-      { "title": "Car or transfer", "text": "Hire a car at either airport (book ahead in winter), or use a bike-friendly transfer." },
-      { "title": "Bring or rent a bike", "text": "Fly with your own bike, or rent a road or e-bike locally from Maxima Bikes." }
+      {
+        "title": "Alicante (ALC)",
+        "text": "About 104 km, roughly an hour on the AP-7."
+      },
+      {
+        "title": "Valencia (VLC)",
+        "text": "About 111 km, also mostly on the AP-7."
+      },
+      {
+        "title": "Car or transfer",
+        "text": "Hire a car at either airport (book ahead in winter), or use a bike-friendly transfer."
+      },
+      {
+        "title": "Bring or rent a bike",
+        "text": "Fly with your own bike, or rent a road or e-bike locally from Maxima Bikes."
+      }
     ]
   },
   "host": {
@@ -169,12 +263,38 @@
     "eyebrow": "FAQ",
     "title": "Good to know",
     "items": [
-      { "q": "What's the minimum stay?", "a": "11 nights. The house is set up for longer stays, from two weeks to the whole winter." },
-      { "q": "How do I book?", "a": "Pick your dates below and you'll go straight to the Airbnb listing with your dates and guests filled in. Airbnb handles the payment and protects your booking." },
-      { "q": "Is the house only for cyclists?", "a": "No. Cycling is why the location works so well, but the coast, villages, markets and mild weather make it a good winter base for everyone in your group." },
-      { "q": "Do you rent bikes or offer guided rides?", "a": "No. We share our routes and local knowledge, and recommend local shops for rental and servicing." },
-      { "q": "Can I work remotely?", "a": "Yes. There's 302 Mbps Wi-Fi and a dedicated workspace." },
-      { "q": "When is the best time for cycling?", "a": "October to May. December to February is the pro training season, and March and April bring longer days and orange blossom." }
+      {
+        "q": "What's the minimum stay?",
+        "a": "11 nights. The house is set up for longer stays, from two weeks to the whole winter."
+      },
+      {
+        "q": "How do I book?",
+        "a": "Pick your dates below and you'll go straight to the Airbnb listing with your dates and guests filled in. Airbnb handles the payment and protects your booking."
+      },
+      {
+        "q": "Is the house only for cyclists?",
+        "a": "No. Cycling is why the location works so well, but the coast, villages, markets and mild weather make it a good winter base for everyone in your group."
+      },
+      {
+        "q": "Is the house warm in winter?",
+        "a": "Yes. Every room has heating and air conditioning, and there's a wood-burning fireplace for cosy evenings."
+      },
+      {
+        "q": "Where do I keep my bike?",
+        "a": "There's secure indoor bike storage, plus a washer and dryer for your kit."
+      },
+      {
+        "q": "Do you rent bikes or offer guided rides?",
+        "a": "No. We share our routes and local knowledge, and recommend local shops for rental and servicing."
+      },
+      {
+        "q": "Can I work remotely?",
+        "a": "Yes. There's 302 Mbps Wi-Fi and a dedicated workspace."
+      },
+      {
+        "q": "When is the best time for cycling?",
+        "a": "October to May. December to February is the pro training season, and March and April bring longer days and orange blossom."
+      }
     ]
   },
   "booking": {
