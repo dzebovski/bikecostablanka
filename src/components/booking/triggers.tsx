@@ -3,6 +3,8 @@
 import { useBooking, type Source } from "./booking-context";
 import { BookingAction, BookingFields } from "./booking-fields";
 import { FromPrice } from "./booking-card";
+import { DatePickerPopover } from "./date-picker";
+import { GuestPopover } from "./guest-picker";
 
 /** "Check dates" (button) or "Check dates →" (text link): always opens the date picker. */
 export function CheckDates({ source, variant = "button", className = "" }: { source: Source; variant?: "button" | "link"; className?: string }) {
@@ -70,8 +72,10 @@ export function FinalCtaForm() {
   return (
     <>
       <div className="hidden flex-wrap items-stretch gap-4 md:flex">
-        <div className="min-w-0 flex-[1_1_520px]">
+        <div data-booking-anchor="final" className="relative min-w-0 flex-[1_1_520px]">
           <BookingFields source="final_cta" wide />
+          <DatePickerPopover anchor="final" />
+          <GuestPopover anchor="final" />
         </div>
         <BookingAction source="final_cta" tall />
       </div>

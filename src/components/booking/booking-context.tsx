@@ -54,6 +54,8 @@ export type Source =
   | "sheet";
 
 type Surface = "dates" | "guests" | "sheet" | null;
+/** Where the desktop popovers open: under the booking card, or in place at the Final CTA. */
+export type Anchor = "card" | "final";
 type Availability = "loading" | "ok" | "error";
 
 type BookingContextValue = {
@@ -72,6 +74,7 @@ type BookingContextValue = {
   hover: number | null;
   setHover: (night: number | null) => void;
   surface: Surface;
+  anchor: Anchor;
   sheetStep: "dates" | "guests";
   setSheetStep: (step: "dates" | "guests") => void;
   viewIndex: number;
@@ -148,6 +151,11 @@ function readUrlState(today: number): { sel: Selection; guests: Guests; openDate
   return { sel, guests, openDates };
 }
 
+/** The Final CTA opens its popovers in place; every other trigger uses the booking card. */
+function anchorOf(el: HTMLElement | null): Anchor {
+  return el?.closest("[data-booking-anchor='final']") ? "final" : "card";
+}
+
 export function BookingProvider({ locale, t, children }: { locale: Locale; t: BookingMessages; children: ReactNode }) {
   // Today is read on the client only (the page itself is prerendered); 0 until hydrated.
   const today = useSyncExternalStore(noopSubscribe, todayInMadrid, () => 0);
@@ -158,6 +166,7 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
   const [availability, setAvailability] = useState<Availability>("loading");
   const [hover, setHover] = useState<number | null>(null);
   const [surface, setSurface] = useState<Surface>(null);
+  const [anchor, setAnchor] = useState<Anchor>("card");
   const [sheetStep, setSheetStep] = useState<"dates" | "guests">("dates");
   const [viewIndex, setViewIndex] = useState(0);
   const [focusDay, setFocusDay] = useState<number | null>(null);
@@ -221,7 +230,9 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
       showMonthOf(focus, desktop);
       setHover(null);
       if (desktop) {
-        revealCard();
+        const at = anchorOf(trigger.current);
+        setAnchor(at);
+        if (at === "card") revealCard();
         setSurface("dates");
       } else {
         setSheetStep("dates");
@@ -240,7 +251,9 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
     (el?: HTMLElement | null) => {
       trigger.current = el ?? (document.activeElement as HTMLElement | null);
       if (window.matchMedia(DESKTOP).matches) {
-        revealCard();
+        const at = anchorOf(trigger.current);
+        setAnchor(at);
+        if (at === "card") revealCard();
         setSurface((s) => (s === "guests" ? null : "guests"));
       } else {
         setSheetStep("guests");
@@ -356,6 +369,7 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
     hover,
     setHover,
     surface,
+    anchor,
     sheetStep,
     setSheetStep,
     viewIndex,

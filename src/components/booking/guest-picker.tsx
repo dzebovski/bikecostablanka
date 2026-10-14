@@ -5,7 +5,8 @@ import { MAX_INFANTS, isGuestsFull, type Guests } from "@/lib/booking";
 import { fill } from "@/lib/format";
 import { useFocusTrap } from "@/hooks/use-focus-trap";
 import { usePresence } from "@/hooks/use-presence";
-import { useBooking } from "./booking-context";
+import { useBooking, type Anchor } from "./booking-context";
+import { useFinalPlacement } from "./date-picker";
 
 /** "2 guests" / "3 guests, 1 infant, pets" */
 export function guestLabel(t: ReturnType<typeof useBooking>["t"], g: Guests) {
@@ -85,13 +86,14 @@ export function GuestRows() {
   );
 }
 
-/** Desktop popover under the Guests field of the booking card. */
-export function GuestPopover() {
+/** Desktop popover at the Guests field: under the booking card, or in place at the Final CTA. */
+export function GuestPopover({ anchor = "card" }: { anchor?: Anchor }) {
   const b = useBooking();
-  const open = b.surface === "guests";
+  const open = b.surface === "guests" && b.anchor === anchor;
   const { mounted, state } = usePresence(open, 140);
   const ref = useRef<HTMLDivElement>(null);
   useFocusTrap(ref, open, b.close);
+  useFinalPlacement(ref, mounted, anchor);
 
   useEffect(() => {
     if (!open) return;
@@ -115,7 +117,7 @@ export function GuestPopover() {
       aria-label={b.t.guests.label}
       data-component="GuestPicker"
       data-state={state}
-      className="pop absolute top-[calc(100%+8px)] -right-6 z-30 flex w-[360px] flex-col px-6 pt-2 pb-5"
+      className={`pop flex w-[360px] flex-col px-6 pt-2 pb-5 ${anchor === "final" ? "pop-final right-0" : "absolute top-[calc(100%+8px)] -right-6 z-30"}`}
     >
       <GuestRows />
       <div className="flex justify-end pt-3">

@@ -429,6 +429,25 @@
   .pop[data-state="closing"] {
     animation: pop-out 140ms var(--ease) both;
   }
+  /* Final CTA popovers open in place: upwards from the fields unless there is more room below. */
+  .pop-final {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    z-index: 30;
+    max-height: calc(100dvh - var(--header-h) - 32px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .pop-final[data-place="down"] {
+    top: calc(100% + 8px);
+    bottom: auto;
+  }
+  .pop-final:not([data-place="down"]) {
+    animation-name: pop-in-up;
+  }
+  .pop-final:not([data-place="down"])[data-state="closing"] {
+    animation-name: pop-out-up;
+  }
 
   /* Round stepper (guests, calendar arrows) */
   .step {
@@ -678,6 +697,18 @@
     transform: translateY(-6px);
   }
 }
+@keyframes pop-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@keyframes pop-out-up {
+  to {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
 @keyframes sheet-in {
   from {
     transform: translateY(100%);
@@ -715,5 +746,11 @@
   }
   dialog.sheet {
     animation: fade-in 180ms linear both;
+  }
+  .pop-final:not([data-place="down"]) {
+    animation-name: fade-in;
+  }
+  .pop-final:not([data-place="down"])[data-state="closing"] {
+    animation-name: fade-out;
   }
 }

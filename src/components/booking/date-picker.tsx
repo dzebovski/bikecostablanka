@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, type RefObject } from "react";
 import { useFocusTrap } from "@/hooks/use-focus-trap";
 import { usePresence } from "@/hooks/use-presence";
-import { useBooking } from "./booking-context";
+import { useBooking, type Anchor } from "./booking-context";
 import { Calendar } from "./calendar";
 import { pickerSummary } from "./summary";
 
@@ -33,13 +33,34 @@ function Legend() {
   );
 }
 
-/** Desktop date popover under the booking card fields. */
-export function DatePickerPopover() {
+/** At the Final CTA a popover opens upwards from the fields, or downwards when there is more room below. */
+export function useFinalPlacement(ref: RefObject<HTMLDivElement | null>, mounted: boolean, anchor: Anchor) {
+  useLayoutEffect(() => {
+    const el = ref.current;
+    const box = el?.offsetParent;
+    if (!mounted || !el || !box || anchor !== "final") return;
+    const rect = box.getBoundingClientRect();
+    const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 56;
+    const height = el.offsetHeight;
+    const roomAbove = rect.top - header - 16;
+    const roomBelow = window.innerHeight - rect.bottom - 16;
+    const up = roomAbove >= height || roomAbove >= roomBelow;
+    el.dataset.place = up ? "up" : "down";
+    // Nudge the page just enough for the whole popover to show, never past the fields themselves.
+    const missing = height - (up ? roomAbove : roomBelow);
+    const spare = up ? roomBelow : roomAbove;
+    if (missing > 0 && spare > 0) window.scrollBy({ top: (up ? -1 : 1) * Math.min(missing, spare), behavior: "auto" });
+  }, [ref, mounted, anchor]);
+}
+
+/** Desktop date popover: under the booking card fields, or in place at the Final CTA. */
+export function DatePickerPopover({ anchor = "card" }: { anchor?: Anchor }) {
   const b = useBooking();
-  const open = b.surface === "dates";
+  const open = b.surface === "dates" && b.anchor === anchor;
   const { mounted, state } = usePresence(open, 140);
   const ref = useRef<HTMLDivElement>(null);
   useFocusTrap(ref, open, b.close);
+  useFinalPlacement(ref, mounted, anchor);
 
   useEffect(() => {
     if (!open) return;
@@ -67,7 +88,7 @@ export function DatePickerPopover() {
       aria-label={b.t.picker.label}
       data-component="DatePicker"
       data-state={state}
-      className="pop absolute top-[calc(100%+8px)] -right-6 z-30 flex w-[720px] flex-col gap-5 p-6"
+      className={`pop flex w-[720px] flex-col gap-5 p-6 ${anchor === "final" ? "pop-final left-0" : "absolute top-[calc(100%+8px)] -right-6 z-30"}`}
     >
       <div className="flex items-center justify-between gap-4">
         <button
