@@ -23,7 +23,7 @@ Last update: 2026-10-08. Items marked ⚠️ still need the owner's confirmation
 - Ondara, Marina Alta, Costa Blanca, Spain (near Dénia). Registration: Valencia region, exempt (seasonal rental).
 - Airbnb title: "Townhouse•Private Terrace". Entire home, private entrance, no shared areas. Newly renovated, two floors, terrazzo staircase.
 - 5 guests · 3 bedrooms · 3 beds · 3.5 bathrooms (3 full bathrooms incl. 2 en-suite + guest WC).
-- Rooms: Bedroom 1 king, en-suite · Bedroom 2 king, en-suite · Bedroom 3 king · single room with desk and office chair · **loft room**: private, lockable, two-level, own bathroom, A/C and kitchenette with fridge, glass railing, a restored **1970s Bianchi** on the wall (Airbnb calls it a "theme room").
+- Rooms (as on Airbnb, checked 2026-10-14): Bedroom 1 king, en-suite · Bedroom 2 king, en-suite · Bedroom 3 single bed with desk and office chair · **loft room** (no bed): private, lockable, two-level, own bathroom, A/C and kitchenette with fridge, glass railing, a restored **1970s Bianchi** on the wall (Airbnb calls it a "theme room").
 - Outdoor: large roof terrace with awning, sun loungers, dining set, cacti; private inner courtyard with table, visible from the dining area; floor-to-ceiling glass walls onto both.
 - Winter comfort: wood-burning fireplace in the dining area, split heating + A/C in every room, electric underfloor heating and heated towel rail in a bathroom, bath, room-darkening blinds, quality bed linen, extra pillows and blankets.
 - Work: fibre Wi-Fi **302 Mbps** (speed-tested by Airbnb), dedicated workspace.
@@ -100,7 +100,8 @@ No bike rental, no repairs, no guiding, no tour packages. We give routes, practi
 - Sell the real free windows: December, 12–23 Jan, from 20 March, April–May monthly.
 
 ## Media
-- Listing photos (30 picked of 56): `public/images/house/*.jpg` (served at https://bikecostablanka.vercel.app/images/house/…). All 56 originals: `../photos/airbnb/` (outside the repo).
+- Listing photos: all 53 photos of the Airbnb photo tour (2026-10-14) in `public/images/house/*.jpg`, grouped and labelled by Airbnb room in `src/data/photos.ts` (served at https://bikecostablanka.vercel.app/images/house/…). Originals `../photos/airbnb/NN` (outside the repo; #08, #38, #39 are no longer in the listing).
+  - Airbnb rooms → originals: Living room 12, 14, 13, 02 · Kitchen 05, 15, 16 · Dining 17, 18, 19, 07 · Bedroom 1: 09, 20, 21, 04, 22, 23 · Bedroom 2: 24, 10, 25, 26 · Bedroom 3: 11, 27 · Bathroom 1: 28, 29 · Bathroom 2: 30, 31 · Bathroom 3: 32, 33 · WC 34 · Patio 35, 03 · Deck (roof terrace) 01, 36, 37 · Laundry 40 · Garage 41, 42 · Theme room (loft) 43, 44, 45, 46, 47, 48 · Additional 06, 07, 49–56.
 - Route photos: `public/images/coll-de-rates.jpeg`, `public/images/vall-debo.jpeg`.
 - Owner's WhatsApp media: [reference/media/](reference/media/)
   - `video-local-life-harvest-tractor-roads-21s.mp4`: grape-harvest tractor on a country road, then an empty road with a red bike lane (local life, quiet roads).

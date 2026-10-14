@@ -12,7 +12,7 @@ import { PhotoTrigger } from "@/components/lightbox";
 
 /**
  * Desktop: one large photo and a 2×2 grid with 40px outer corners.
- * Mobile: a swipe carousel over all photos with a "1 / 30" chip.
+ * Mobile: a swipe carousel over all photos with a "1 / N" counter chip.
  */
 export function Gallery({ locale, t }: { locale: Locale; t: Dictionary["gallery"] }) {
   const [current, setCurrent] = useState(1);

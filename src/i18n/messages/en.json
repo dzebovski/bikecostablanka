@@ -136,7 +136,7 @@
   ],
   "about": {
     "title": "About the house",
-    "text": "A newly renovated townhouse with its own front door and no shared spaces. Two floors joined by a terrazzo staircase, a large roof terrace with an awning and sun loungers, and a private inner courtyard behind floor-to-ceiling glass. Three king bedrooms, a single room with a desk and a private loft room. Everything is set up for living here for weeks, not just sleeping: a full kitchen with an island, a living room with wooden beams and a 65-inch TV, and a laundry room for your kit.",
+    "text": "A newly renovated townhouse with its own front door and no shared spaces. Two floors joined by a terrazzo staircase, a large roof terrace with an awning and sun loungers, and a private inner courtyard behind floor-to-ceiling glass. Two king bedrooms, a third bedroom with a single bed and a desk, and a private loft room. Everything is set up for living here for weeks, not just sleeping: a full kitchen with an island, a living room with wooden beams and a 65-inch TV, and a laundry room for your kit.",
     "textMobile": "A newly renovated townhouse with its own front door and no shared spaces. Two floors joined by a terrazzo staircase, a large roof terrace with an awning and sun loungers, and a private inner courtyard behind floor-to-ceiling glass. Everything is set up for living here for weeks, not just sleeping.",
     "showMore": "Show more ▾",
     "showLess": "Show less ▴"
@@ -153,21 +153,15 @@
         "text": "King bed · en-suite"
       },
       {
-        "photo": "bedroom-2-king",
+        "photo": "bedroom-2",
         "alt": "Bedroom 2",
         "title": "Bedroom 2",
         "text": "King bed · en-suite"
       },
       {
-        "photo": "bedroom-3",
+        "photo": "bedroom-single-desk",
         "alt": "Bedroom 3",
         "title": "Bedroom 3",
-        "text": "King bed"
-      },
-      {
-        "photo": "bedroom-single-desk",
-        "alt": "Single room with desk",
-        "title": "Single room",
         "text": "Single bed · desk"
       },
       {
