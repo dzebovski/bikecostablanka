@@ -3,7 +3,7 @@
 > Єдине джерело правди для людей і AI-агентів.
 > Правила: беремо задачу → ставимо `[~]` і своє ім'я/агента → закриваємо `[x]` з короткою нотаткою або посиланням на коміт.
 > Статуси: `[ ]` todo · `[~]` in progress · `[x]` done · `[!]` blocked (вказати чим) · `[?]` потрібне рішення власника
-> Контекст і факти про будинок: [docs/CONTEXT.md](docs/CONTEXT.md) · Підсумок і рішення: [docs/PROJECT_SUMMARY.md](docs/PROJECT_SUMMARY.md) · Промт нового лендінгу: [docs/LANDING_PROMPT_V2.md](docs/LANDING_PROMPT_V2.md) · Промт для верстки: [docs/BUILD_PROMPT.md](docs/BUILD_PROMPT.md) · Промт для impeccable (ритм + нижня панель): [docs/IMPECCABLE_PROMPT.txt](docs/IMPECCABLE_PROMPT.txt) (чистий текст для команди)
+> Контекст і факти про будинок: [docs/CONTEXT.md](docs/CONTEXT.md) · Підсумок і рішення: [docs/PROJECT_SUMMARY.md](docs/PROJECT_SUMMARY.md) · Промт нового лендінгу: [docs/LANDING_PROMPT_V2.md](docs/LANDING_PROMPT_V2.md) · Промт для верстки: [docs/BUILD_PROMPT.md](docs/BUILD_PROMPT.md) · Промт для impeccable (ритм + нижня панель): [docs/IMPECCABLE_PROMPT.txt](docs/IMPECCABLE_PROMPT.txt) (чистий текст для команди) · Пряме бронювання: [дизайн](docs/DESIGN_TASK_DIRECT_BOOKING.md), [розробка](docs/DEV_TASK_DIRECT_BOOKING.md)
 
 ---
 
@@ -104,6 +104,8 @@
 - [x] **4.2.5** Макет v2 за `docs/LANDING_PROMPT_V2.md`: полотно https://claude.ai/artifact/8UvkEJrYN93wv68mC6zvfn, сторінка «Page 2» (артборди `V2-*`). Перевірено 2026-10-08, дрібні правки: у фінальному CTA та в цінах кнопка «Check dates» замість «Check availability →» / «See your exact price»; у календарі перша заброньована ніч доступна як день виїзду. Сторінка 1 — стара відхилена версія.
 - [x] **4.2.6** Медіа власника з WhatsApp (4 відео, 3 фото) → `docs/reference/media/`.
 
+- [ ] **4.2.7** Пряме бронювання (Lodgify) як другий канал: дизайн на полотні, Page 3, за [docs/DESIGN_TASK_DIRECT_BOOKING.md](docs/DESIGN_TASK_DIRECT_BOOKING.md). Airbnb головне, пряме — текстове посилання; ніколи не показувати, що пряме дешевше.
+
 ### 4.3 Верстка (етап 3)
 - [~] **4.3.0** Верстка за макетом v2 за промтом [docs/BUILD_PROMPT.md](docs/BUILD_PROMPT.md): гілка `landing-v2`, превʼю на Vercel. Зроблено: токени, усі секції V2-Desktop/V2-Mobile, `/en/photos`, 404, лайтбокс, модалка зручностей, логіка бронювання (`src/lib/booking.ts` + 12 тестів), 6 станів, desktop-поповер і мобільна шторка, `/api/availability` (iCal, кеш 1 год), події, Consent Mode v2 + банер. На проді з 2026-10-08 (merge у `main`), реальний iCal-фід працює.
 - [x] **4.3.1** Скелет Next.js 16.4 (App Router, Cache Components) + Tailwind 4 + ESLint. i18n за офіційним патерном `app/[lang]` + словники, без бібліотек; `src/proxy.ts` редіректить `/` → `/en` за Accept-Language.
@@ -115,6 +117,8 @@
 - [x] **4.3.0c** Rides: 8 маршрутів у слайдері (`ScrollRow` у `src/components/islands.tsx`, спільний зі «Where you’ll sleep»), +5 маршрутів і фото зі старого сайту, фото для Bernia, картку «January 2025» прибрано (2026-10-14).
 - [x] **4.3.0d** Desktop: календар і гості у Final CTA відкриваються на місці (вгору від полів, сторінка лише трохи підсувається, якщо не влазить), бокова картка — під собою; дати спільні. Стан `anchor` у `booking-context.tsx` (2026-10-14).
 - [x] **4.3.0e** Фавіконка: велосипед Phosphor (bold) charcoal на marigold — `src/app/icon.svg`, `favicon.ico` (16/32/48), `apple-icon.png` (2026-10-14).
+- [ ] **4.3.7** Пряме бронювання в коді за [docs/DEV_TASK_DIRECT_BOOKING.md](docs/DEV_TASK_DIRECT_BOOKING.md): `NEXT_PUBLIC_DIRECT_BOOKING_URL`, подія `click_book_direct` + `LongStayIntent` з `channel`, гілка `direct-booking`.
+- [?] **4.3.7a** Від власника: опублікувати сайт Lodgify (зараз «Website not found») і дати робоче посилання; формат параметрів дат у Lodgify; правила скасування для прямого бронювання; прибрати «Save up to 5% compared with Airbnb» зі сторінки book-direct на старому сайті.
 - [ ] **4.3.5** Оптимізація зображень (`next/image`), Lighthouse ≥ 90 на мобільному.
 - [ ] **4.3.6** Вбудовування Airbnb (офіційна картка «Share → Embed»), опційно як соціальний доказ. Головний CTA лишається на нашій кнопці, бо в iframe кліки не трекаються.
 
@@ -179,6 +183,7 @@
 ---
 
 ## Журнал
+- 2026-10-14: задачі на пряме бронювання (Lodgify): дизайн (Page 3) і розробка. Рішення: Airbnb головне, без дат поки, жодних заяв про нижчу ціну.
 - 2026-10-08: проміряно ритм живого сайту; промт для impeccable: 4 розділи замість однакових секцій, одна шкала відступів, бронювання в нижню панель.
 - 2026-10-08: лендінг v2 змерджено в `main` і задеплоєно на https://bikecostablanka.vercel.app. Живий фід: зайнято 27 Dec – 11 Jan (знімок цін казав «free 1–27 Dec», тепер вільно 1–26 Dec) і окремі ночі 23 Jan, 19 Mar → оновити `src/data/prices.ts`.
 - 2026-10-08: верстка v2 у гілці `landing-v2` (Next.js 16.4), превʼю на Vercel. `AIRBNB_ICAL_URL` позначена Sensitive і є лише в Production, тому на превʼю календар у стані «Calendar unavailable».
