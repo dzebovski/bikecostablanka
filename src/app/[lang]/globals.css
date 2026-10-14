@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@iconify/tailwind4";
 
 /* Design tokens from the v2 artboards. Each colour has one role only. */
 :root {
