@@ -6,6 +6,7 @@ import { landingPhotos, photoIndex } from "@/data/photos";
 import { toOrd } from "@/lib/booking";
 import { fill, formatDate, formatDayMonth, formatDayRange, formatEuro, formatList, formatMonthName } from "@/lib/format";
 import { contact } from "@/lib/contact";
+import { AmenityIcon } from "@/components/amenity-icon";
 import { ContactLink } from "@/components/contact-link";
 import { PhotoTrigger } from "@/components/lightbox";
 import { AboutText, AmenitiesButton, SleepRow } from "@/components/islands";
@@ -153,8 +154,9 @@ export function Amenities({ t }: { t: T }) {
               const lastInColumn = i === column.length - 1;
               const lastOfAll = lastInColumn && c === columns.length - 1;
               return (
-                <li key={item} className={`row ${lastInColumn ? "md:border-b-0" : ""} ${lastOfAll ? "border-b-0" : ""}`}>
-                  {item}
+                <li key={item.text} className={`row items-center justify-start ${lastInColumn ? "md:border-b-0" : ""} ${lastOfAll ? "border-b-0" : ""}`}>
+                  <AmenityIcon name={item.icon} />
+                  {item.text}
                 </li>
               );
             })}

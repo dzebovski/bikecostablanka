@@ -176,16 +176,46 @@
   "amenities": {
     "title": "What this place offers",
     "items": [
-      "Secure indoor bike storage",
-      "Washer and dryer",
-      "Wood-burning fireplace",
-      "Heating & A/C in every room",
-      "Fibre Wi-Fi 302 Mbps",
-      "Dedicated workspace",
-      "Room-darkening blinds",
-      "Bath",
-      "Roof terrace with sun loungers",
-      "Own parking space (4–5 min walk)"
+      {
+        "icon": "bicycle",
+        "text": "Secure indoor bike storage"
+      },
+      {
+        "icon": "washing-machine",
+        "text": "Washer and dryer"
+      },
+      {
+        "icon": "fire",
+        "text": "Wood-burning fireplace"
+      },
+      {
+        "icon": "thermometer",
+        "text": "Heating & A/C in every room"
+      },
+      {
+        "icon": "wifi",
+        "text": "Fibre Wi-Fi 302 Mbps"
+      },
+      {
+        "icon": "desk",
+        "text": "Dedicated workspace"
+      },
+      {
+        "icon": "moon",
+        "text": "Room-darkening blinds"
+      },
+      {
+        "icon": "bathtub",
+        "text": "Bath"
+      },
+      {
+        "icon": "sun",
+        "text": "Roof terrace with sun loungers"
+      },
+      {
+        "icon": "car",
+        "text": "Own parking space (4–5 min walk)"
+      }
     ],
     "showAll": "Show all 40+ amenities",
     "close": "Close",
@@ -194,44 +224,98 @@
       {
         "title": "For your bike",
         "items": [
-          "Secure indoor bike storage (wall rack)",
-          "Laundry room with washer and tumble dryer",
-          "Room-darkening blinds",
-          "Two bike shops within a short ride"
+          {
+            "icon": "bicycle",
+            "text": "Secure indoor bike storage (wall rack)"
+          },
+          {
+            "icon": "washing-machine",
+            "text": "Laundry room with washer and tumble dryer"
+          },
+          {
+            "icon": "moon",
+            "text": "Room-darkening blinds"
+          },
+          {
+            "icon": "wrench",
+            "text": "Two bike shops within a short ride"
+          }
         ]
       },
       {
         "title": "Warm in winter",
         "items": [
-          "Wood-burning fireplace",
-          "Heating and A/C in every room",
-          "Underfloor heating and heated towel rail in a bathroom",
-          "Bath · quality linen, extra pillows and blankets"
+          {
+            "icon": "fire",
+            "text": "Wood-burning fireplace"
+          },
+          {
+            "icon": "thermometer",
+            "text": "Heating and A/C in every room"
+          },
+          {
+            "icon": "thermometer-hot",
+            "text": "Underfloor heating and heated towel rail in a bathroom"
+          },
+          {
+            "icon": "bathtub",
+            "text": "Bath · quality linen, extra pillows and blankets"
+          }
         ]
       },
       {
         "title": "Working",
         "items": [
-          "Fibre Wi-Fi 302 Mbps (speed-tested)",
-          "Dedicated workspace with office chair"
+          {
+            "icon": "wifi",
+            "text": "Fibre Wi-Fi 302 Mbps (speed-tested)"
+          },
+          {
+            "icon": "office-chair",
+            "text": "Dedicated workspace with office chair"
+          }
         ]
       },
       {
         "title": "Kitchen & living",
         "items": [
-          "Island with seating for three",
-          "Oven, microwave, dishwasher",
-          "Liebherr fridge, freezer, kettle",
-          "Filter coffee maker, drinking water filter",
-          "65\" TV, record player, Bluetooth speaker"
+          {
+            "icon": "fork-knife",
+            "text": "Island with seating for three"
+          },
+          {
+            "icon": "oven",
+            "text": "Oven, microwave, dishwasher"
+          },
+          {
+            "icon": "snowflake",
+            "text": "Liebherr fridge, freezer, kettle"
+          },
+          {
+            "icon": "coffee",
+            "text": "Filter coffee maker, drinking water filter"
+          },
+          {
+            "icon": "tv",
+            "text": "65\" TV, record player, Bluetooth speaker"
+          }
         ]
       },
       {
         "title": "Getting settled",
         "items": [
-          "Self check-in with a lockbox",
-          "Parking space No. 30, 4–5 min walk",
-          "Pets allowed"
+          {
+            "icon": "lock",
+            "text": "Self check-in with a lockbox"
+          },
+          {
+            "icon": "car",
+            "text": "Parking space No. 30, 4–5 min walk"
+          },
+          {
+            "icon": "paw",
+            "text": "Pets allowed"
+          }
         ]
       }
     ]
