@@ -111,7 +111,7 @@
 - [x] **4.3.3** Booking form `src/components/booking-form.tsx`: валідація мінімуму 11 ночей, URL Airbnb з датами, події `view_dates`, `click_book_airbnb`/`InitiateCheckout`, `LongStayIntent` (перевірено на проді 2026-10-08). Чекає ID пікселів (4.3.4).
 - [~] **4.3.4** Аналітика (GA4, Meta Pixel, Google Ads tag) + consent: код готовий, теги вмикаються env-змінними `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_META_PIXEL_ID`, `NEXT_PUBLIC_GADS_ID` (+ опційно `NEXT_PUBLIC_GADS_LONGSTAY_LABEL`). Чекає ID.
 - [ ] **4.3.0a** Ритм сторінки + бронювання з правої колонки в липку нижню панель (як raus.life): промт [docs/IMPECCABLE_PROMPT.md](docs/IMPECCABLE_PROMPT.md), гілка `refine-rhythm-bar`.
-- [x] **4.3.0b** Іконки у «What this place offers» і модалці зручностей: Phosphor Light через `@iconify/tailwind4` + `@iconify-json/ph` (вбудовуються в CSS при збірці), мапа в `src/components/amenity-icon.tsx`, ключ `icon` у `amenities.items` / `groups[].items` (рішення власника 2026-10-14).
+- [x] **4.3.0b** Іконки у «What this place offers», модалці зручностей, Key facts і highlights: Phosphor Light через `@iconify/tailwind4` + `@iconify-json/ph` (вбудовуються в CSS при збірці), мапа в `src/components/icon.tsx`, ключ `icon` у `amenities.items` / `groups[].items`, `keyFacts.items`, `highlights` (рішення власника 2026-10-14). Іконки також у Key facts і трьох highlights; більше ніде, щоб не захаращувати.
 - [ ] **4.3.5** Оптимізація зображень (`next/image`), Lighthouse ≥ 90 на мобільному.
 - [ ] **4.3.6** Вбудовування Airbnb (офіційна картка «Share → Embed»), опційно як соціальний доказ. Головний CTA лишається на нашій кнопці, бо в iframe кліки не трекаються.
 

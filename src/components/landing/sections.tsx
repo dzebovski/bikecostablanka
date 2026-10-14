@@ -6,7 +6,7 @@ import { landingPhotos, photoIndex } from "@/data/photos";
 import { toOrd } from "@/lib/booking";
 import { fill, formatDate, formatDayMonth, formatDayRange, formatEuro, formatList, formatMonthName } from "@/lib/format";
 import { contact } from "@/lib/contact";
-import { AmenityIcon } from "@/components/amenity-icon";
+import { Icon } from "@/components/icon";
 import { ContactLink } from "@/components/contact-link";
 import { PhotoTrigger } from "@/components/lightbox";
 import { AboutText, AmenitiesButton, SleepRow } from "@/components/islands";
@@ -26,9 +26,10 @@ function Variants({ desktop, mobile }: { desktop: string; mobile?: string }) {
   );
 }
 
-function FactStat({ value, label, className = "" }: { value: string; label: string; className?: string }) {
+function FactStat({ value, label, icon, className = "" }: { value: string; label: string; icon?: string; className?: string }) {
   return (
     <div className={`stat ${className}`}>
+      {icon && <Icon name={icon} className="mb-1" />}
       <dt className="t-num">{value}</dt>
       <dd className="t-sm m-0">{label}</dd>
     </div>
@@ -81,7 +82,7 @@ export function KeyFacts({ t }: { t: T }) {
     <section data-component="KeyFacts" aria-label={t.keyFacts.label} className="px-5 pt-5 pb-6 md:px-0 md:pt-0 md:pb-8">
       <dl className="m-0 grid grid-cols-4 gap-3 md:gap-6">
         {t.keyFacts.items.map((item) => (
-          <FactStat key={item.label} value={item.value} label={item.label} />
+          <FactStat key={item.label} value={item.value} label={item.label} icon={item.icon} />
         ))}
       </dl>
     </section>
@@ -92,9 +93,12 @@ export function Highlights({ t }: { t: T }) {
   return (
     <section data-component="Highlights" className="sec mx-5 gap-0! py-2! md:mx-0">
       {t.highlights.map((item, i) => (
-        <div key={item.title} className={`row row-stack ${i === t.highlights.length - 1 ? "border-b-0" : ""}`}>
-          <h3 className="t-body m-0 font-medium">{item.title}</h3>
-          <p className="t-sm">{item.text}</p>
+        <div key={item.title} className={`row items-start justify-start ${i === t.highlights.length - 1 ? "border-b-0" : ""}`}>
+          <Icon name={item.icon} className="mt-0.5" />
+          <div className="flex flex-col gap-1">
+            <h3 className="t-body m-0 font-medium">{item.title}</h3>
+            <p className="t-sm">{item.text}</p>
+          </div>
         </div>
       ))}
     </section>
@@ -147,7 +151,7 @@ export function Amenities({ t }: { t: T }) {
           const lastDesktop = i >= items.length - 2;
           return (
             <li key={item.text} className={`row items-center justify-start ${lastMobile ? "border-b-0" : ""} ${lastDesktop ? "md:border-b-0" : ""}`}>
-              <AmenityIcon name={item.icon} />
+              <Icon name={item.icon} />
               {item.text}
             </li>
           );
