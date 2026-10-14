@@ -32,7 +32,7 @@ New label, and only one: **"Book direct via Lodgify →"** always opens the dire
 3. **Final CTA, valid state**, desktop and mobile: the same pair (primary button + direct link).
 4. **"Two ways to book" block** in the Stay chapter, inside "Prices & free dates", under the table. Two equal columns or two Cards:
    - **Airbnb**: "Book with Airbnb's protection", ★ 5.0 reviews, free cancellation for an 11-night stay, pay on Airbnb. Action: "Check dates".
-   - **Direct with Eugene**: welcome pack (local wine and olive oil), talk to the host directly, 50% now / 50% five days before arrival, cancellation policy `[OWNER: direct cancellation policy]`. Action: "Book direct →".
+   - **Direct via Lodgify**: welcome pack (local wine and olive oil), book and pay on Lodgify (a holiday-rental booking platform, not our own system), talk to Eugene directly, 50% now / 50% five days before arrival. No cancellation row: Lodgify shows its own terms.
    - **No prices in either column.** The table above already shows the Airbnb prices.
 5. **FAQ item, open:** "Can I book directly with you?" → "Yes. Pick your dates here, then choose Book direct. You pay 50% when booking and the rest five days before arrival, and you get a welcome pack with local wine and olive oil. Prefer Airbnb? The Check availability button takes you there with your dates."
 6. **Component sheet addition:** the "Book direct →" link in default, hover, pressed, focus-visible and hidden-when-no-dates, plus the benefit line style.

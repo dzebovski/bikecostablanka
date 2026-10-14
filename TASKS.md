@@ -118,7 +118,7 @@
 - [x] **4.3.0d** Desktop: календар і гості у Final CTA відкриваються на місці (вгору від полів, сторінка лише трохи підсувається, якщо не влазить), бокова картка — під собою; дати спільні. Стан `anchor` у `booking-context.tsx` (2026-10-14).
 - [x] **4.3.0e** Фавіконка: велосипед Phosphor (bold) charcoal на marigold — `src/app/icon.svg`, `favicon.ico` (16/32/48), `apple-icon.png` (2026-10-14).
 - [ ] **4.3.7** Пряме бронювання в коді за [docs/DEV_TASK_DIRECT_BOOKING.md](docs/DEV_TASK_DIRECT_BOOKING.md): `NEXT_PUBLIC_DIRECT_BOOKING_URL`, подія `click_book_direct` + `LongStayIntent` з `channel`, гілка `direct-booking`.
-- [?] **4.3.7a** Від власника: опублікувати сайт Lodgify (зараз «Website not found») і дати робоче посилання; формат параметрів дат у Lodgify; правила скасування для прямого бронювання; прибрати «Save up to 5% compared with Airbnb» зі сторінки book-direct на старому сайті.
+- [?] **4.3.7a** Від власника: опублікувати сайт Lodgify (зараз «Website not found») і дати робоче посилання; формат параметрів дат у Lodgify; прибрати «Save up to 5% compared with Airbnb» зі сторінки book-direct на старому сайті.
 - [ ] **4.3.5** Оптимізація зображень (`next/image`), Lighthouse ≥ 90 на мобільному.
 - [ ] **4.3.6** Вбудовування Airbnb (офіційна картка «Share → Embed»), опційно як соціальний доказ. Головний CTA лишається на нашій кнопці, бо в iframe кліки не трекаються.
 

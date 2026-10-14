@@ -38,7 +38,7 @@ Last update: 2026-10-08. Items marked ⚠️ still need the owner's confirmation
 - **Prices = Airbnb prices** (dynamic). Weekly and monthly discounts on. Free cancellation shows for an 11-night stay.
 - Up to 5 guests; infants don't count (Airbnb rule); pets allowed; only registered guests.
 - Stays of 1 month+: electricity included up to €3.33/night, then €0.30/kWh (i-DE smart meter), paid by bank transfer after check-out.
-- Direct booking (Lodgify), second channel after Airbnb (owner, 2026-10-14). **Rule: never show or imply that direct is cheaper than Airbnb** (no "save", no "−5%", no lower price; Airbnb rules). Benefits we may state: welcome pack with wine from a local winery and local olive oil, the host directly, pay 50% at booking and 50% five days before arrival. ⚠️ Direct cancellation policy unknown.
+- Direct booking (Lodgify), second channel after Airbnb (owner, 2026-10-14). **Rule: never show or imply that direct is cheaper than Airbnb** (no "save", no "−5%", no lower price; Airbnb rules). Benefits we may state: welcome pack with wine from a local winery and local olive oil, the host directly, pay 50% at booking and 50% five days before arrival. Lodgify is a third-party holiday-rental booking platform (not our own system); its cancellation terms apply there, so the landing does not state any.
 - ⚠️ `bikecostablanka.lodgify.com` shows "Website not found" (not published); the old site's /book-direct page links there and still says "Save up to 5% compared with Airbnb": change it. Until a working URL exists, the direct link opens without dates (env `NEXT_PUBLIC_DIRECT_BOOKING_URL`).
 
 ### Price & availability snapshot (2026-10-08, EUR, 2 guests, all fees)
