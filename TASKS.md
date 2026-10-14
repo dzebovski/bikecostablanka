@@ -104,7 +104,7 @@
 - [x] **4.2.5** Макет v2 за `docs/LANDING_PROMPT_V2.md`: полотно https://claude.ai/artifact/8UvkEJrYN93wv68mC6zvfn, сторінка «Page 2» (артборди `V2-*`). Перевірено 2026-10-08, дрібні правки: у фінальному CTA та в цінах кнопка «Check dates» замість «Check availability →» / «See your exact price»; у календарі перша заброньована ніч доступна як день виїзду. Сторінка 1 — стара відхилена версія.
 - [x] **4.2.6** Медіа власника з WhatsApp (4 відео, 3 фото) → `docs/reference/media/`.
 
-- [ ] **4.2.7** Пряме бронювання (Lodgify) як другий канал: дизайн на полотні, Page 3, за [docs/DESIGN_TASK_DIRECT_BOOKING.md](docs/DESIGN_TASK_DIRECT_BOOKING.md). Airbnb головне, пряме — текстове посилання; ніколи не показувати, що пряме дешевше.
+- [~] **4.2.7** Пряме бронювання (Lodgify) як другий канал: дизайн на полотні, Page 3 (намальовано 2026-10-14: `P3-BarDesktop`, `P3-Mobile`, `P3-Sections`, `P3-Components`; чекає погодження власника), за [docs/DESIGN_TASK_DIRECT_BOOKING.md](docs/DESIGN_TASK_DIRECT_BOOKING.md). Airbnb головне, пряме — текстове посилання; ніколи не показувати, що пряме дешевше.
 
 ### 4.3 Верстка (етап 3)
 - [~] **4.3.0** Верстка за макетом v2 за промтом [docs/BUILD_PROMPT.md](docs/BUILD_PROMPT.md): гілка `landing-v2`, превʼю на Vercel. Зроблено: токени, усі секції V2-Desktop/V2-Mobile, `/en/photos`, 404, лайтбокс, модалка зручностей, логіка бронювання (`src/lib/booking.ts` + 12 тестів), 6 станів, desktop-поповер і мобільна шторка, `/api/availability` (iCal, кеш 1 год), події, Consent Mode v2 + банер. На проді з 2026-10-08 (merge у `main`), реальний iCal-фід працює.

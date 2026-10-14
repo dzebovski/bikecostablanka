@@ -35,16 +35,17 @@ In `src/components/booking/booking-context.tsx`:
 
 ## 4. UI
 
+- With the bar closed and valid dates, the direct link sits in the message panel above the bar (the same panel as the too-short and conflict messages, one message at a time); with the picker open it sits in the popover footer (see `P3-BarDesktop` A and B).
 - In `src/components/booking/booking-fields.tsx`, add a `BookDirectLink` next to `BookingAction`. It is a pine underlined text link "Book direct with Eugene →" plus one benefit line in small text. It renders only when `directHref` is set, opens in a new tab (`rel="noopener"`), carries `data-event="click_book_direct"` and calls `onBookDirect(source)`.
 - Render it under the primary action in:
   - the desktop booking surface: the bottom-bar popover footer, or the card on `main`;
   - step 2 of the mobile sheet (`booking-sheet.tsx`);
   - the Final CTA (`FinalCtaForm` in `triggers.tsx`), desktop and mobile.
 - The header keeps the Airbnb action only.
-- **"Two ways to book" block** in the Prices section (`src/components/landing/sections.tsx`), under the table. Two Cards:
-  - **Airbnb**: protection, reviews, free cancellation, action "Check dates" (opens the picker).
+- **"Two ways to book" block** in the Prices section (`src/components/landing/sections.tsx`), under the table. Two columns:
+  - **Airbnb**: protection, reviews, free cancellation, action: the text link "Check dates →" (opens the picker). Both columns are InfoRow lists inside the Prices snow band, not Cards (see `P3-Sections`).
   - **Direct with Eugene**: welcome pack, host directly, 50/50 payment, cancellation policy. The action "Book direct →" opens the picker when there are no dates yet, and the direct URL when the range is valid.
-  - No prices in either Card. If the direct URL is not configured, hide the whole block.
+  - No prices in either column. If the direct URL is not configured, hide the whole block.
 - **FAQ item** "Can I book directly with you?", with the text from the design task.
 - All copy goes in `src/i18n/messages/en.json`: `cta.bookDirect`, `direct.benefit`, `direct.options.*`, `faq` item. The direct cancellation policy is still missing: use a clear placeholder key and list it in the report. Do not invent a policy.
 
