@@ -23,12 +23,12 @@ Base: the v2 artboards on "Page 2" (`V2-*`), with one change: booking now lives 
 
 The v2 rules apply in full (`docs/LANDING_PROMPT_V2.md` §3): one font family, colours with their roles (marigold only for the picker and the bar), the same radii, no shadows, no gradients, no new icons, the 8 component types.
 
-New label, and only one: **"Book direct →"** always opens the direct booking page. "Check availability →" still always means Airbnb; "Check dates" still always opens the picker. The direct option is a **text link** (pine, underlined), never a second filled button, so the hierarchy stays obvious.
+New label, and only one: **"Book direct via Lodgify →"** always opens the direct booking page. "Check availability →" still always means Airbnb; "Check dates" still always opens the picker. The direct option is a **text link** (pine, underlined), never a second filled button, so the hierarchy stays obvious.
 
 ## Artboards
 
-1. **Bottom bar, desktop (1440), valid dates.** Bar: fields, summary "14 nights · ≈ €999", primary "Check availability →". In the open popover footer, under the existing "You won't be charged yet. Booking is completed on Airbnb." line: the link "Book direct with Eugene →" and one benefit line, for example "Local wine & olive oil welcome pack · pay 50% now, 50% before arrival". Also draw the same popover in the empty, too short and conflict states: there the direct link is **hidden**, because, like the Airbnb button, it only appears with a valid range.
-2. **Mobile sheet, step 2 (guests), 390.** Footer: "14 nights · ≈ €999", primary "Check availability →", then the "Book direct with Eugene →" link and the benefit line. The mobile bar itself does not change.
+1. **Bottom bar, desktop (1440), valid dates.** Bar: fields, summary "14 nights · ≈ €999", primary "Check availability →". In the open popover footer, under the existing "You won't be charged yet. Booking is completed on Airbnb." line: the link "Book direct via Lodgify →" and one benefit line, for example "Local wine & olive oil welcome pack · pay 50% now, 50% before arrival". Also draw the same popover in the empty, too short and conflict states: there the direct link is **hidden**, because, like the Airbnb button, it only appears with a valid range.
+2. **Mobile sheet, step 2 (guests), 390.** Footer: "14 nights · ≈ €999", primary "Check availability →", then the "Book direct via Lodgify →" link and the benefit line. The mobile bar itself does not change.
 3. **Final CTA, valid state**, desktop and mobile: the same pair (primary button + direct link).
 4. **"Two ways to book" block** in the Stay chapter, inside "Prices & free dates", under the table. Two equal columns or two Cards:
    - **Airbnb**: "Book with Airbnb's protection", ★ 5.0 reviews, free cancellation for an 11-night stay, pay on Airbnb. Action: "Check dates".
