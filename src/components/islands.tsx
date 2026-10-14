@@ -30,8 +30,8 @@ export function AboutText({ text, textMobile, more, less }: { text: string; text
   );
 }
 
-/** Where you'll sleep: a scroll row with ← → on desktop and swipe on mobile. */
-export function SleepRow({ title, previous, next, children }: { title: string; previous: string; next: string; children: ReactNode }) {
+/** A slider (Where you'll sleep, Rides): a scroll row with ← → on desktop and swipe on mobile. */
+export function ScrollRow({ title, intro, previous, next, children }: { title: string; intro?: ReactNode; previous: string; next: string; children: ReactNode }) {
   const list = useRef<HTMLUListElement>(null);
   const [edges, setEdges] = useState({ start: true, end: false });
 
@@ -53,15 +53,22 @@ export function SleepRow({ title, previous, next, children }: { title: string; p
     const el = list.current;
     if (!el) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const card = el.firstElementChild as HTMLElement | null;
-    const step = (card?.offsetWidth ?? 216) + 16;
-    el.scrollBy({ left: direction * step * 2, behavior: reduced ? "auto" : "smooth" });
+    // One screen of cards at a time (the row's width plus the gap after the last visible card).
+    const step = el.clientWidth + parseFloat(getComputedStyle(el).columnGap || "0");
+    el.scrollBy({ left: direction * step, behavior: reduced ? "auto" : "smooth" });
   }
 
   return (
     <>
       <div className="flex items-end justify-between gap-4">
-        <h2 className="t-h2">{title}</h2>
+        {intro ? (
+          <div className="sh">
+            <h2 className="t-h2">{title}</h2>
+            {intro}
+          </div>
+        ) : (
+          <h2 className="t-h2">{title}</h2>
+        )}
         <div className="hidden gap-2 md:flex">
           <button type="button" className="btn btn-secondary btn-sm btn-round" aria-label={previous} disabled={edges.start} onClick={() => scroll(-1)}>
             ←

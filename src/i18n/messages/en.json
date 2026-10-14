@@ -407,10 +407,12 @@
   },
   "rides": {
     "title": "Rides from the door",
-    "text": "Three classic loops. Every route starts at the front door.",
+    "text": "Eight loops, from an easy coffee ride to a big mountain day. Every route starts at the front door.",
     "km": "km",
     "climbing": "m climbing",
     "strava": "Route on Strava ↗",
+    "previous": "Previous routes",
+    "next": "Next routes",
     "routes": [
       {
         "name": "Coll de Rates",
@@ -435,23 +437,76 @@
         "strava": "https://www.strava.com/routes/3514701466186284876"
       },
       {
-        "name": "Ondara–Bernia Loop",
+        "name": "Bernia",
         "level": "Medium",
         "hard": false,
         "km": "77",
         "climb": "990",
         "text": "Views over Calpe and the Peñón de Ifach; a technical descent with tight hairpins.",
         "textMobile": "Views over Calpe and the Peñón de Ifach; a technical descent.",
-        "image": "",
-        "alt": "",
+        "image": "/images/rides/bernia.jpg",
+        "alt": "Three riders below the Bernia ridge",
         "strava": "https://www.strava.com/routes/3514958094482175874"
+      },
+      {
+        "name": "Cumbre del Sol",
+        "level": "Medium",
+        "hard": false,
+        "km": "57",
+        "climb": "720",
+        "text": "Through Jávea and Benitatxell to the steep Cumbre del Sol climb, with the sea below you all the way up.",
+        "textMobile": "Jávea, Benitatxell and the steep climb to Cumbre del Sol.",
+        "image": "/images/rides/cumbre-del-sol.jpg",
+        "alt": "Cliffs and sea from the Cumbre del Sol climb",
+        "strava": "https://www.strava.com/routes/3514706524414227800"
+      },
+      {
+        "name": "Alto de Petata",
+        "level": "Hard",
+        "hard": true,
+        "km": "90",
+        "climb": "1,320",
+        "text": "Through the Vall de Gallinera to the Alto de Petata: quiet mountain roads and a serious day of climbing.",
+        "textMobile": "Vall de Gallinera and the Alto de Petata climb.",
+        "image": "/images/rides/petata.jpg",
+        "alt": "Medieval stone tower in a village on the Petata loop",
+        "strava": "https://www.strava.com/routes/3514954331717034036"
+      },
+      {
+        "name": "Gallinera & Pego",
+        "level": "Medium",
+        "hard": false,
+        "km": "90",
+        "climb": "1,400",
+        "text": "A steady climb after Pego into the mountains, then a fast 7 km descent from 540 m to 90 m.",
+        "image": "/images/rides/vall-de-gallinera.jpg",
+        "alt": "Village and mountains in the Vall de Gallinera",
+        "strava": "https://www.strava.com/routes/3536131012457502142"
+      },
+      {
+        "name": "Cabo San Antonio",
+        "level": "Easy",
+        "hard": false,
+        "km": "47",
+        "climb": "418",
+        "text": "A coffee ride along the coast: Dénia marina, under Montgó to the lighthouse, back via Jávea.",
+        "textMobile": "Dénia marina, the lighthouse and back via Jávea.",
+        "image": "/images/rides/cabo-san-antonio.jpg",
+        "alt": "The bay of Dénia from the road to Cabo de San Antonio",
+        "strava": "https://www.strava.com/routes/3514713270156371038"
+      },
+      {
+        "name": "Vía Verde",
+        "level": "Easy",
+        "hard": false,
+        "km": "20",
+        "climb": "50",
+        "text": "A flat greenway through orange groves to the coast, for a recovery day or an easy spin.",
+        "image": "/images/rides/via-verde.jpg",
+        "alt": "Rider on the Vía Verde between palm trees",
+        "strava": "https://www.strava.com/routes/3525508315328629722"
       }
     ],
-    "winter": {
-      "title": "January 2025",
-      "text": "Shorts and short sleeves on a winter ride from the house.",
-      "alt": "Rider in shorts and short sleeves, January 2025"
-    },
     "facts": [
       {
         "value": "Dec–Feb",

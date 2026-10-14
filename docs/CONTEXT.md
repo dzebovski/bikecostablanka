@@ -76,7 +76,7 @@ No bike rental, no repairs, no guiding, no tour packages. We give routes, practi
 - Coll de Rates: smooth roads, steady ascent, the region's signature climb and pro-team benchmark.
 - Bernia: views over Calpe and the Peñón de Ifach; technical descent with steep sections and tight hairpins.
 - Vall d'Ebo: through the Pego valley, quiet inland roads, a balanced climbing day.
-- Old site also has MTB/gravel routes and cycling cafés (not extracted). ⚠️ No photo for Bernia yet.
+- Old site also has MTB/gravel routes and cycling cafés (not extracted). Bernia photo: `public/images/rides/bernia.jpg`.
 
 ## Region, seasons, getting here
 - Airports: Alicante (ALC) ~104 km, Valencia (VLC) ~111 km, almost all on the AP-7 (~1 h – 1 h 10).
@@ -103,6 +103,7 @@ No bike rental, no repairs, no guiding, no tour packages. We give routes, practi
 - Listing photos: all 53 photos of the Airbnb photo tour (2026-10-14) in `public/images/house/*.jpg`, grouped and labelled by Airbnb room in `src/data/photos.ts` (served at https://bikecostablanka.vercel.app/images/house/…). Originals `../photos/airbnb/NN` (outside the repo; #08, #38, #39 are no longer in the listing).
   - Airbnb rooms → originals: Living room 12, 14, 13, 02 · Kitchen 05, 15, 16 · Dining 17, 18, 19, 07 · Bedroom 1: 09, 20, 21, 04, 22, 23 · Bedroom 2: 24, 10, 25, 26 · Bedroom 3: 11, 27 · Bathroom 1: 28, 29 · Bathroom 2: 30, 31 · Bathroom 3: 32, 33 · WC 34 · Patio 35, 03 · Deck (roof terrace) 01, 36, 37 · Laundry 40 · Garage 41, 42 · Theme room (loft) 43, 44, 45, 46, 47, 48 · Additional 06, 07, 49–56.
 - Route photos: `public/images/coll-de-rates.jpeg`, `public/images/vall-debo.jpeg`.
+- Rides (2026-10-14): 8 loops in a slider, the 3 classics plus 5 from https://www.bikecostablanca.com/costa-blanca-cycling-routes (Cumbre del Sol, Alto de Petata, Vall de Gallinera & Pego, Cabo de San Antonio, Vía Verde to Dénia). Photos from the old site in `public/images/rides/` (incl. `bernia.jpg`). The "January 2025" card was removed from Rides.
 - Owner's WhatsApp media: [reference/media/](reference/media/)
   - `video-local-life-harvest-tractor-roads-21s.mp4`: grape-harvest tractor on a country road, then an empty road with a red bike lane (local life, quiet roads).
   - `video-cycling-cafe-terrace-bikes-5s.mp4`: café terrace under parasols, road bikes on the rack, mountains behind (café stop).
