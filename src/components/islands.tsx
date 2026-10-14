@@ -6,7 +6,7 @@ import { usePresence } from "@/hooks/use-presence";
 import { track } from "@/lib/analytics";
 import { openCookieSettings } from "@/lib/consent";
 import { useBooking } from "@/components/booking/booking-context";
-import { AmenityIcon } from "@/components/amenity-icon";
+import { Icon } from "@/components/icon";
 
 /** About: four clamped lines and "Show more". */
 export function AboutText({ text, textMobile, more, less }: { text: string; textMobile: string; more: string; less: string }) {
@@ -146,7 +146,7 @@ export function AmenitiesButton({ t, checkDates }: { t: Dictionary["amenities"];
                   <ul className="t-body">
                     {group.items.map((item, i) => (
                       <li key={item.text} className={`row items-center justify-start py-3 ${i === group.items.length - 1 ? "border-b-0" : ""}`}>
-                        <AmenityIcon name={item.icon} />
+                        <Icon name={item.icon} />
                         {item.text}
                       </li>
                     ))}

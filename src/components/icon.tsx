@@ -1,4 +1,4 @@
-/** Phosphor Light icons for the amenity lists, inlined into the CSS at build time by @iconify/tailwind4. */
+/** Phosphor Light icons (amenities, key facts, highlights), inlined into the CSS at build time by @iconify/tailwind4. */
 
 // Literal class names, so Tailwind can find them in the source.
 const icons = {
@@ -22,9 +22,13 @@ const icons = {
   tv: "icon-[ph--television-simple-light]",
   lock: "icon-[ph--lock-key-light]",
   paw: "icon-[ph--paw-print-light]",
+  users: "icon-[ph--users-light]",
+  bed: "icon-[ph--bed-light]",
+  shower: "icon-[ph--shower-light]",
+  key: "icon-[ph--key-light]",
 } as const;
 
-export function AmenityIcon({ name }: { name: string }) {
+export function Icon({ name, className = "" }: { name: string; className?: string }) {
   const icon = icons[name as keyof typeof icons];
-  return icon ? <span aria-hidden className={`${icon} size-6 shrink-0`} /> : null;
+  return icon ? <span aria-hidden className={`${icon} size-6 shrink-0 ${className}`} /> : null;
 }

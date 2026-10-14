@@ -103,18 +103,22 @@
     "label": "Key facts",
     "items": [
       {
+        "icon": "users",
         "value": "5",
         "label": "guests"
       },
       {
+        "icon": "bed",
         "value": "3",
         "label": "bedrooms"
       },
       {
+        "icon": "shower",
         "value": "3.5",
         "label": "bathrooms"
       },
       {
+        "icon": "wifi",
         "value": "302",
         "label": "Mbps Wi-Fi"
       }
@@ -122,14 +126,17 @@
   },
   "highlights": [
     {
+      "icon": "bicycle",
       "title": "Ride from the door.",
       "text": "Coll de Rates, Vall d’Ebo and Bernia loops start at the house."
     },
     {
+      "icon": "fire",
       "title": "Warm for winter.",
       "text": "Wood-burning fireplace and heating in every room."
     },
     {
+      "icon": "key",
       "title": "Self check-in.",
       "text": "Lockbox at the gate; the host replies within an hour."
     }

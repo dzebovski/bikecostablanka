@@ -40,7 +40,7 @@ Start from a blank canvas. Do not reuse the previous canvas.
 4. **At most 8 component types** for the page body: SectionHeader, PhotoTile, InfoRow (label + value), FactStat (big number + label), Card, Button (primary / secondary / text link →), Chip, Accordion. Everything is built from these.
 5. **One spacing rhythm:** sections 48px apart on desktop and 32px on mobile, separated by a 1px hairline (Airbnb style). Inside sections 16/24px. Container 1200px; body column 720px.
 6. **One label per action:** "Check availability →" always means go to Airbnb with dates; "Check dates" always opens the date picker. Strava links are plain text links with ↗, never buttons.
-7. **No decoration:** no shadows (design-system rule), no gradients, no icons beyond the → ↗ ▾ × glyphs (exception, owner 2026-10-14: Phosphor Light icons, 24px, text colour, in the amenity lists only), no emoji, no stock or illustration.
+7. **No decoration:** no shadows (design-system rule), no gradients, no icons beyond the → ↗ ▾ × glyphs (exception, owner 2026-10-14: Phosphor Light icons, 24px, text colour, in the amenity lists, Key facts and the three highlights only), no emoji, no stock or illustration.
 
 ## 4. Design system
 

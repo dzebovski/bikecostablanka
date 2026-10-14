@@ -133,5 +133,5 @@ Photos and cards 20px; hero gallery outer corners 40px (mobile carousel 40 40 20
 ## Do's and Don'ts
 - Do keep one label per action: "Check dates" always opens the picker; "Check availability →" appears only for a valid range and is the only way to Airbnb.
 - Do take vertical spacing from the scale and the four roles; let space separate chapters and hairlines separate sections.
-- Don't add colours, fonts, radii, shadows, gradients, icons, dark sections or new motion. One exception (owner, 2026-10-14): Phosphor Light icons, 24px, text colour, in the amenity lists only.
+- Don't add colours, fonts, radii, shadows, gradients, icons, dark sections or new motion. One exception (owner, 2026-10-14): Phosphor Light icons, 24px, text colour, in the amenity lists, Key facts and the three highlights only.
 - Don't add a third snow band.
