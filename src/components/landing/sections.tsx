@@ -9,7 +9,7 @@ import { contact } from "@/lib/contact";
 import { Icon } from "@/components/icon";
 import { ContactLink } from "@/components/contact-link";
 import { PhotoTrigger } from "@/components/lightbox";
-import { AboutText, AmenitiesButton, SleepRow } from "@/components/islands";
+import { AboutText, AmenitiesButton, ScrollRow } from "@/components/islands";
 import { CheckDates, FinalCtaForm } from "@/components/booking/triggers";
 
 type T = Dictionary;
@@ -117,7 +117,7 @@ export function About({ t }: { t: T }) {
 export function SleepCards({ t }: { t: T }) {
   return (
     <section data-component="SleepCards" className="sec mx-5 md:mx-0">
-      <SleepRow title={t.sleep.title} previous={t.sleep.previous} next={t.sleep.next}>
+      <ScrollRow title={t.sleep.title} previous={t.sleep.previous} next={t.sleep.next}>
         {t.sleep.rooms.map((room) => {
           const index = photoIndex(landingPhotos, room.photo);
           const photo = landingPhotos[index];
@@ -135,7 +135,7 @@ export function SleepCards({ t }: { t: T }) {
             </li>
           );
         })}
-      </SleepRow>
+      </ScrollRow>
     </section>
   );
 }
@@ -171,22 +171,12 @@ export function Rides({ t }: { t: T }) {
   const r = t.rides;
   return (
     <section id="rides" data-component="Rides" className="sec mx-5 md:mx-0 md:mt-4">
-      <div className="sh">
-        <h2 className="t-h2">{r.title}</h2>
-        <p className="t-body">{r.text}</p>
-      </div>
-      <div className="swipe swipe-bleed md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 lg:grid-cols-4">
+      <ScrollRow title={r.title} intro={<p className="t-body">{r.text}</p>} previous={r.previous} next={r.next}>
         {r.routes.map((route) => (
-          <article key={route.name} data-component="RouteCard" className="flex flex-[0_0_290px] flex-col gap-3">
-            {route.image ? (
-              <div className="tile aspect-[16/10]">
-                <Image src={route.image} alt={route.alt} fill sizes="(min-width: 1024px) 270px, (min-width: 768px) 45vw, 290px" />
-              </div>
-            ) : (
-              <div className="tile flex aspect-[16/10] items-end p-4">
-                <span className="t-label">{route.name}</span>
-              </div>
-            )}
+          <li key={route.name} data-component="RouteCard" className="flex flex-[0_0_290px] flex-col gap-3 md:flex-[0_0_calc((100%-16px)/2)] lg:flex-[0_0_calc((100%-48px)/4)]">
+            <div className="tile aspect-[16/10]">
+              <Image src={route.image} alt={route.alt} fill sizes="(min-width: 1024px) 270px, (min-width: 768px) 45vw, 290px" />
+            </div>
             <div className="flex items-center justify-between gap-2">
               <h3 className="t-h3">{route.name}</h3>
               <span className={`chip ${route.hard ? "chip-solid" : ""}`}>{route.level}</span>
@@ -198,27 +188,12 @@ export function Rides({ t }: { t: T }) {
             <p className="t-sm">
               <Variants desktop={route.text} mobile={"textMobile" in route ? route.textMobile : undefined} />
             </p>
-            <a href={route.strava} target="_blank" rel="noopener" className="link t-sm inline-flex min-h-11 items-center self-start md:min-h-0">
+            <a href={route.strava} target="_blank" rel="noopener" className="link t-sm mt-auto inline-flex min-h-11 items-center self-start md:min-h-0">
               {r.strava}
             </a>
-          </article>
+          </li>
         ))}
-        <figure className="m-0 flex flex-[0_0_290px] flex-col gap-3">
-          <div className="tile aspect-[16/10]">
-            <Image
-              src="/images/rides/january-2025-shorts.jpg"
-              alt={r.winter.alt}
-              fill
-              sizes="(min-width: 1024px) 270px, (min-width: 768px) 45vw, 290px"
-              className="object-[50%_30%]"
-            />
-          </div>
-          <figcaption className="flex flex-col gap-1">
-            <span className="t-h3">{r.winter.title}</span>
-            <span className="t-sm">{r.winter.text}</span>
-          </figcaption>
-        </figure>
-      </div>
+      </ScrollRow>
       <dl className="m-0 grid grid-cols-2 gap-x-4 gap-y-5 border-t border-line pt-5 md:gap-6 md:pt-6 lg:grid-cols-4">
         {r.facts.map((fact) => (
           <FactStat key={fact.label} value={fact.value} label={fact.label} />
