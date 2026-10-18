@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { FINAL_CTA_ID, useBooking, type Source } from "./booking-context";
-import { BarFields, BarMessages, BookingAction, BookingFields } from "./booking-fields";
+import { BarFields, BarMessages, BookingAction, BookingFields, DirectBenefit } from "./booking-fields";
 import { FromPrice } from "./booking-card";
 import { DatePickerPopover } from "./date-picker";
 import { GuestPopover } from "./guest-picker";
@@ -23,7 +23,7 @@ export function CheckDates({ source, variant = "button", className = "" }: { sou
   );
 }
 
-/** Header action: "Check availability →" once the dates are valid, otherwise "Check dates". */
+/** Header action: "Book on Airbnb" once the dates are valid, otherwise "Check dates". The header stays Airbnb-only. */
 export function HeaderAction() {
   const b = useBooking();
   if (b.airbnbHref) {
@@ -32,7 +32,7 @@ export function HeaderAction() {
         href={b.airbnbHref}
         target="_blank"
         rel="noopener"
-        className="btn btn-primary btn-sm"
+        className="btn btn-airbnb btn-sm"
         data-event="click_book_airbnb"
         data-conversion="LongStayIntent"
         onClick={() => b.onCheckAvailability("header")}
@@ -139,7 +139,8 @@ export function FinalCtaForm() {
       </div>
       <div className="flex flex-col gap-4 lg:hidden">
         <BookingFields source="final_cta" messages={false} />
-        <BookingAction source="final_cta" />
+        <BookingAction source="final_cta" stack />
+        <DirectBenefit short className="text-center" />
       </div>
     </>
   );

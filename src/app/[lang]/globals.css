@@ -6,6 +6,8 @@
   --paper: #f7f0e1; /* page background */
   --snow: #ffffff; /* cards, booking card, modals, popovers; Prices and Final CTA */
   --charcoal: #23212c; /* text, primary button, strong borders */
+  --airbnb: #e31c5f; /* "Book on Airbnb" only (owner, 2026-10-18) */
+  --airbnb-hover: #c8164f;
   --line: rgba(35, 33, 44, 0.16); /* hairlines */
   --marigold: #fcbd1c; /* date/guest picker fields and selected dates only */
   --marigold-preview: color-mix(in srgb, var(--marigold) 45%, transparent); /* hovered range preview */
@@ -249,6 +251,40 @@
   .btn-secondary:hover {
     background: var(--snow);
     color: var(--charcoal);
+  }
+  /* Booking pair with a valid range: Airbnb (main) + direct booking on Lodgify (secondary). */
+  .btn-airbnb {
+    background: var(--airbnb);
+    border-color: var(--airbnb);
+    color: var(--snow);
+    border-radius: var(--radius-chip);
+    font-weight: 600;
+    padding: 0 18px;
+  }
+  .btn-airbnb:hover {
+    background: var(--airbnb-hover);
+    border-color: var(--airbnb-hover);
+    color: var(--snow);
+  }
+  .btn-lodgify {
+    background: transparent;
+    color: var(--charcoal);
+    border-radius: var(--radius-chip);
+    padding: 0 18px;
+  }
+  .btn-lodgify:hover {
+    background: var(--snow);
+    color: var(--charcoal);
+  }
+  .choice {
+    display: flex;
+    gap: 8px;
+  }
+  .choice-stack {
+    flex-direction: column;
+  }
+  .choice-stack > .btn {
+    width: 100%;
   }
   .btn-on-photo {
     background: var(--snow);

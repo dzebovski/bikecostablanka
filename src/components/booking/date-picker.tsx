@@ -5,6 +5,7 @@ import { useFocusTrap } from "@/hooks/use-focus-trap";
 import { usePresence } from "@/hooks/use-presence";
 import { useBooking, type Anchor } from "./booking-context";
 import { QuestionsLine } from "./booking-card";
+import { DirectBenefit, NoChargeNote } from "./booking-fields";
 import { Calendar } from "./calendar";
 import { pickerSummary } from "./summary";
 
@@ -55,12 +56,12 @@ export function useAnchoredPlacement(ref: RefObject<HTMLDivElement | null>, open
   }, [ref, open, anchor, trigger]);
 }
 
-/** "You won't be charged yet…" and "Questions? Message Eugene on WhatsApp" under an open popover. */
+/** "You won't be charged yet…", the direct booking line and "Questions? Message Eugene on WhatsApp" under an open popover. */
 export function PopoverFooterNote({ anchor }: { anchor: Anchor }) {
-  const { t } = useBooking();
   return (
     <div className="flex flex-col gap-1 border-t border-line pt-4">
-      <p className="t-sm">{t.booking.noCharge}</p>
+      <NoChargeNote />
+      <DirectBenefit />
       <QuestionsLine source={anchor === "final" ? "final_cta" : "bottom_bar"} />
     </div>
   );

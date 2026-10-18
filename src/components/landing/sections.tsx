@@ -12,6 +12,9 @@ import { PhotoTrigger } from "@/components/lightbox";
 import { AboutText, AmenitiesButton, ScrollRow } from "@/components/islands";
 import { CheckDates, FinalCtaForm } from "@/components/booking/triggers";
 import { FINAL_CTA_ID } from "@/components/booking/booking-context";
+import { BookingOptions } from "@/components/booking/booking-options";
+import { DirectBenefit, NoChargeNote } from "@/components/booking/booking-fields";
+import { directBookingBaseUrl } from "@/lib/direct";
 
 type T = Dictionary;
 type WithT = { t: T; locale: Locale };
@@ -316,6 +319,7 @@ export function PriceTable({ t, locale }: WithT) {
             })}
           </ul>
           <CheckDates source="prices" className="md:hidden" />
+          <BookingOptions />
           <p className="t-sm">{note}</p>
         </div>
       </div>
@@ -472,15 +476,17 @@ export function HostAndGoodToKnow({ t }: { t: T }) {
 
 export function Faq({ t }: { t: T }) {
   const hasContact = Boolean(contact.whatsapp || contact.email);
+  // "Can I book directly?" sits after "How does booking work?", only when direct booking is on.
+  const items: { q: string; qMobile?: string; a: string; aMobile?: string }[] = directBookingBaseUrl() ? [...t.faq.items.slice(0, 2), t.direct.faq, ...t.faq.items.slice(2)] : t.faq.items;
   return (
     <section id="faq" data-component="FAQ" className="sec">
       <h2 className="t-h2">{t.faq.title}</h2>
       <div className="cols">
       <div className="lg:col-span-8">
-        {t.faq.items.map((item, i) => (
+        {items.map((item, i) => (
           <details key={item.q} open={i === 0} className="faq border-b border-line">
             <summary className="t-body md:t-h3 flex min-h-[52px] items-center justify-between gap-4 font-medium md:min-h-14 md:font-normal">
-              <Variants desktop={item.q} mobile={"qMobile" in item ? item.qMobile : undefined} />
+              <Variants desktop={item.q} mobile={item.qMobile} />
               <span aria-hidden="true" className="faq-closed">
                 ▾
               </span>
@@ -523,8 +529,9 @@ export function FinalCta({ t, locale }: WithT) {
         </div>
         <FinalCtaForm />
         <div className="t-sm hidden flex-wrap gap-x-6 gap-y-1 md:flex">
-          <p>{t.booking.noCharge}</p>
+          <NoChargeNote />
           <p className="tnum">{t.booking.trust}</p>
+          <DirectBenefit className="ml-auto max-w-[420px] text-right" />
         </div>
       </div>
     </section>

@@ -16,6 +16,7 @@ import type { Dictionary } from "@/i18n/dictionaries";
 import { prices } from "@/data/prices";
 import { DESKTOP } from "@/hooks/use-media";
 import { airbnbUrl } from "@/lib/airbnb";
+import { directBookingUrl } from "@/lib/direct";
 import { track, trackLongStayIntent } from "@/lib/analytics";
 import {
   DEFAULT_GUESTS,
@@ -39,7 +40,7 @@ import {
   type Status,
 } from "@/lib/booking";
 
-export type BookingMessages = Pick<Dictionary, "booking" | "picker" | "guests" | "sheet" | "cta" | "mobileBar">;
+export type BookingMessages = Pick<Dictionary, "booking" | "picker" | "guests" | "sheet" | "cta" | "mobileBar" | "direct">;
 
 export type Source =
   | "header"
@@ -51,7 +52,8 @@ export type Source =
   | "lightbox"
   | "all_photos"
   | "amenities_modal"
-  | "sheet";
+  | "sheet"
+  | "booking_options";
 
 type Surface = "dates" | "guests" | "sheet" | null;
 /** Where the desktop popovers open: the bottom bar, or the Final CTA fields when that section is in view. */
@@ -93,6 +95,9 @@ type BookingContextValue = {
   updateGuests: (change: Partial<Guests>) => void;
   airbnbHref: string | null;
   onCheckAvailability: (source: Source) => void;
+  /** Lodgify page for a valid range; null without valid dates or when no direct booking URL is configured. */
+  directHref: string | null;
+  onBookDirect: (source: Source) => void;
 };
 
 const BookingContext = createContext<BookingContextValue | null>(null);
@@ -331,10 +336,16 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
       ? airbnbUrl(locale, fromOrd(sel.start), fromOrd(sel.end), guests)
       : null;
 
-  const onCheckAvailability = useCallback(
-    (source: Source) => {
-      if (sel.start === null || sel.end === null || !nights) return;
-      const params = {
+  const directHref =
+    status === "valid" && sel.start !== null && sel.end !== null
+      ? directBookingUrl({ checkIn: fromOrd(sel.start), checkOut: fromOrd(sel.end), guests })
+      : null;
+
+  /** Both channels send the same params; `channel` tells them apart. */
+  const bookingParams = useCallback(
+    (source: Source, channel: "airbnb" | "direct") => {
+      if (sel.start === null || sel.end === null || !nights) return null;
+      return {
         nights,
         guests: guestCount(guests),
         check_in: fromOrd(sel.start),
@@ -343,11 +354,30 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
         currency: prices.currency,
         locale,
         source,
+        channel,
       };
-      track("click_book_airbnb", params, "InitiateCheckout");
-      if (nights >= MIN_NIGHTS) trackLongStayIntent(params);
     },
     [sel, nights, guests, estimate, locale],
+  );
+
+  const onCheckAvailability = useCallback(
+    (source: Source) => {
+      const params = bookingParams(source, "airbnb");
+      if (!params) return;
+      track("click_book_airbnb", params, "InitiateCheckout");
+      if (params.nights >= MIN_NIGHTS) trackLongStayIntent(params);
+    },
+    [bookingParams],
+  );
+
+  const onBookDirect = useCallback(
+    (source: Source) => {
+      const params = bookingParams(source, "direct");
+      if (!params) return;
+      track("click_book_direct", params, "InitiateCheckout");
+      if (params.nights >= MIN_NIGHTS) trackLongStayIntent(params);
+    },
+    [bookingParams],
   );
 
   const value: BookingContextValue = {
@@ -384,6 +414,8 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
     updateGuests,
     airbnbHref,
     onCheckAvailability,
+    directHref,
+    onBookDirect,
   };
 
   return <BookingContext.Provider value={value}>{children}</BookingContext.Provider>;

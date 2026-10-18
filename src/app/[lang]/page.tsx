@@ -30,7 +30,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
   const t = await getDictionary(lang);
-  const bookingT = { booking: t.booking, picker: t.picker, guests: t.guests, sheet: t.sheet, cta: t.cta, mobileBar: t.mobileBar };
+  const bookingT = { booking: t.booking, picker: t.picker, guests: t.guests, sheet: t.sheet, cta: t.cta, mobileBar: t.mobileBar, direct: t.direct };
 
   return (
     <BookingProvider locale={lang} t={bookingT}>

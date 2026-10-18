@@ -74,9 +74,10 @@
   "cta": {
     "checkDates": "Check dates",
     "checkDatesLink": "Check dates →",
-    "checkAvailability": "Check availability →",
+    "checkAvailability": "Book on Airbnb",
     "chooseNights": "Choose 11+ nights",
-    "chooseFree": "Choose free dates"
+    "chooseFree": "Choose free dates",
+    "bookDirect": "Direct booking"
   },
   "title": {
     "h1": "Your winter cycling base on the Costa Blanca",
@@ -347,6 +348,7 @@
     "exactPrice": "exact price on Airbnb",
     "priceOnAirbnb": "price on Airbnb",
     "noCharge": "You won’t be charged yet. Booking is completed on Airbnb.",
+    "noChargeBoth": "You won’t be charged yet. You finish booking on Airbnb or Lodgify.",
     "questions": "Questions?",
     "messageWhatsapp": "Message Eugene on WhatsApp",
     "messageEmail": "Email Eugene",
@@ -756,5 +758,35 @@
     "text": "The link may be old or mistyped. The house is still where it was.",
     "back": "Back to the house",
     "alt": "The roof terrace"
+  },
+  "direct": {
+    "benefit": "Direct booking (via Lodgify): pay half now, half 5 days before arrival · welcome pack of local wine & olive oil",
+    "benefitShort": "Direct: pay half now, half 5 days before arrival · welcome pack of local wine & olive oil",
+    "options": {
+      "title": "Two ways to book",
+      "intro": "Pick your dates, then choose where to book. Both buttons open the picker first if no dates are set.",
+      "airbnb": {
+        "title": "On Airbnb",
+        "rows": [
+          "★ 5.0 from 2 reviews",
+          "Free cancellation for an 11-night stay",
+          "Payment protected by Airbnb"
+        ]
+      },
+      "direct": {
+        "title": "Direct booking",
+        "rows": [
+          "Welcome pack: wine from a local winery and local olive oil",
+          "Book and pay on Lodgify, a holiday-rental booking platform",
+          "Talk to Eugene directly, before and during your stay",
+          "Pay 50% when booking, 50% five days before arrival"
+        ]
+      }
+    },
+    "faq": {
+      "q": "Can I book directly with you?",
+      "a": "Yes, on Lodgify, a holiday-rental booking platform. Pick your dates here, then choose Direct booking. You pay half when you book and the rest 5 days before arrival, and a welcome pack of local wine and olive oil waits for you. Prefer Airbnb? Book on Airbnb takes you there with your dates.",
+      "aMobile": "Yes, on Lodgify. Pick your dates, then Direct booking: half now, half 5 days before arrival, plus a welcome pack of local wine and olive oil."
+    }
   }
 }

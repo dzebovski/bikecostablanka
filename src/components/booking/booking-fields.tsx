@@ -66,7 +66,7 @@ export function BarFields({ source, size = "md" }: { source: Source; size?: "md"
   const { start, end } = b.sel;
   const picking = start !== null && end === null;
   const value = size === "lg" ? "t-h3 font-medium" : "t-body font-medium";
-  const width = size === "lg" ? "w-[184px]" : "w-[148px]";
+  const width = size === "lg" ? "w-[184px]" : "w-[132px]";
   const checkIn = start !== null ? formatDay(start, b.locale) : t.addDate;
   const checkOut = end !== null ? formatDay(end, b.locale) : picking ? t.pickDate : t.addDate;
   const open = (e: MouseEvent<HTMLButtonElement>) => b.openDates(source, e.currentTarget);
@@ -98,7 +98,7 @@ export function BarFields({ source, size = "md" }: { source: Source; size?: "md"
         data-guests-field
         aria-haspopup="dialog"
         aria-expanded={b.surface === "guests"}
-        className={`bar-field ${size === "lg" ? "w-[208px]" : "w-[176px]"}`}
+        className={`bar-field ${size === "lg" ? "w-[208px]" : "w-[156px]"}`}
         onClick={(e) => b.openGuests(e.currentTarget)}
       >
         <span className="t-label">{t.guests}</span>
@@ -114,7 +114,7 @@ export function BarFields({ source, size = "md" }: { source: Source; size?: "md"
   );
 }
 
-/** "from €71 / night · 11+ nights · fees included", or "14 nights · ≈ €999 · exact price on Airbnb" for a valid range. */
+/** "from €71 / night · 11+ nights · fees included", or one line "14 nights · ≈ €999" for a valid range. */
 function BarSummary({ large }: { large: boolean }) {
   const b = useBooking();
   const t = b.t.booking;
@@ -127,7 +127,7 @@ function BarSummary({ large }: { large: boolean }) {
             {fill(t.nights, { n: b.nights! })}
             {b.estimate !== null && ` · ${fill(t.estimate, { price: formatEuro(b.estimate, b.locale) })}`}
           </p>
-          <p className="t-sm truncate">{b.estimate !== null ? t.exactPrice : t.priceOnAirbnb}</p>
+          {b.estimate === null && <p className="t-sm truncate">{t.priceOnAirbnb}</p>}
         </>
       ) : (
         <>
@@ -196,28 +196,58 @@ export function StatusMessage({ className = "mb-4" }: { className?: string }) {
   return null;
 }
 
-/** Primary action: "Check availability →" only for a valid range; otherwise says what to fix or opens the picker. */
-export function BookingAction({ source, className = "", tall = false }: { source: Source; className?: string; tall?: boolean }) {
+/**
+ * The booking action. With a valid range: the pair "Book on Airbnb" (main) + "Direct booking" (Lodgify,
+ * when configured). Otherwise one button that says what to fix or opens the picker.
+ */
+export function BookingAction({
+  source,
+  className = "",
+  tall = false,
+  stack = false,
+}: {
+  source: Source;
+  className?: string;
+  tall?: boolean;
+  /** Mobile: the pair as full-width buttons, one under the other. */
+  stack?: boolean;
+}) {
   const b = useBooking();
   const size = tall ? "min-h-16 px-8" : "";
   if (b.airbnbHref) {
     return (
-      <a
-        href={b.airbnbHref}
-        target="_blank"
-        rel="noopener"
-        className={`btn btn-primary ${size} ${className}`}
-        data-event="click_book_airbnb"
-        data-conversion="LongStayIntent"
-        onClick={() => b.onCheckAvailability(source)}
-      >
-        {b.t.cta.checkAvailability}
-      </a>
+      <div data-component="BookingChoice" className={`choice ${stack ? "choice-stack" : ""} ${className}`}>
+        <a
+          href={b.airbnbHref}
+          target="_blank"
+          rel="noopener"
+          className={`btn btn-airbnb ${size}`}
+          data-event="click_book_airbnb"
+          data-conversion="LongStayIntent"
+          onClick={() => b.onCheckAvailability(source)}
+        >
+          {b.t.cta.checkAvailability}
+        </a>
+        {b.directHref && (
+          <a
+            href={b.directHref}
+            target="_blank"
+            rel="noopener"
+            className={`btn btn-lodgify ${size}`}
+            data-event="click_book_direct"
+            data-conversion="LongStayIntent"
+            onClick={() => b.onBookDirect(source)}
+          >
+            {b.t.cta.bookDirect}
+          </a>
+        )}
+      </div>
     );
   }
+  const full = stack ? "w-full" : "";
   if (b.status === "short" || b.status === "conflict") {
     return (
-      <button type="button" className={`btn ${size} ${className}`} disabled>
+      <button type="button" className={`btn ${size} ${full} ${className}`} disabled>
         {b.status === "short" ? b.t.cta.chooseNights : b.t.cta.chooseFree}
       </button>
     );
@@ -225,13 +255,26 @@ export function BookingAction({ source, className = "", tall = false }: { source
   return (
     <button
       type="button"
-      className={`btn btn-primary ${size} ${className}`}
+      className={`btn btn-primary ${size} ${full} ${className}`}
       data-event="open_date_picker"
       onClick={(e) => b.openDates(source, e.currentTarget)}
     >
       {b.t.cta.checkDates}
     </button>
   );
+}
+
+/** "Direct booking (via Lodgify): pay half now…" Shown only next to a visible "Direct booking" button. */
+export function DirectBenefit({ short = false, className = "" }: { short?: boolean; className?: string }) {
+  const b = useBooking();
+  if (!b.directHref) return null;
+  return <p className={`t-sm ${className}`}>{short ? b.t.direct.benefitShort : b.t.direct.benefit}</p>;
+}
+
+/** "You won't be charged yet…": names Lodgify too once the direct option is on. */
+export function NoChargeNote({ className = "" }: { className?: string }) {
+  const b = useBooking();
+  return <p className={`t-sm ${className}`}>{b.directHref ? b.t.booking.noChargeBoth : b.t.booking.noCharge}</p>;
 }
 
 /** "14 nights · ≈ €999 | exact price on Airbnb" for a chosen range. */
