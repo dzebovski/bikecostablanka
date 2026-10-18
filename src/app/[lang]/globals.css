@@ -569,7 +569,7 @@
     inset-inline: var(--bar-inset);
     bottom: calc(var(--bar-inset) + env(safe-area-inset-bottom));
     z-index: 20;
-    max-width: 960px;
+    max-width: 1200px;
     margin-inline: auto;
     transition:
       opacity 200ms var(--ease),

@@ -131,9 +131,21 @@ export function monthKey(ord: number): string {
   return fromOrd(ord).slice(0, 7);
 }
 
-/** Rough total from the per-night rate of the check-in month, or null without a rate. */
-export function estimateTotal(start: number, nights: number, rates: Readonly<Record<string, number>>): number | null {
-  const rate = rates[monthKey(start)];
+/** Airbnb applies the monthly discount from 28 nights. */
+export const MONTHLY_NIGHTS = 28;
+
+/**
+ * Rough total from the per-night rate of the check-in month, or null without a rate.
+ * From 28 nights the monthly rate is used when the month has one.
+ */
+export function estimateTotal(
+  start: number,
+  nights: number,
+  rates: Readonly<Record<string, number>>,
+  monthlyRates: Readonly<Record<string, number>> = {},
+): number | null {
+  const month = monthKey(start);
+  const rate = (nights >= MONTHLY_NIGHTS && monthlyRates[month]) || rates[month];
   return rate ? Math.round(nights * rate) : null;
 }
 

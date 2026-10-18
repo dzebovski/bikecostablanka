@@ -108,6 +108,14 @@ test("price estimate by check-in month", () => {
   assert.equal(estimateTotal(d("2027-05-01"), 14, rates), null);
 });
 
+test("price estimate uses the monthly rate from 28 nights", () => {
+  const rates = { "2026-12": 1623 / 14 };
+  const monthly = { "2026-12": 3015 / 30 };
+  assert.equal(estimateTotal(d("2026-12-01"), 27, rates, monthly), Math.round(27 * (1623 / 14)));
+  assert.equal(estimateTotal(d("2026-12-01"), 30, rates, monthly), 3015);
+  assert.equal(estimateTotal(d("2026-12-01"), 30, rates), Math.round(30 * (1623 / 14)));
+});
+
 test("guests: adults ≥ 1, adults + children ≤ 5, infants 0–5", () => {
   const g: Guests = { adults: 2, children: 0, infants: 0, pets: false };
   assert.equal(setGuests(g, { adults: 0 }).adults, 1);

@@ -114,7 +114,7 @@ export function BarFields({ source, size = "md" }: { source: Source; size?: "md"
   );
 }
 
-/** "from €71 / night · 11+ nights · fees included", or one line "14 nights · ≈ €999" for a valid range. */
+/** "from €116 / night · 11+ nights · fees included", or "14 nights" over "≈ €1,623" for a valid range. */
 function BarSummary({ large }: { large: boolean }) {
   const b = useBooking();
   const t = b.t.booking;
@@ -123,11 +123,10 @@ function BarSummary({ large }: { large: boolean }) {
     <div className="flex min-w-0 flex-1 flex-col justify-center gap-1 px-3" aria-live="polite">
       {valid ? (
         <>
+          <p className={`${large ? "t-h3" : "t-body"} truncate tnum`}>{fill(t.nights, { n: b.nights! })}</p>
           <p className={`${large ? "t-h3" : "t-body"} truncate font-medium tnum`}>
-            {fill(t.nights, { n: b.nights! })}
-            {b.estimate !== null && ` · ${fill(t.estimate, { price: formatEuro(b.estimate, b.locale) })}`}
+            {b.estimate !== null ? fill(t.estimate, { price: formatEuro(b.estimate, b.locale) }) : <span className="t-sm font-normal">{t.priceOnAirbnb}</span>}
           </p>
-          {b.estimate === null && <p className="t-sm truncate">{t.priceOnAirbnb}</p>}
         </>
       ) : (
         <>

@@ -9,7 +9,7 @@ type Booking = ReturnType<typeof useBooking>;
 
 /** "14 nights · ≈ €999" or "14 nights · price on Airbnb" */
 export function nightsAndPrice(b: Booking, start: number, nights: number) {
-  const total = estimateTotal(start, nights, prices.estimateRates);
+  const total = estimateTotal(start, nights, prices.estimateRates, prices.monthlyRates);
   const price = total !== null ? fill(b.t.booking.estimate, { price: formatEuro(total, b.locale) }) : b.t.booking.priceOnAirbnb;
   return `${fill(b.t.booking.nights, { n: nights })} · ${price}`;
 }

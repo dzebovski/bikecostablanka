@@ -22,6 +22,8 @@ export type PriceSnapshot = {
   months: PriceMonth[];
   /** Per-night rate by check-in month for the booking estimate. */
   estimateRates: Record<string, number>;
+  /** Per-night rate with Airbnb's monthly discount (28+ nights), by check-in month. */
+  monthlyRates: Record<string, number>;
   /** Conversion value per night when a month has no rate. */
   fallbackNightly: number;
 };
@@ -43,6 +45,11 @@ export const prices: PriceSnapshot = {
     "2026-12": 1623 / 14,
     "2027-01": 1275 / 11,
     "2027-03": 1338 / 11,
+    "2027-04": 3300 / 28,
+  },
+  monthlyRates: {
+    "2026-11": 3015 / 30,
+    "2026-12": 3015 / 30,
     "2027-04": 3300 / 28,
   },
   fallbackNightly: 116,
