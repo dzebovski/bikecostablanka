@@ -38,21 +38,22 @@ Last update: 2026-10-08. Items marked ⚠️ still need the owner's confirmation
 - **Prices = Airbnb prices** (dynamic). Weekly and monthly discounts on. Free cancellation shows for an 11-night stay.
 - Up to 5 guests; infants don't count (Airbnb rule); pets allowed; only registered guests.
 - Stays of 1 month+: electricity included up to €3.33/night, then €0.30/kWh (i-DE smart meter), paid by bank transfer after check-out.
-- Direct booking (Lodgify), second channel after Airbnb (owner, 2026-10-14). **Rule: never show or imply that direct is cheaper than Airbnb** (no "save", no "−5%", no lower price; Airbnb rules). Benefits we may state: welcome pack with wine from a local winery and local olive oil, the host directly, pay 50% at booking and 50% five days before arrival. Lodgify is a third-party holiday-rental booking platform (not our own system); its cancellation terms apply there, so the landing does not state any.
+- Direct booking (Lodgify), second channel after Airbnb (owner, 2026-10-14). **Rule: never show or imply that direct is cheaper than Airbnb** (no "save", no "−5%", no lower price; Airbnb rules). Benefits we may state: welcome pack with wine from a local winery and local olive oil, the host directly, pay 50% at booking and the rest 14 days before arrival (Lodgify setting). Lodgify is a third-party holiday-rental booking platform (not our own system). Its terms: prepayments are non-refundable; the landing states this in the direct column and FAQ (owner, 2026-10-18).
 - ⚠️ `bikecostablanka.lodgify.com` shows "Website not found" (not published); the old site's /book-direct page links there and still says "Save up to 5% compared with Airbnb": change it. Until a working URL exists, the direct link opens without dates (env `NEXT_PUBLIC_DIRECT_BOOKING_URL`).
 
-### Price & availability snapshot (2026-10-08, EUR, 2 guests, all fees)
+### Price & availability snapshot (2026-10-18, EUR, 2 guests, all fees)
 | Dates | Nights | Total | Per night |
 |---|---|---|---|
-| 1–12 Dec 2026 | 11 | €785 | ≈ €71 |
-| 1–15 Dec 2026 | 14 | €999 (weekly discount, was €1,218) | ≈ €71 |
-| 12–23 Jan 2027 | 11 | €1,101 | ≈ €100 |
+| 26 Nov – 7 Dec 2026 | 11 | €1,275 | ≈ €116 |
+| 26 Nov – 10 Dec 2026 (also 10–24 Dec) | 14 | €1,623 | ≈ €116 |
+| 26 Nov – 26 Dec 2026 | 30 | €3,015 (monthly discount, was €3,660, −18%) | ≈ €100 |
+| 12–23 Jan 2027 | 11 | €1,275 | ≈ €116 |
 | Feb 2027 | — | fully booked | — |
-| 20–31 Mar 2027 | 11 | €1,155 | ≈ €105 |
-| 20 Mar – 3 Apr 2027 | 14 | €1,470 | ≈ €105 |
-| 1–29 Apr 2027 | 28 | €2,848 (monthly discount, was €3,584, −20%) | ≈ €102 |
+| 20–31 Mar 2027 | 11 | €1,338 | ≈ €122 |
+| 1–29 Apr 2027 | 28 | €3,300 (monthly discount, was €3,584, −8%) | ≈ €118 |
 
-Booked: 28 Dec – 11 Jan, 24 Jan – 19 Mar. Free: 1–27 Dec, 12–23 Jan, from 20 Mar.
+Booked (iCal): until 26 Nov (21–23 Nov too short), 26 Dec – 12 Jan, 23 Jan – 20 Mar. Free: 26 Nov – 26 Dec, 12–23 Jan, from 20 Mar.
+Owner (2026-10-18): sell 26 Nov – 26 Dec as two 14-night blocks at ~€125/night (Airbnb already matches). Previous snapshot (2026-10-08) had December at ≈ €71/night.
 Live availability: Airbnb iCal feed in Vercel env `AIRBNB_ICAL_URL` (Production, secret; never commit or print it).
 
 ## Reviews (Airbnb, 5.0 from 2; rating summary appears after 3)

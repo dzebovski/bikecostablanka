@@ -27,23 +27,25 @@ export type PriceSnapshot = {
 };
 
 export const prices: PriceSnapshot = {
-  checkedOn: "2026-10-08",
+  checkedOn: "2026-10-18",
   currency: "EUR",
-  fromPerNight: 71,
+  fromPerNight: 116,
   months: [
-    { month: "2026-12", free: [{ from: "2026-12-01", to: "2026-12-27" }], perNight: 71, example: { nights: 14, total: 999 } },
-    { month: "2027-01", free: [{ from: "2027-01-12", to: "2027-01-23" }], perNight: 100, example: { nights: 11, total: 1101 } },
+    // The December window starts on 26 Nov (owner, 2026-10-18: sell 26 Nov – 26 Dec, two 14-night blocks or the whole month).
+    { month: "2026-12", free: [{ from: "2026-11-26", to: "2026-12-26" }], perNight: 116, example: { nights: 14, total: 1623 } },
+    { month: "2027-01", free: [{ from: "2027-01-12", to: "2027-01-23" }], perNight: 116, example: { nights: 11, total: 1275 } },
     { month: "2027-02", free: [] },
-    { month: "2027-03", free: [{ from: "2027-03-20" }], perNight: 105, example: { nights: 11, total: 1155 } },
-    { month: "2027-04", free: "open", perNight: 102, example: { nights: 28, total: 2848, discount: "monthly", discountPct: 20 } },
+    { month: "2027-03", free: [{ from: "2027-03-20" }], perNight: 122, example: { nights: 11, total: 1338 } },
+    { month: "2027-04", free: "open", perNight: 118, example: { nights: 28, total: 3300, discount: "monthly", discountPct: 8 } },
   ],
   estimateRates: {
-    "2026-12": 999 / 14,
-    "2027-01": 1101 / 11,
-    "2027-03": 105,
-    "2027-04": 2848 / 28,
+    "2026-11": 1623 / 14,
+    "2026-12": 1623 / 14,
+    "2027-01": 1275 / 11,
+    "2027-03": 1338 / 11,
+    "2027-04": 3300 / 28,
   },
-  fallbackNightly: 75,
+  fallbackNightly: 116,
 };
 
 /** The free windows across the season, in order, for the "Free: …" notes. */

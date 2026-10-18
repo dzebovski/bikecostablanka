@@ -760,8 +760,8 @@
     "alt": "The roof terrace"
   },
   "direct": {
-    "benefit": "Direct booking (via Lodgify): pay half now, half 5 days before arrival · welcome pack of local wine & olive oil",
-    "benefitShort": "Direct: pay half now, half 5 days before arrival · welcome pack of local wine & olive oil",
+    "benefit": "Direct booking (via Lodgify): pay half now, half 14 days before arrival · welcome pack of local wine & olive oil",
+    "benefitShort": "Direct: pay half now, half 14 days before arrival · welcome pack of local wine & olive oil",
     "options": {
       "title": "Two ways to book",
       "intro": "Pick your dates, then choose where to book. Both buttons open the picker first if no dates are set.",
@@ -779,14 +779,15 @@
           "Welcome pack: wine from a local winery and local olive oil",
           "Book and pay on Lodgify, a holiday-rental booking platform",
           "Talk to Eugene directly, before and during your stay",
-          "Pay 50% when booking, 50% five days before arrival"
+          "Pay 50% when booking, the rest 14 days before arrival",
+          "Prepayments are non-refundable (Lodgify terms)"
         ]
       }
     },
     "faq": {
       "q": "Can I book directly with you?",
-      "a": "Yes, on Lodgify, a holiday-rental booking platform. Pick your dates here, then choose Direct booking. You pay half when you book and the rest 5 days before arrival, and a welcome pack of local wine and olive oil waits for you. Prefer Airbnb? Book on Airbnb takes you there with your dates.",
-      "aMobile": "Yes, on Lodgify. Pick your dates, then Direct booking: half now, half 5 days before arrival, plus a welcome pack of local wine and olive oil."
+      "a": "Yes, on Lodgify, a holiday-rental booking platform. Pick your dates here, then choose Direct booking. You pay half when you book and the rest 14 days before arrival (prepayments are non-refundable), and a welcome pack of local wine and olive oil waits for you. Prefer Airbnb? Book on Airbnb takes you there with your dates.",
+      "aMobile": "Yes, on Lodgify. Pick your dates, then Direct booking: half now, half 14 days before arrival (non-refundable), plus a welcome pack of local wine and olive oil."
     }
   }
 }

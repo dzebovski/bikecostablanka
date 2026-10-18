@@ -49,35 +49,22 @@ export function HeaderAction() {
 }
 
 /**
- * Desktop booking bar (1024px and wider): fixed at the bottom, appears once the title block has
- * scrolled away, steps aside while the Final CTA is on screen, behind modals and the cookie banner.
+ * Desktop booking bar (1024px and wider): fixed at the bottom from the first screen (owner, 2026-10-18),
+ * steps aside while the Final CTA is on screen, behind modals and the cookie banner.
  */
 export function BookingBar() {
   const b = useBooking();
   const t = b.t.booking;
-  const [pastTitle, setPastTitle] = useState(false);
   const [finalInView, setFinalInView] = useState(false);
   const open = b.anchor === "bar" && (b.surface === "dates" || b.surface === "guests");
-  const shown = (pastTitle || open) && !finalInView;
+  const shown = !finalInView;
 
   useEffect(() => {
-    const title = document.querySelector('[data-component="TitleBlock"]');
     const final = document.getElementById(FINAL_CTA_ID);
-    const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 56;
-    const observers: IntersectionObserver[] = [];
-    if (title) {
-      const o = new IntersectionObserver(([entry]) => setPastTitle(!entry.isIntersecting && entry.boundingClientRect.top < 0), {
-        rootMargin: `-${header}px 0px 0px 0px`,
-      });
-      o.observe(title);
-      observers.push(o);
-    }
-    if (final) {
-      const o = new IntersectionObserver(([entry]) => setFinalInView(entry.isIntersecting));
-      o.observe(final);
-      observers.push(o);
-    }
-    return () => observers.forEach((o) => o.disconnect());
+    if (!final) return;
+    const o = new IntersectionObserver(([entry]) => setFinalInView(entry.isIntersecting));
+    o.observe(final);
+    return () => o.disconnect();
   }, []);
 
   // A popover never stays open on a bar that has stepped aside.
