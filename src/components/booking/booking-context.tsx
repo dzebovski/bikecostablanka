@@ -16,6 +16,7 @@ import type { Dictionary } from "@/i18n/dictionaries";
 import { prices } from "@/data/prices";
 import { DESKTOP } from "@/hooks/use-media";
 import { airbnbUrl } from "@/lib/airbnb";
+import { directBookingUrl } from "@/lib/direct";
 import { track, trackLongStayIntent } from "@/lib/analytics";
 import {
   DEFAULT_GUESTS,
@@ -39,11 +40,11 @@ import {
   type Status,
 } from "@/lib/booking";
 
-export type BookingMessages = Pick<Dictionary, "booking" | "picker" | "guests" | "sheet" | "cta" | "mobileBar">;
+export type BookingMessages = Pick<Dictionary, "booking" | "picker" | "guests" | "sheet" | "cta" | "mobileBar" | "direct">;
 
 export type Source =
   | "header"
-  | "card"
+  | "bottom_bar"
   | "amenities"
   | "prices"
   | "final_cta"
@@ -51,11 +52,12 @@ export type Source =
   | "lightbox"
   | "all_photos"
   | "amenities_modal"
-  | "sheet";
+  | "sheet"
+  | "booking_options";
 
 type Surface = "dates" | "guests" | "sheet" | null;
-/** Where the desktop popovers open: under the booking card, or in place at the Final CTA. */
-export type Anchor = "card" | "final";
+/** Where the desktop popovers open: the bottom bar, or the Final CTA fields when that section is in view. */
+export type Anchor = "bar" | "final";
 type Availability = "loading" | "ok" | "error";
 
 type BookingContextValue = {
@@ -75,6 +77,8 @@ type BookingContextValue = {
   setHover: (night: number | null) => void;
   surface: Surface;
   anchor: Anchor;
+  /** The element that opened the current surface (for aligning the popover to the clicked field). */
+  trigger: { current: HTMLElement | null };
   sheetStep: "dates" | "guests";
   setSheetStep: (step: "dates" | "guests") => void;
   viewIndex: number;
@@ -91,6 +95,9 @@ type BookingContextValue = {
   updateGuests: (change: Partial<Guests>) => void;
   airbnbHref: string | null;
   onCheckAvailability: (source: Source) => void;
+  /** Lodgify page for a valid range; null without valid dates or when no direct booking URL is configured. */
+  directHref: string | null;
+  onBookDirect: (source: Source) => void;
 };
 
 const BookingContext = createContext<BookingContextValue | null>(null);
@@ -109,6 +116,18 @@ export function useOptionalBooking() {
 const MONTHS_SHOWN = 12;
 
 const noopSubscribe = () => () => {};
+
+export const FINAL_CTA_ID = "final-cta";
+
+/** The clicked field's own anchor, else the Final CTA when it is on screen (the bar hides there), else the bar. */
+function anchorFor(el?: HTMLElement | null): Anchor {
+  const own = el?.closest<HTMLElement>("[data-anchor]")?.dataset.anchor;
+  if (own === "bar" || own === "final") return own;
+  const final = document.getElementById(FINAL_CTA_ID);
+  if (!final) return "bar";
+  const rect = final.getBoundingClientRect();
+  return rect.top < window.innerHeight && rect.bottom > 0 ? "final" : "bar";
+}
 
 function monthStarts(today: number) {
   const [y, m] = fromOrd(today).split("-").map(Number);
@@ -151,11 +170,6 @@ function readUrlState(today: number): { sel: Selection; guests: Guests; openDate
   return { sel, guests, openDates };
 }
 
-/** The Final CTA opens its popovers in place; every other trigger uses the booking card. */
-function anchorOf(el: HTMLElement | null): Anchor {
-  return el?.closest("[data-booking-anchor='final']") ? "final" : "card";
-}
-
 export function BookingProvider({ locale, t, children }: { locale: Locale; t: BookingMessages; children: ReactNode }) {
   // Today is read on the client only (the page itself is prerendered); 0 until hydrated.
   const today = useSyncExternalStore(noopSubscribe, todayInMadrid, () => 0);
@@ -166,7 +180,7 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
   const [availability, setAvailability] = useState<Availability>("loading");
   const [hover, setHover] = useState<number | null>(null);
   const [surface, setSurface] = useState<Surface>(null);
-  const [anchor, setAnchor] = useState<Anchor>("card");
+  const [anchor, setAnchor] = useState<Anchor>("bar");
   const [sheetStep, setSheetStep] = useState<"dates" | "guests">("dates");
   const [viewIndex, setViewIndex] = useState(0);
   const [focusDay, setFocusDay] = useState<number | null>(null);
@@ -203,16 +217,6 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
     [today, booked, months],
   );
 
-  const revealCard = useCallback(() => {
-    const card = document.getElementById("book");
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const top = 80;
-    if (rect.top >= top - 1 && rect.top < window.innerHeight * 0.5) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    window.scrollTo({ top: window.scrollY + rect.top - top, behavior: reduced ? "auto" : "smooth" });
-  }, []);
-
   const showMonthOf = useCallback(
     (night: number, desktop: boolean) => {
       const index = monthIndexOf(months, night);
@@ -230,16 +234,14 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
       showMonthOf(focus, desktop);
       setHover(null);
       if (desktop) {
-        const at = anchorOf(trigger.current);
-        setAnchor(at);
-        if (at === "card") revealCard();
+        setAnchor(anchorFor(trigger.current));
         setSurface("dates");
       } else {
         setSheetStep("dates");
         setSurface("sheet");
       }
     },
-    [revealCard, showMonthOf],
+    [showMonthOf],
   );
 
   const openDates = useCallback(
@@ -251,16 +253,14 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
     (el?: HTMLElement | null) => {
       trigger.current = el ?? (document.activeElement as HTMLElement | null);
       if (window.matchMedia(DESKTOP).matches) {
-        const at = anchorOf(trigger.current);
-        setAnchor(at);
-        if (at === "card") revealCard();
+        setAnchor(anchorFor(trigger.current));
         setSurface((s) => (s === "guests" ? null : "guests"));
       } else {
         setSheetStep("guests");
         setSurface("sheet");
       }
     },
-    [revealCard],
+    [],
   );
 
   const close = useCallback(() => {
@@ -324,8 +324,10 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
     const after = conflicts.length ? Math.max(...conflicts.map((r) => r.to)) : (sel.start ?? today);
     const focus = firstSelectable(after);
     setSel({ start: null, end: null });
-    openDatesAt(focus, window.matchMedia(DESKTOP).matches ? "card" : "sheet", document.activeElement as HTMLElement | null);
-  }, [conflicts, sel.start, today, firstSelectable, openDatesAt]);
+    const desktop = window.matchMedia(DESKTOP).matches;
+    const source: Source = !desktop ? "sheet" : anchor === "final" ? "final_cta" : "bottom_bar";
+    openDatesAt(focus, source, document.activeElement as HTMLElement | null);
+  }, [conflicts, sel.start, today, firstSelectable, openDatesAt, anchor]);
 
   const updateGuests = useCallback((change: Partial<Guests>) => setGuestsState((g) => clampGuests(g, change)), []);
 
@@ -334,10 +336,16 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
       ? airbnbUrl(locale, fromOrd(sel.start), fromOrd(sel.end), guests)
       : null;
 
-  const onCheckAvailability = useCallback(
-    (source: Source) => {
-      if (sel.start === null || sel.end === null || !nights) return;
-      const params = {
+  const directHref =
+    status === "valid" && sel.start !== null && sel.end !== null
+      ? directBookingUrl({ checkIn: fromOrd(sel.start), checkOut: fromOrd(sel.end), guests })
+      : null;
+
+  /** Both channels send the same params; `channel` tells them apart. */
+  const bookingParams = useCallback(
+    (source: Source, channel: "airbnb" | "direct") => {
+      if (sel.start === null || sel.end === null || !nights) return null;
+      return {
         nights,
         guests: guestCount(guests),
         check_in: fromOrd(sel.start),
@@ -346,11 +354,30 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
         currency: prices.currency,
         locale,
         source,
+        channel,
       };
-      track("click_book_airbnb", params, "InitiateCheckout");
-      if (nights >= MIN_NIGHTS) trackLongStayIntent(params);
     },
     [sel, nights, guests, estimate, locale],
+  );
+
+  const onCheckAvailability = useCallback(
+    (source: Source) => {
+      const params = bookingParams(source, "airbnb");
+      if (!params) return;
+      track("click_book_airbnb", params, "InitiateCheckout");
+      if (params.nights >= MIN_NIGHTS) trackLongStayIntent(params);
+    },
+    [bookingParams],
+  );
+
+  const onBookDirect = useCallback(
+    (source: Source) => {
+      const params = bookingParams(source, "direct");
+      if (!params) return;
+      track("click_book_direct", params, "InitiateCheckout");
+      if (params.nights >= MIN_NIGHTS) trackLongStayIntent(params);
+    },
+    [bookingParams],
   );
 
   const value: BookingContextValue = {
@@ -370,6 +397,7 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
     setHover,
     surface,
     anchor,
+    trigger,
     sheetStep,
     setSheetStep,
     viewIndex,
@@ -386,6 +414,8 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
     updateGuests,
     airbnbHref,
     onCheckAvailability,
+    directHref,
+    onBookDirect,
   };
 
   return <BookingContext.Provider value={value}>{children}</BookingContext.Provider>;

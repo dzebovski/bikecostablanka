@@ -13,7 +13,7 @@ export function AboutText({ text, textMobile, more, less }: { text: string; text
   const [open, setOpen] = useState(false);
   return (
     <>
-      <p id="about-text" className={`t-body ${open ? "" : "clamp-4"}`}>
+      <p id="about-text" className={`t-body measure ${open ? "" : "clamp-4"}`}>
         {open ? (
           text
         ) : (
@@ -98,8 +98,10 @@ export function AmenitiesButton({ t, checkDates }: { t: Dictionary["amenities"];
     if (!mounted || !el) return;
     if (!el.open) el.showModal();
     document.documentElement.style.overflow = "hidden";
+    document.documentElement.dataset.overlay = "";
     return () => {
       document.documentElement.style.overflow = "";
+      delete document.documentElement.dataset.overlay;
     };
   }, [mounted]);
 

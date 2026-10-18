@@ -26,7 +26,7 @@ export function Gallery({ locale, t }: { locale: Locale; t: Dictionary["gallery"
   }
 
   return (
-    <section id="photos" data-component="Gallery" aria-label={t.label} className="relative order-first px-2 md:order-none md:px-0">
+    <section id="photos" data-component="Gallery" aria-label={t.label} className="relative order-first -mx-3 md:order-none md:mx-0">
       <div
         ref={strip}
         onScroll={onScroll}
@@ -56,7 +56,7 @@ export function Gallery({ locale, t }: { locale: Locale; t: Dictionary["gallery"
           );
         })}
       </div>
-      <span className="chip tnum absolute right-5 bottom-3 border-snow bg-snow md:hidden" aria-hidden="true">
+      <span className="chip tnum absolute right-3 bottom-3 border-snow bg-snow md:hidden" aria-hidden="true">
         {fill(t.counter, { n: current, total })}
       </span>
       <Link

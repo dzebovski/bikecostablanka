@@ -5,10 +5,9 @@ import { fill, formatDay, formatEuro } from "@/lib/format";
 import { ContactLink } from "@/components/contact-link";
 import { contact } from "@/lib/contact";
 import { useBooking } from "./booking-context";
-import { BookingAction, BookingFields, NightsLine } from "./booking-fields";
-import { DatePickerPopover } from "./date-picker";
-import { GuestPopover } from "./guest-picker";
 import { earliestCheckOut, nightsAndPrice, validHover } from "./summary";
+
+/* Pieces of the former sticky booking card, now used by the bottom bar, its popovers and the Final CTA. */
 
 /** "from €71 / night" */
 export function FromPrice({ size = "card" }: { size?: "card" | "bar" }) {
@@ -23,7 +22,7 @@ export function FromPrice({ size = "card" }: { size?: "card" | "bar" }) {
 }
 
 /** State 2 hint: earliest check-out, plus the hovered range on desktop. */
-function PickingHint() {
+export function PickingHint() {
   const b = useBooking();
   if (b.status !== "picking" || b.sel.start === null) return null;
   const hover = validHover(b);
@@ -59,37 +58,5 @@ export function QuestionsLine({ source }: { source: string }) {
         {channel === "whatsapp" ? t.booking.messageWhatsapp : t.booking.messageEmail}
       </ContactLink>
     </p>
-  );
-}
-
-export function BookingCard() {
-  const b = useBooking();
-  const t = b.t.booking;
-  return (
-    <aside
-      id="book"
-      data-component="BookingCard"
-      aria-label={t.label}
-      className="card hidden w-full max-w-[336px] flex-col gap-4 relative z-10 md:flex lg:sticky lg:top-20 lg:flex-[1_1_320px]"
-    >
-      <div>
-        <FromPrice />
-        <p className="t-sm mt-1.5">{t.terms}</p>
-      </div>
-      <div className="relative">
-        <BookingFields source="card" />
-        <DatePickerPopover />
-        <GuestPopover />
-      </div>
-      <PickingHint />
-      {b.status !== "short" && b.status !== "conflict" && <NightsLine />}
-      <UnavailableNote />
-      <BookingAction source="card" className="w-full" />
-      <p className="t-sm">{t.noCharge}</p>
-      <div className="flex flex-col gap-2.5 border-t border-line pt-3.5">
-        <QuestionsLine source="card" />
-        <p className="t-sm tnum">{t.trust}</p>
-      </div>
-    </aside>
   );
 }

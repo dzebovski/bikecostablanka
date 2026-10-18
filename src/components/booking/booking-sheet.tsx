@@ -4,7 +4,7 @@ import { useEffect, useRef, type PointerEvent } from "react";
 import { usePresence } from "@/hooks/use-presence";
 import { formatStay, weekdayInitials } from "@/lib/format";
 import { useBooking } from "./booking-context";
-import { BookingAction, StatusMessage } from "./booking-fields";
+import { BookingAction, DirectBenefit, NoChargeNote, StatusMessage } from "./booking-fields";
 import { UnavailableNote } from "./booking-card";
 import { Calendar } from "./calendar";
 import { GuestRows, guestLabel } from "./guest-picker";
@@ -145,8 +145,8 @@ export function BookingSheet() {
                 <p className="t-sm">{guestLabel(t, b.guests)}</p>
               </div>
               <UnavailableNote />
-              <BookingAction source="sheet" className="w-full" />
-              <p className="t-sm">{t.booking.noCharge}</p>
+              <BookingAction source="sheet" stack />
+              {b.directHref ? <DirectBenefit short className="text-center" /> : <NoChargeNote />}
             </div>
           </>
         )}
