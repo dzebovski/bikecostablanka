@@ -7,7 +7,7 @@ Last update: 2026-10-08. Items marked ⚠️ still need the owner's confirmation
 | What | Where |
 |---|---|
 | Airbnb listing | https://www.airbnb.com/rooms/1692875983935079214 |
-| Direct booking (Lodgify) | https://bikecostablanka.lodgify.com/ |
+| Direct booking (Lodgify) | https://bikecostablanca.lodgify.com/ |
 | Old site | https://www.bikecostablanka.com |
 | Instagram / TikTok | https://www.instagram.com/bikecostablanca/ · https://www.tiktok.com/@bikecostablanca |
 | Repo | https://github.com/dzebovski/bikecostablanka |
@@ -39,7 +39,7 @@ Last update: 2026-10-08. Items marked ⚠️ still need the owner's confirmation
 - Up to 5 guests; infants don't count (Airbnb rule); pets allowed; only registered guests.
 - Stays of 1 month+: electricity included up to €3.33/night, then €0.30/kWh (i-DE smart meter), paid by bank transfer after check-out.
 - Direct booking (Lodgify), second channel after Airbnb (owner, 2026-10-14). **Rule: never show or imply that direct is cheaper than Airbnb** (no "save", no "−5%", no lower price; Airbnb rules). Benefits we may state: welcome pack with wine from a local winery and local olive oil, the host directly, pay 50% at booking and the rest 14 days before arrival (Lodgify setting). Lodgify is a third-party holiday-rental booking platform (not our own system). Its terms: prepayments are non-refundable; the landing states this in the direct column and FAQ (owner, 2026-10-18).
-- ⚠️ `bikecostablanka.lodgify.com` shows "Website not found" (not published); the old site's /book-direct page links there and still says "Save up to 5% compared with Airbnb": change it. Until a working URL exists, the direct link opens without dates (env `NEXT_PUBLIC_DIRECT_BOOKING_URL`).
+- Lodgify-сайт `bikecostablanca.lodgify.com` (через **c**) працює; кнопка Direct booking веде на сторінку будинку `/en/casa-adosada-3-hab-parking-35-banos` з датами й гостями. До 2026-10-22 у Vercel стояла адреса з помилкою (`bikecostablanka`, через k), тому було 404.
 
 ### Price & availability snapshot (2026-10-18, EUR, 2 guests, all fees)
 | Dates | Nights | Total | Per night |

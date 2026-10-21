@@ -2,7 +2,7 @@ import type { Guests } from "./booking.ts";
 
 /**
  * Direct booking on Lodgify, a third-party holiday-rental platform, as the second channel after Airbnb.
- * `NEXT_PUBLIC_DIRECT_BOOKING_URL` is the property page, e.g. https://bikecostablanka.lodgify.com/en/casa-adosada-3-hab-parking-35-banos.
+ * `NEXT_PUBLIC_DIRECT_BOOKING_URL` is the property page, e.g. https://bikecostablanca.lodgify.com/en/casa-adosada-3-hab-parking-35-banos.
  * Empty means the direct option is not rendered anywhere.
  */
 export function directBookingBaseUrl(raw: string | undefined = process.env.NEXT_PUBLIC_DIRECT_BOOKING_URL): string | null {

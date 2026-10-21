@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { directBookingBaseUrl, directBookingUrl } from "./direct.ts";
 
-const base = "https://bikecostablanka.lodgify.com/en/casa-adosada-3-hab-parking-35-banos";
+const base = "https://bikecostablanca.lodgify.com/en/casa-adosada-3-hab-parking-35-banos";
 const stay = { checkIn: "2026-12-01", checkOut: "2026-12-15", guests: { adults: 2, children: 1, infants: 0, pets: true } };
 
 test("no direct booking URL configured: nothing to render", () => {
