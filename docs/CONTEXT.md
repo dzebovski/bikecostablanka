@@ -49,8 +49,10 @@ Last update: 2026-10-08. Items marked ⚠️ still need the owner's confirmation
 | 26 Nov – 26 Dec 2026 | 30 | €3,015 (monthly discount, was €3,660, −18%) | ≈ €100 |
 | 12–23 Jan 2027 | 11 | €1,275 | ≈ €116 |
 | Feb 2027 | — | fully booked | — |
-| 20–31 Mar 2027 | 11 | €1,338 | ≈ €122 |
-| 1–29 Apr 2027 | 28 | €3,300 (monthly discount, was €3,584, −8%) | ≈ €118 |
+| 20–31 Mar 2027 | 11 | €1,338 → €1,275 on 2026-10-21 | ≈ €122 → €116 |
+| 1–29 Apr 2027 | 28 | €3,300 (−8%) → €3,145 (−8%) on 2026-10-21; 30 n €3,015 (−18%) | ≈ €118 → €112 |
+
+Re-checked 2026-10-21, Nov – Apr: one price scale for the whole season (Dec, Jan, Mar, Apr identical; Feb fully booked; the price depends only on length): 11 n €1,275 · 12 n €1,391 · 13 n €1,507 · 14 n €1,623 · 18 n €2,087 · 21 n €2,434 · 24 n €2,782 · 27 n €3,130 · 28 n €3,145 (monthly −8%) · 29 n €3,257 (−8%) · 30 n €3,015 (−18%). The site estimate matches all of them (`exactTotals` in `src/data/prices.ts` covers 21 and 30 nights). Free windows unchanged: 26 Nov – 26 Dec, 12–23 Jan, from 20 Mar.
 
 Booked (iCal): until 26 Nov (21–23 Nov too short), 26 Dec – 12 Jan, 23 Jan – 20 Mar. Free: 26 Nov – 26 Dec, 12–23 Jan, from 20 Mar.
 Owner (2026-10-18): sell 26 Nov – 26 Dec as two 14-night blocks at ~€125/night (Airbnb already matches). Previous snapshot (2026-10-08) had December at ≈ €71/night.

@@ -206,7 +206,7 @@ export function BookingProvider({ locale, t, children }: { locale: Locale; t: Bo
 
   const status = selectionStatus(sel, booked);
   const nights = sel.start !== null && sel.end !== null ? sel.end - sel.start : null;
-  const estimate = sel.start !== null && nights ? estimateTotal(sel.start, nights, prices.estimateRates, prices.monthlyRates) : null;
+  const estimate = sel.start !== null && nights ? estimateTotal(sel.start, nights, prices.estimateRates, prices.monthlyRates, prices.exactTotals) : null;
   const conflicts = useMemo(
     () => (sel.start !== null && sel.end !== null ? overlapping(sel.start, sel.end, booked) : []),
     [sel.start, sel.end, booked],

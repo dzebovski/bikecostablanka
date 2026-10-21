@@ -137,14 +137,18 @@ export const MONTHLY_NIGHTS = 28;
 /**
  * Rough total from the per-night rate of the check-in month, or null without a rate.
  * From 28 nights the monthly rate is used when the month has one.
+ * An exact Airbnb total for the check-in month and length wins over both rates.
  */
 export function estimateTotal(
   start: number,
   nights: number,
   rates: Readonly<Record<string, number>>,
   monthlyRates: Readonly<Record<string, number>> = {},
+  exactTotals: Readonly<Record<string, Readonly<Record<number, number>>>> = {},
 ): number | null {
   const month = monthKey(start);
+  const exact = exactTotals[month]?.[nights];
+  if (exact) return exact;
   const rate = (nights >= MONTHLY_NIGHTS && monthlyRates[month]) || rates[month];
   return rate ? Math.round(nights * rate) : null;
 }

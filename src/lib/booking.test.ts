@@ -116,6 +116,15 @@ test("price estimate uses the monthly rate from 28 nights", () => {
   assert.equal(estimateTotal(d("2026-12-01"), 30, rates), Math.round(30 * (1623 / 14)));
 });
 
+test("price estimate prefers an exact Airbnb total", () => {
+  const rates = { "2026-12": 1623 / 14 };
+  const monthly = { "2026-12": 3145 / 28 };
+  const exact = { "2026-12": { 30: 3015 } };
+  assert.equal(estimateTotal(d("2026-12-01"), 28, rates, monthly, exact), 3145);
+  assert.equal(estimateTotal(d("2026-12-01"), 30, rates, monthly, exact), 3015);
+  assert.equal(estimateTotal(d("2027-01-12"), 30, rates, monthly, exact), null);
+});
+
 test("guests: adults ≥ 1, adults + children ≤ 5, infants 0–5", () => {
   const g: Guests = { adults: 2, children: 0, infants: 0, pets: false };
   assert.equal(setGuests(g, { adults: 0 }).adults, 1);
