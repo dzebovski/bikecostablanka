@@ -19,13 +19,28 @@ export const tagIds = {
 
 const devLog = process.env.NODE_ENV !== "production";
 
-/** Sends an event to GA4 and Meta Pixel when they are loaded (no-op otherwise). */
+/**
+ * Sends a Meta event from the browser (Pixel) and the server (Conversions API) with one
+ * event ID, so Meta counts it once. Runs only when the Pixel is loaded, i.e. after "Accept".
+ */
+export function trackMeta(eventName: string, params: Params = {}, custom = false) {
+  if (!tagIds.meta || !window.fbq) return;
+  const eventId = crypto.randomUUID();
+  window.fbq(custom ? "trackCustom" : "track", eventName, params, { eventID: eventId });
+  fetch("/api/meta", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ eventName, eventId, params, url: location.href }),
+    keepalive: true,
+  }).catch(() => {});
+}
+
+/** Sends an event to GA4 and Meta when they are loaded (no-op otherwise). */
 export function track(name: string, params: Params = {}, metaStandardEvent?: string) {
   if (devLog) console.info("[track]", name, params, metaStandardEvent ? `(Meta ${metaStandardEvent})` : "");
   if (tagIds.ga || tagIds.gads) window.gtag?.("event", name, params);
-  if (!tagIds.meta) return;
-  if (metaStandardEvent) window.fbq?.("track", metaStandardEvent, params);
-  else window.fbq?.("trackCustom", name, params);
+  if (metaStandardEvent) trackMeta(metaStandardEvent, params);
+  else trackMeta(name, params, true);
 }
 
 /** The main conversion: GA4 event, Meta custom event and the Google Ads conversion. */

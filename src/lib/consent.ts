@@ -1,4 +1,4 @@
-import { tagIds } from "@/lib/analytics";
+import { tagIds, trackMeta } from "@/lib/analytics";
 
 export type Consent = "granted" | "denied";
 
@@ -81,7 +81,7 @@ export function applyConsent(value: Consent) {
     window.fbq = fbq;
     (window as Window & { _fbq?: unknown })._fbq = fbq;
     fbq("init", tagIds.meta);
-    fbq("track", "PageView");
+    trackMeta("PageView");
     inject("https://connect.facebook.net/en_US/fbevents.js");
   }
   if (value === "denied" && metaLoaded) {
