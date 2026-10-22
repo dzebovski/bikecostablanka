@@ -252,29 +252,9 @@
     background: var(--snow);
     color: var(--charcoal);
   }
-  /* Booking pair with a valid range: Airbnb (main) + direct booking on Lodgify (secondary). */
-  .btn-airbnb {
-    background: var(--airbnb);
-    border-color: var(--airbnb);
-    color: var(--snow);
-    border-radius: var(--radius-chip);
-    font-weight: 600;
+  /* Booking pair with a valid range: direct booking (btn-primary) + Airbnb (btn-secondary), a little tighter. */
+  .btn-book {
     padding: 0 18px;
-  }
-  .btn-airbnb:hover {
-    background: var(--airbnb-hover);
-    border-color: var(--airbnb-hover);
-    color: var(--snow);
-  }
-  .btn-lodgify {
-    background: transparent;
-    color: var(--charcoal);
-    border-radius: var(--radius-chip);
-    padding: 0 18px;
-  }
-  .btn-lodgify:hover {
-    background: var(--snow);
-    color: var(--charcoal);
   }
   .choice {
     display: flex;

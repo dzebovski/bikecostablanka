@@ -32,7 +32,7 @@ export function BookingOptions() {
       href={b.airbnbHref}
       target="_blank"
       rel="noopener"
-      className="btn btn-airbnb w-full md:w-auto"
+      className="btn btn-book btn-secondary w-full md:w-auto"
       data-event="click_book_airbnb"
       data-conversion="LongStayIntent"
       onClick={() => b.onCheckAvailability("booking_options")}
@@ -40,7 +40,7 @@ export function BookingOptions() {
       {b.t.cta.checkAvailability}
     </a>
   ) : (
-    <button type="button" className="btn btn-airbnb w-full md:w-auto" data-event="open_date_picker" onClick={openPicker}>
+    <button type="button" className="btn btn-book btn-secondary w-full md:w-auto" data-event="open_date_picker" onClick={openPicker}>
       {b.t.cta.checkAvailability}
     </button>
   );
@@ -50,7 +50,7 @@ export function BookingOptions() {
       href={b.directHref}
       target="_blank"
       rel="noopener"
-      className="btn btn-lodgify w-full md:w-auto"
+      className="btn btn-book btn-primary w-full md:w-auto"
       data-event="click_book_direct"
       data-conversion="LongStayIntent"
       onClick={() => b.onBookDirect("booking_options")}
@@ -58,7 +58,7 @@ export function BookingOptions() {
       {b.t.cta.bookDirect}
     </a>
   ) : (
-    <button type="button" className="btn btn-lodgify w-full md:w-auto" data-event="open_date_picker" onClick={openPicker}>
+    <button type="button" className="btn btn-book btn-primary w-full md:w-auto" data-event="open_date_picker" onClick={openPicker}>
       {b.t.cta.bookDirect}
     </button>
   );
@@ -70,8 +70,8 @@ export function BookingOptions() {
         <p className="t-sm">{o.intro}</p>
       </div>
       <div className="grid gap-8 md:grid-cols-2 md:gap-12">
-        {column(o.airbnb.title, o.airbnb.rows, airbnb)}
-        <div className="border-t border-charcoal pt-4 md:border-0 md:pt-0">{column(o.direct.title, o.direct.rows, direct)}</div>
+        {column(o.direct.title, o.direct.rows, direct)}
+        <div className="border-t border-charcoal pt-4 md:border-0 md:pt-0">{column(o.airbnb.title, o.airbnb.rows, airbnb)}</div>
       </div>
     </div>
   );

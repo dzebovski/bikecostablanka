@@ -65,8 +65,8 @@ export function BarFields({ source, size = "md" }: { source: Source; size?: "md"
   const t = b.t.booking;
   const { start, end } = b.sel;
   const picking = start !== null && end === null;
-  const value = size === "lg" ? "t-h3 font-medium" : "t-body font-medium";
-  const width = size === "lg" ? "w-[184px]" : "w-[132px]";
+  const value = size === "lg" ? "t-body xl:t-h3 font-medium" : "t-body font-medium";
+  const width = size === "lg" ? "w-[132px] xl:w-[164px]" : "w-[132px]";
   const checkIn = start !== null ? formatDay(start, b.locale) : t.addDate;
   const checkOut = end !== null ? formatDay(end, b.locale) : picking ? t.pickDate : t.addDate;
   const open = (e: MouseEvent<HTMLButtonElement>) => b.openDates(source, e.currentTarget);
@@ -98,7 +98,7 @@ export function BarFields({ source, size = "md" }: { source: Source; size?: "md"
         data-guests-field
         aria-haspopup="dialog"
         aria-expanded={b.surface === "guests"}
-        className={`bar-field ${size === "lg" ? "w-[208px]" : "w-[156px]"}`}
+        className={`bar-field ${size === "lg" ? "w-[156px] xl:w-[184px]" : "w-[156px]"}`}
         onClick={(e) => b.openGuests(e.currentTarget)}
       >
         <span className="t-label">{t.guests}</span>
@@ -109,7 +109,7 @@ export function BarFields({ source, size = "md" }: { source: Source; size?: "md"
       </button>
       <span className="bar-divider" aria-hidden="true" />
       <BarSummary large={size === "lg"} />
-      <BookingAction source={source} tall={size === "lg"} className="ml-auto shrink-0" />
+      <BookingAction source={source} className="ml-auto shrink-0" />
     </div>
   );
 }
@@ -120,17 +120,17 @@ function BarSummary({ large }: { large: boolean }) {
   const t = b.t.booking;
   const valid = b.status === "valid" && b.nights !== null;
   return (
-    <div className="flex min-w-0 flex-1 flex-col justify-center gap-1 px-3" aria-live="polite">
+    <div className="flex shrink-0 flex-col justify-center gap-1 px-3 whitespace-nowrap" aria-live="polite">
       {valid ? (
         <>
-          <p className={`${large ? "t-h3" : "t-body"} truncate tnum`}>{fill(t.nights, { n: b.nights! })}</p>
-          <p className={`${large ? "t-h3" : "t-body"} truncate font-medium tnum`}>
+          <p className={`${large ? "t-body xl:t-h3" : "t-body"} tnum`}>{fill(t.nights, { n: b.nights! })}</p>
+          <p className={`${large ? "t-body xl:t-h3" : "t-body"} font-medium tnum`}>
             {b.estimate !== null ? fill(t.estimate, { price: formatEuro(b.estimate, b.locale) }) : <span className="t-sm font-normal">{t.priceOnAirbnb}</span>}
           </p>
         </>
       ) : (
         <>
-          <p className={`${large ? "t-h3" : "t-body"} truncate`}>
+          <p className={`${large ? "t-body xl:t-h3" : "t-body"}`}>
             {t.from} <span className="font-medium tnum">{formatEuro(prices.fromPerNight, b.locale)}</span> {t.perNight}
           </p>
           <p className="t-sm truncate">{t.terms}</p>
@@ -196,43 +196,29 @@ export function StatusMessage({ className = "mb-4" }: { className?: string }) {
 }
 
 /**
- * The booking action. With a valid range: the pair "Book on Airbnb" (main) + "Direct booking" (Lodgify,
- * when configured). Otherwise one button that says what to fix or opens the picker.
+ * The booking action. With a valid range: the pair "Direct booking" (Lodgify, main, when configured) +
+ * "Book on Airbnb". Otherwise one button that says what to fix or opens the picker.
  */
 export function BookingAction({
   source,
   className = "",
-  tall = false,
   stack = false,
 }: {
   source: Source;
   className?: string;
-  tall?: boolean;
   /** Mobile: the pair as full-width buttons, one under the other. */
   stack?: boolean;
 }) {
   const b = useBooking();
-  const size = tall ? "min-h-16 px-8" : "";
   if (b.airbnbHref) {
     return (
       <div data-component="BookingChoice" className={`choice ${stack ? "choice-stack" : ""} ${className}`}>
-        <a
-          href={b.airbnbHref}
-          target="_blank"
-          rel="noopener"
-          className={`btn btn-airbnb ${size}`}
-          data-event="click_book_airbnb"
-          data-conversion="LongStayIntent"
-          onClick={() => b.onCheckAvailability(source)}
-        >
-          {b.t.cta.checkAvailability}
-        </a>
         {b.directHref && (
           <a
             href={b.directHref}
             target="_blank"
             rel="noopener"
-            className={`btn btn-lodgify ${size}`}
+            className="btn btn-book btn-primary"
             data-event="click_book_direct"
             data-conversion="LongStayIntent"
             onClick={() => b.onBookDirect(source)}
@@ -240,13 +226,24 @@ export function BookingAction({
             {b.t.cta.bookDirect}
           </a>
         )}
+        <a
+          href={b.airbnbHref}
+          target="_blank"
+          rel="noopener"
+          className={`btn btn-book ${b.directHref ? "btn-secondary" : "btn-primary"}`}
+          data-event="click_book_airbnb"
+          data-conversion="LongStayIntent"
+          onClick={() => b.onCheckAvailability(source)}
+        >
+          {b.t.cta.checkAvailability}
+        </a>
       </div>
     );
   }
   const full = stack ? "w-full" : "";
   if (b.status === "short" || b.status === "conflict") {
     return (
-      <button type="button" className={`btn ${size} ${full} ${className}`} disabled>
+      <button type="button" className={`btn ${full} ${className}`} disabled>
         {b.status === "short" ? b.t.cta.chooseNights : b.t.cta.chooseFree}
       </button>
     );
@@ -254,7 +251,7 @@ export function BookingAction({
   return (
     <button
       type="button"
-      className={`btn btn-primary ${size} ${full} ${className}`}
+      className={`btn btn-primary ${full} ${className}`}
       data-event="open_date_picker"
       onClick={(e) => b.openDates(source, e.currentTarget)}
     >

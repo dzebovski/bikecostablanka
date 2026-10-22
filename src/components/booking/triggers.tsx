@@ -23,16 +23,31 @@ export function CheckDates({ source, variant = "button", className = "" }: { sou
   );
 }
 
-/** Header action: "Book on Airbnb" once the dates are valid, otherwise "Check dates". The header stays Airbnb-only. */
+/** Header action: "Direct booking" (or "Book on Airbnb" without a direct URL) once the dates are valid, otherwise "Check dates". */
 export function HeaderAction() {
   const b = useBooking();
+  if (b.airbnbHref && b.directHref) {
+    return (
+      <a
+        href={b.directHref}
+        target="_blank"
+        rel="noopener"
+        className="btn btn-primary btn-sm"
+        data-event="click_book_direct"
+        data-conversion="LongStayIntent"
+        onClick={() => b.onBookDirect("header")}
+      >
+        {b.t.cta.bookDirect}
+      </a>
+    );
+  }
   if (b.airbnbHref) {
     return (
       <a
         href={b.airbnbHref}
         target="_blank"
         rel="noopener"
-        className="btn btn-airbnb btn-sm"
+        className="btn btn-primary btn-sm"
         data-event="click_book_airbnb"
         data-conversion="LongStayIntent"
         onClick={() => b.onCheckAvailability("header")}

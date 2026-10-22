@@ -334,11 +334,11 @@ export function Reviews({ t }: { t: T }) {
     <section id="reviews" data-component="Reviews" className="sec">
       <h2 className="t-h2">{t.reviews.title}</h2>
       <div className="cols lg:items-start">
-      <div className="stat lg:col-span-4">
+      <div className="stat lg:col-span-3">
         <p className="t-num text-[40px]! tracking-[-1px]! md:text-[48px]! md:tracking-[-1.2px]!">{t.reviews.rating}</p>
         <p className="t-sm">{t.reviews.count}</p>
       </div>
-      <div className="swipe swipe-bleed md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 lg:col-span-8 lg:gap-8">
+      <div className="swipe swipe-bleed md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 lg:col-span-9 lg:gap-6">
         {t.reviews.items.map((review) => (
           <article key={review.name} data-component="ReviewCard" className="card flex flex-[0_0_290px] flex-col gap-4">
             <p className="t-body clamp-3">{review.quote}</p>
