@@ -1,5 +1,6 @@
 "use client";
 
+import { AirbnbLogo } from "@/components/icon";
 import { directBookingBaseUrl } from "@/lib/direct";
 import { useBooking } from "./booking-context";
 
@@ -32,15 +33,17 @@ export function BookingOptions() {
       href={b.airbnbHref}
       target="_blank"
       rel="noopener"
-      className="btn btn-book btn-secondary w-full md:w-auto"
+      className="btn btn-book btn-airbnb w-full md:w-auto"
       data-event="click_book_airbnb"
       data-conversion="LongStayIntent"
       onClick={() => b.onCheckAvailability("booking_options")}
     >
+      <AirbnbLogo />
       {b.t.cta.checkAvailability}
     </a>
   ) : (
-    <button type="button" className="btn btn-book btn-secondary w-full md:w-auto" data-event="open_date_picker" onClick={openPicker}>
+    <button type="button" className="btn btn-book btn-airbnb w-full md:w-auto" data-event="open_date_picker" onClick={openPicker}>
+      <AirbnbLogo />
       {b.t.cta.checkAvailability}
     </button>
   );

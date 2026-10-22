@@ -256,6 +256,16 @@
   .btn-book {
     padding: 0 18px;
   }
+  /* "Book on Airbnb" next to direct booking: white fill (pink on marigold is only 3.4:1), pink text and outline. */
+  .btn-airbnb {
+    background: var(--snow);
+    border-color: var(--airbnb);
+    color: var(--airbnb);
+  }
+  .btn-airbnb:hover {
+    border-color: var(--airbnb-hover);
+    color: var(--airbnb-hover);
+  }
   .choice {
     display: flex;
     gap: 8px;

@@ -4,6 +4,7 @@ import type { MouseEvent } from "react";
 import { MIN_NIGHTS } from "@/lib/booking";
 import { prices } from "@/data/prices";
 import { fill, formatDay, formatDayRange, formatEuro } from "@/lib/format";
+import { AirbnbLogo } from "@/components/icon";
 import { useBooking, type Source } from "./booking-context";
 import { guestLabel } from "./guest-picker";
 import { earliestCheckOut } from "./summary";
@@ -230,11 +231,12 @@ export function BookingAction({
           href={b.airbnbHref}
           target="_blank"
           rel="noopener"
-          className={`btn btn-book ${b.directHref ? "btn-secondary" : "btn-primary"}`}
+          className={`btn btn-book ${b.directHref ? "btn-airbnb" : "btn-primary"}`}
           data-event="click_book_airbnb"
           data-conversion="LongStayIntent"
           onClick={() => b.onCheckAvailability(source)}
         >
+          <AirbnbLogo />
           {b.t.cta.checkAvailability}
         </a>
       </div>
